@@ -1,5 +1,9 @@
 <template>
   <div class="CBLineContainer">
+
+
+
+
     <div class="highChartContainer" ref="highChartContainer"></div>
     <div class="allMod">
       <div class="categoryMod" v-for="(amount, cat) in categorySpend" v-bind:key="cat">
@@ -94,6 +98,7 @@ input[type="number"] {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
 }
 
 .allMod {
@@ -101,9 +106,6 @@ input[type="number"] {
   flex-direction: row;
   justify-content: space-evenly;
   width: 100%;
-}
-.CBLineContainer {
-  width: 80%;
 }
 </style>
 
