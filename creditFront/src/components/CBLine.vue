@@ -15,7 +15,7 @@
             type="number"
             step=".01"
             v-model.number="categorySpend[cat]"
-            @change="createHighChart()"
+            @change="createHighChart(selectedCards)"
           />
         </div>
         <!-- <h2>${{ modCategorySpend[cat].toFixed(0) }}</h2> -->
@@ -110,6 +110,7 @@ input[type="number"] {
 </style>
 
 <script>
+import { mapState } from 'vuex';
 import Highcharts from "highcharts";
 import cardsDb from "@/data/cards";
 
@@ -121,19 +122,11 @@ export default {
       placeholder: "asdf",
       chart: null,
       categorySpend: this.$store.state.categorySpend,
-      max: 4000
+      max: 4000,
+      cards: []
     };
   },
-  props: {
-    cards: {
-      type: Array
-    }
-  },
-  filters: {
-    displayMoneyFilter: function(raw) {
-      return typeof raw;
-    }
-  },
+
   methods: {
     test: function() {
       console.log("asdf");
@@ -143,6 +136,7 @@ export default {
         return "$" + item.toFixed(2);
       }
     },
+
     CStoMonthCB: function(card) {
       let totalCB = 0;
       let totalSpend = 0;
@@ -164,6 +158,7 @@ export default {
         totalSpend
       };
     },
+
     createHighChart: function(cards) {
       Highcharts.chart(this.containerDiv, {
         title: {
@@ -256,16 +251,26 @@ export default {
       };
     }
   },
+  computed: {
+   ...mapState(['selectedCards']),
+  },
+  watch: {
+    selectedCards: function(){
+      this.createHighChart(this.selectedCards)
+    }
+
+  },
 
   mounted() {
     console.log(cardsDb);
-    const cards = [];
+    console.log(this.$store)
     for (let key in cardsDb) {
-      cards.push(cardsDb[key]);
+      this.$store.commit("addCard", cardsDb[key])
     }
 
     this.containerDiv = this.$refs.highChartContainer;
-    this.createHighChart(cards);
+    // console.log(this.$store.state.selectedCards)
+    this.createHighChart(this.$store.state.selectedCards);
   }
 };
 </script>

@@ -2,10 +2,13 @@
 	<nav class="topNavbar">
 		<div class="navItems">
 			<div>yo</div>
+			<router-link to="/">Home</router-link> 
+     		 <router-link to="/about">About</router-link>
 			<div class="btn btn-primary"> cool</div>
+			<cardsModal/>
 		</div>
-		
 	</nav>
+
 
 
 
@@ -30,7 +33,6 @@
 	align-items: center;
 	margin-top: 3px;
 	margin-bottom: 3px
-
 }
 
 

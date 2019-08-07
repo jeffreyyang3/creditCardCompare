@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <topNavbar/>
     <!-- <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
@@ -34,3 +35,15 @@
   color: #42b983;
 }*/
 </style>
+<script>
+import topNavbar from "@/components/topNavbar"
+export default {
+  name: 'app',
+  components: {
+    topNavbar
+  },
+
+}
+
+
+</script>

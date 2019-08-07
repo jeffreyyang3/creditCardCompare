@@ -18,9 +18,19 @@ export default new Vuex.Store({
             all: 400
         },
 
-        usingExData: false
+        usingExData: false,
+        selectedCards: []
     },
     mutations: {
+        addCard(state, card) {
+            state.selectedCards.push(card)
+        },
+        removeOne(state){
+            state.selectedCards.pop()
+        },
+        resetCards(state){
+            state.selectedCards = []
+        },
         setCategory(state, category, amount) {
             state.categorySpend[category] = amountj;
             console.log(`categoryspend set ${state.categorySpend}`);
