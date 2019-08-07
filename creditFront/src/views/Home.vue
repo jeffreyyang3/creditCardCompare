@@ -6,6 +6,7 @@
     <div class="nonNavbar">
       <CBLine />
     </div>
+    <cardSelectComponent />
       
       
     <!-- <Req></Req> -->
@@ -24,6 +25,7 @@
 </template>
 <style>
 body {
+  height: 10000px;
   background-color: #fefefe;
 }
 .nonNavbar {
@@ -44,6 +46,7 @@ body {
 import Req from "@/components/Req";
 import CBLine from "@/components/CBLine";
 import topNavbar from "@/components/topNavbar";
+import cardSelectComponent from "@/components/cardSelectComponent"
 // import PlaidLink from "vue-plaid-link";
 
 export default {
@@ -51,7 +54,8 @@ export default {
   components: {
     Req,
     CBLine,
-    topNavbar
+    topNavbar,
+    cardSelectComponent
     // PlaidLink
   },
   methods: {

@@ -4,7 +4,7 @@
 			<div>yo</div>
 			<router-link to="/">Home</router-link> 
      		 <router-link to="/about">About</router-link>
-			<div class="btn btn-primary"> cool</div>
+			<div class="btn btn-primary" @click="pop"> cool</div>
 			<cardsModal/>
 		</div>
 	</nav>
@@ -19,6 +19,7 @@
 <style type="text/css">
 	
 .topNavbar {
+	z-index: 123456789;
 	width: 100%;
 	position: fixed;
 	top: 0;
@@ -46,6 +47,11 @@ export default {
 	components: {
 		cardsModal
 	},
+	methods: {
+		pop: function() {
+			this.$store.commit('removeOne')
+		}
+	}
 
 }
 </script>
