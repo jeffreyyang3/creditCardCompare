@@ -1,61 +1,64 @@
 <template>
-	<div class="cardSelectComponent">
-		<img :src="getFile()">	
-		<div class="cardDesc">
-			<h3>good bonus</h3>	
-			<h3>bad card</h3>
-
-		</div>
-	</div>
-	
-
+  <div class="cardSelectComponent">
+    <img class="cardImage" :src="getFile()" />
+    <div class="cardDesc">
+      <h3>placeholder</h3>
+      <h3>detail</h3>
+      <h3>long text long text long text</h3>
+      <h3>adsf</h3>
+      <h3>fd</h3>
+      <h3>fd</h3>
+      <h3>ff</h3>
+      <h3>ffff</h3>
+      <h3>waddup</h3>
+    </div>
+  </div>
 </template>
 <style scoped type="text/css">
-img {
-	width: 300px;
-	height: 189px;
-transition: opacity .25s ease-in-out;
-   -moz-transition: opacity .25s ease-in-out;
-   -webkit-transition: opacity .25s ease-in-out;
-
+.cardImage {
+  width: 300px;
+  height: 189px;
 }
-img:hover, img.permanentFade {
-	opacity: .15;
-	transition: opacity .25s ease-in-out;
-   -moz-transition: opacity .25s ease-in-out;
-   -webkit-transition: opacity .25s ease-in-out;
+.cardSelectComponent:hover img {
+  opacity: 0.15;
+  transition: opacity 0.25s ease-in-out;
+  -moz-transition: opacity 0.25s ease-in-out;
+  -webkit-transition: opacity 0.25s ease-in-out;
+}
+.cardSelectComponent:hover .cardDesc {
+  opacity: 1;
 }
 .cardDesc {
-	background-color: red;
-	width: 300px;
-	text-align: center;
-
+  padding: 10px;
+  overflow: scroll;
+  width: 300px;
+  height: 189px;
+  position: absolute;
+  opacity: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.25s ease-in-out;
+  -moz-transition: opacity 0.25s ease-in-out;
+  -webkit-transition: opacity 0.25s ease-in-out;
 }
+
 .cardSelectComponent {
+  position: relative;
 }
-
 </style>
 <script type="text/javascript">
-export default{
-	name: "cardSelectComponent",
-	data: function(){
-		return {
-			cardName: 'cap1venture'
-		}
-
-	},
-	methods: {
-		getFile(){
-			return require(`@/assets/cardImages/${this.cardName}.png`)
-		},
-	}
-}
-
-
-
-
-
-
-
-
+export default {
+  name: "cardSelectComponent",
+  data: function() {
+    return {
+      cardName: "cap1venture"
+    };
+  },
+  methods: {
+    getFile() {
+      return require(`@/assets/cardImages/${this.cardName}.png`);
+    }
+  }
+};
 </script>
