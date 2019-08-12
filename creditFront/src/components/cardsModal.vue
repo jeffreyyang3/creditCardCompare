@@ -1,13 +1,26 @@
 <template>
   <div class="cardsModalContent">
-    <h1>;alksj;afkl</h1>
-    <h1>;alksj;afkl</h1>
-    <h1>;alksj;afkl</h1>
-    <h1>;alksj;afkl</h1>
-    <h1>;alksj;afkl</h1>
+    <div class="leftSide"></div>
+    <div class="rightSide"></div>
   </div>
 </template>
-<style type="text/css">
+<style scoped type="text/css">
+.cardsModalContent {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+.leftSide,
+.rightSide {
+  width: 50%;
+  height: 100%;
+}
+.leftSide {
+  background-color: blue;
+}
+.rightSide {
+  background-color: red;
+}
 </style>
 <script type="text/javascript">
 export default {

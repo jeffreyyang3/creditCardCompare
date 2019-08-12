@@ -12,6 +12,9 @@
 </template>
 
 <style>
+#app {
+  height: 100%;
+}
 /* Enter and leave animations can use different */
 /* durations and timing functions.              */
 .slide-fade-enter-active {
