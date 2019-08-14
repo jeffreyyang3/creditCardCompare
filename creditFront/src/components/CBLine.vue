@@ -1,9 +1,5 @@
 <template>
   <div class="CBLineContainer">
-
-
-
-
     <div class="highChartContainer" ref="highChartContainer"></div>
     <div class="allMod">
       <div class="categoryMod" v-for="(amount, cat) in categorySpend" v-bind:key="cat">
@@ -98,7 +94,6 @@ input[type="number"] {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
 }
 
 .allMod {
@@ -110,7 +105,7 @@ input[type="number"] {
 </style>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState } from "vuex";
 import Highcharts from "highcharts";
 import cardsDb from "@/data/cards";
 
@@ -252,20 +247,22 @@ export default {
     }
   },
   computed: {
-   ...mapState(['selectedCards']),
+    ...mapState(["selectedCards"])
   },
   watch: {
-    selectedCards: function(){
-      this.createHighChart(this.selectedCards)
+    selectedCards: function() {
+      this.createHighChart(this.selectedCards);
     }
-
   },
 
   mounted() {
-    console.log(cardsDb);
-    console.log(this.$store)
-    for (let key in cardsDb) {
-      this.$store.commit("addCard", cardsDb[key])
+    // let cardss = cardsDb();
+    // for (let key in cardss) {
+    //   this.$store.commit("addCard", cardss[key]);
+    // }
+    console.log("mount");
+    if (this.$store.state.selectedCards.length == 0) {
+      this.$store.commit("addCard");
     }
 
     this.containerDiv = this.$refs.highChartContainer;

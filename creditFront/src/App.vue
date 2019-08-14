@@ -54,6 +54,9 @@ export default {
   name: "app",
   components: {
     topNavbar
+  },
+  mounted() {
+    this.$store.commit("initCards");
   }
 };
 </script>

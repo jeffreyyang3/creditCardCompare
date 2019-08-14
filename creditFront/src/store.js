@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import axios from "axios";
+import cardsDb from "@/data/cards";
 
 axios.defaults.withCredentials = true;
 
@@ -17,19 +18,32 @@ export default new Vuex.Store({
             groceries: 400,
             all: 400
         },
-
         usingExData: false,
-        selectedCards: []
+        selectedCards: [],
+        unSelectedCards: {}
     },
     mutations: {
-        addCard(state, card) {
-            state.selectedCards.push(card)
+        initCards(state) {
+            console.log("initialized");
+            state.selectedCards = [];
+            state.unSelectedCards = cardsDb();
         },
-        removeOne(state){
-            state.selectedCards.pop()
+        addCard(state) {
+            console.log("wtf");
+            console.log(state.unSelectedCards);
+            for (let key in state.unSelectedCards) {
+                state.selectedCards.push(state.unSelectedCards[key]);
+                delete state.unSelectedCards[key];
+                console.log(state.selectedCards);
+                return;
+            }
         },
-        resetCards(state){
-            state.selectedCards = []
+        removeOne(state) {
+            state.selectedCards.pop();
+        },
+        resetCards(state) {
+            state.selectedCards = [];
+            state.unSelectedCards = cards;
         },
         setCategory(state, category, amount) {
             state.categorySpend[category] = amountj;
