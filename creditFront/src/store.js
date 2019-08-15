@@ -2,6 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 import axios from "axios";
 import cardsDb from "@/data/cards";
+import _ from "lodash";
 
 axios.defaults.withCredentials = true;
 
@@ -28,18 +29,17 @@ export default new Vuex.Store({
             state.selectedCards = [];
             state.unSelectedCards = cardsDb();
         },
-        addCard(state) {
-            console.log("wtf");
-            console.log(state.unSelectedCards);
-            for (let key in state.unSelectedCards) {
-                state.selectedCards.push(state.unSelectedCards[key]);
-                delete state.unSelectedCards[key];
-                console.log(state.selectedCards);
-                return;
-            }
+        addCard(state, cardKey) {
+            state.selectedCards.push(state.unSelectedCards[cardKey]);
+            Vue.delete(state.unSelectedCards, cardKey);
+            console.log(this.selectedCards, this.unSelectedCards);
         },
         removeOne(state) {
             state.selectedCards.pop();
+        },
+        addRandomCard(state) {
+            const randomKey = _.sample(Object.keys(state.unSelectedCards));
+            this.commit("addCard", randomKey);
         },
         resetCards(state) {
             state.selectedCards = [];

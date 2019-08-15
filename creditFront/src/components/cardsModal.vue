@@ -1,19 +1,23 @@
 <template>
   <div class="cardsModalContent">
-    <div class="leftSide"></div>
-    <div class="rightSide"></div>
+    <div class="leftSide">
+      <!-- <cardSelectComponent v-for="dd in unselectedCards" /> -->
+    </div>
+    <div class="rightSide">
+      <!-- <h1 v-for="i in selectedCards"></h1> -->
+    </div>
   </div>
 </template>
 <style scoped type="text/css">
 .cardsModalContent {
   display: flex;
   width: 100%;
-  height: 100%;
+  min-height: 100%;
 }
 .leftSide,
 .rightSide {
   width: 50%;
-  height: 100%;
+  min-height: 100%;
 }
 .leftSide {
   background-color: blue;
@@ -24,8 +28,10 @@
 </style>
 <script type="text/javascript">
 import { mapState } from "vuex";
+import cardSelectComponent from "@/components/cardSelectComponent";
 export default {
   name: "cardsModal",
+  // components: cardSelectComponent,
   data: function() {
     return {
       isActive: false,
@@ -33,7 +39,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["unSelectedCards"])
+    ...mapState(["unSelectedCards", "selectedCards"])
   },
   watch: {
     selectedCards: function() {}
@@ -43,6 +49,9 @@ export default {
       this.isActive = !this.isActive;
       console.log(this.isActive);
     }
+  },
+  mounted() {
+    console.log("cardsmodal", this.unSelectedCards, this.selectedCards);
   }
 };
 </script>

@@ -4,9 +4,8 @@
       <div>yo</div>
       <router-link to="/">Home</router-link>
       <router-link to="/about">About</router-link>
-      <div class="btn btn-primary" @click="$router.push('chooseCards')">cool</div>
+      <div class="btn btn-primary" @click="$router.push('chooseCards').catch(e=>{})">cool</div>
       <div class="btn btn-primary" @click="$store.commit('initCards')">init</div>
-
       <div class="btn btn-primary" @click="$store.commit('addCard')">add</div>
     </div>
   </nav>

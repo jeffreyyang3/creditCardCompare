@@ -262,7 +262,8 @@ export default {
     // }
     console.log("mount");
     if (this.$store.state.selectedCards.length == 0) {
-      this.$store.commit("addCard");
+      this.$store.commit("initCards");
+      this.$store.commit("addRandomCard");
     }
 
     this.containerDiv = this.$refs.highChartContainer;

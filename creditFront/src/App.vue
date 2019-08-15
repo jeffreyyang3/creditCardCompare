@@ -6,7 +6,9 @@
       <router-link to="/about">About</router-link>
     </div>-->
     <!-- <transition name="slide-fade"> -->
+    <!-- <div class="otherContent"> -->
     <router-view />
+    <!-- </div> -->
     <!-- </transition> -->
   </div>
 </template>
@@ -14,6 +16,9 @@
 <style>
 #app {
   height: 100%;
+}
+#otherContent {
+  margin-top: 46px;
 }
 /* Enter and leave animations can use different */
 /* durations and timing functions.              */
@@ -28,6 +33,7 @@
   transform: translateX(10px);
   opacity: 0;
 }
+
 /*#app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -56,7 +62,7 @@ export default {
     topNavbar
   },
   mounted() {
-    this.$store.commit("initCards");
+    // this.$store.commit("initCards");
   }
 };
 </script>
