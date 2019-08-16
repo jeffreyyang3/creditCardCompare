@@ -21,26 +21,32 @@ export default new Vuex.Store({
         },
         usingExData: false,
         selectedCards: [],
-        unSelectedCards: {}
+        unSelectedCards: false
     },
     mutations: {
         initCards(state) {
             console.log("initialized");
             state.selectedCards = [];
             state.unSelectedCards = cardsDb();
+            for (let key in state.unSelectedCards) {
+                if (state.unSelectedCards.hasOwnProperty(key)) {
+                    state.unSelectedCards[key].name = key;
+                }
+            }
         },
         addCard(state, cardKey) {
+            if (!cardKey || !state.unSelectedCards[cardKey]) {
+                alert("Card doesn't exist");
+                return;
+            }
             state.selectedCards.push(state.unSelectedCards[cardKey]);
-            Vue.delete(state.unSelectedCards, cardKey);
-            console.log(this.selectedCards, this.unSelectedCards);
+            // Vue.delete(state.unSelectedCards, cardKey);
+            delete state.unSelectedCards[cardKey];
         },
         removeOne(state) {
             state.selectedCards.pop();
         },
-        addRandomCard(state) {
-            const randomKey = _.sample(Object.keys(state.unSelectedCards));
-            this.commit("addCard", randomKey);
-        },
+
         resetCards(state) {
             state.selectedCards = [];
             state.unSelectedCards = cards;
@@ -87,6 +93,14 @@ export default new Vuex.Store({
         getCategorySpend: state => state.categorySpend
     },
     actions: {
+        addRandomCard({ commit, state }) {
+            if (!state.unSelectedCards) {
+                commit("initCards");
+            }
+            const randomKey = _.sample(Object.keys(state.unSelectedCards));
+            commit("addCard", randomKey);
+        },
+
         async exchangeToken(context, publicToken) {
             try {
                 let response = await axios.post("/api/get_access_token", {

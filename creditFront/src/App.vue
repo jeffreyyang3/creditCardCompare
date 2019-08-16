@@ -7,7 +7,9 @@
     </div>-->
     <!-- <transition name="slide-fade"> -->
     <!-- <div class="otherContent"> -->
-    <router-view />
+    <div id="otherContent">
+      <router-view />
+    </div>
     <!-- </div> -->
     <!-- </transition> -->
   </div>
@@ -19,6 +21,7 @@
 }
 #otherContent {
   margin-top: 46px;
+  height: 100%;
 }
 /* Enter and leave animations can use different */
 /* durations and timing functions.              */

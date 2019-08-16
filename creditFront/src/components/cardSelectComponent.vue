@@ -14,10 +14,18 @@
     </div>
   </div>
 </template>
-<style scoped type="text/css">
+<style scoped lang="scss">
+$cardWidth: 250px;
+$cardHeight: 158px;
+
+.cardSelectComponent {
+  width: $cardWidth;
+  height: $cardHeight;
+  margin: 3px;
+}
 .cardImage {
-  width: 300px;
-  height: 189px;
+  width: $cardWidth;
+  height: $cardHeight;
 }
 .cardSelectComponent:hover img {
   opacity: 0.15;
@@ -31,8 +39,8 @@
 .cardDesc {
   padding: 10px;
   overflow: scroll;
-  width: 300px;
-  height: 189px;
+  width: $cardWidth;
+  height: $cardHeight;
   position: absolute;
   opacity: 0;
   top: 50%;
@@ -50,14 +58,20 @@
 <script type="text/javascript">
 export default {
   name: "cardSelectComponent",
+  props: {
+    name: String
+  },
   data: function() {
     return {
-      cardName: "cap1venture"
+      // cardName: "uber"
     };
+  },
+  mounted() {
+    console.log("dfdfdfdfdf");
   },
   methods: {
     getFile() {
-      return require(`@/assets/cardImages/${this.cardName}.png`);
+      return require(`@/assets/cardImages/${this.name}.png`);
     }
   }
 };

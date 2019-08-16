@@ -4,9 +4,8 @@
       <div>yo</div>
       <router-link to="/">Home</router-link>
       <router-link to="/about">About</router-link>
-      <div class="btn btn-primary" @click="$router.push('chooseCards').catch(e=>{})">cool</div>
-      <div class="btn btn-primary" @click="$store.commit('initCards')">init</div>
-      <div class="btn btn-primary" @click="$store.commit('addCard')">add</div>
+      <router-link to="/chooseCards">Choose Cards</router-link>
+      <div class="btn btn-primary" @click="$store.dispatch('addRandomCard')">add</div>
     </div>
   </nav>
 </template>	
@@ -32,13 +31,9 @@
 </style>
 
 <script>
-import cardsModal from "@/components/cardsModal";
-
 export default {
   name: "topNavbar",
-  components: {
-    cardsModal
-  },
+  components: {},
   methods: {
     pop: function() {
       this.$store.commit("removeOne");

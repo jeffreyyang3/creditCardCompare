@@ -1,10 +1,10 @@
 <template>
   <div class="cardsModalContent">
     <div class="leftSide">
-      <!-- <cardSelectComponent v-for="dd in unselectedCards" /> -->
+      <cardSelectComponent v-for="card in unSelectedCards" :key="card.name" :name="card.name" />
     </div>
     <div class="rightSide">
-      <!-- <h1 v-for="i in selectedCards"></h1> -->
+      <cardSelectComponent v-for="card in selectedCards" :key="card.name" :name="card.name" />
     </div>
   </div>
 </template>
@@ -16,14 +16,16 @@
 }
 .leftSide,
 .rightSide {
+  box-sizing: border-box;
+  padding: 10px;
   width: 50%;
   min-height: 100%;
 }
 .leftSide {
-  background-color: blue;
+  background-color: #f8f8f8;
 }
 .rightSide {
-  background-color: green;
+  background-color: white;
 }
 </style>
 <script type="text/javascript">
@@ -31,6 +33,9 @@ import { mapState } from "vuex";
 import cardSelectComponent from "@/components/cardSelectComponent";
 export default {
   name: "cardsModal",
+  components: {
+    cardSelectComponent
+  },
   // components: cardSelectComponent,
   data: function() {
     return {
@@ -42,7 +47,10 @@ export default {
     ...mapState(["unSelectedCards", "selectedCards"])
   },
   watch: {
-    selectedCards: function() {}
+    selectedCards: function() {
+      console.log("selected cards", this.selectedCards);
+      console.log("unselected", this.unSelectedCards);
+    }
   },
   methods: {
     toggleVis: function() {

@@ -1,14 +1,11 @@
 <template>
   <div class="home">
-
     <topNavbar />
-    <br>
+    <br />
     <div class="nonNavbar">
       <CBLine />
     </div>
-    <cardSelectComponent />
-      
-      
+
     <!-- <Req></Req> -->
 
     <!-- <plaid-link
@@ -20,7 +17,6 @@
     >
       <h4>open plaid link</h4>
     </plaid-link>-->
-
   </div>
 </template>
 <style>
@@ -32,13 +28,13 @@ body {
   margin-top: 30px;
 }
 .modalButton {
-  font-weight: bold
+  font-weight: bold;
 }
 .home {
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center
+  align-items: center;
 }
 </style>
 <script>
@@ -46,16 +42,14 @@ body {
 import Req from "@/components/Req";
 import CBLine from "@/components/CBLine";
 import topNavbar from "@/components/topNavbar";
-import cardSelectComponent from "@/components/cardSelectComponent"
 // import PlaidLink from "vue-plaid-link";
 
 export default {
   name: "home",
   components: {
-    Req,
+    // Req,
     CBLine,
-    topNavbar,
-    cardSelectComponent
+    topNavbar
     // PlaidLink
   },
   methods: {
