@@ -1,5 +1,11 @@
 <template>
-  <div class="cardSelectComponent">
+  <div
+    class="cardSelectComponent"
+    draggable="true"
+    @click="toggleDescVis"
+    v-on:dragstart="componentDragHandler"
+    :class="{ clicked }"
+  >
     <img class="cardImage" :src="getFile()" />
     <div class="cardDesc">
       <h3>placeholder</h3>
@@ -17,38 +23,39 @@
 <style scoped lang="scss">
 $cardWidth: 250px;
 $cardHeight: 158px;
+$descHeight: 180px;
 
 .cardSelectComponent {
   width: $cardWidth;
-  height: $cardHeight;
+  // height: $cardHeight + 50px;
   margin: 10px;
+}
+.cardSelectComponent img {
+  opacity: 1;
+  width: $cardWidth;
+  height: $cardHeight;
+}
+.cardSelectComponent.clicked img {
+  opacity: 0.8;
 }
 .cardImage {
   width: $cardWidth;
   height: $cardHeight;
 }
-.cardSelectComponent:hover img {
-  opacity: 0.15;
-  transition: opacity 0.25s ease-in-out;
-  -moz-transition: opacity 0.25s ease-in-out;
-  -webkit-transition: opacity 0.25s ease-in-out;
+
+.cardSelectComponent.clicked .cardDesc {
+  height: $descHeight;
 }
-.cardSelectComponent:hover .cardDesc {
-  opacity: 1;
+
+.cardSelectComponent .cardDesc * {
+  margin-left: 10px;
 }
 .cardDesc {
-  padding: 10px;
+  margin-top: 5px;
+
+  height: 0;
   overflow: scroll;
-  width: $cardWidth;
-  height: $cardHeight;
-  position: absolute;
-  opacity: 0;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  transition: opacity 0.25s ease-in-out;
-  -moz-transition: opacity 0.25s ease-in-out;
-  -webkit-transition: opacity 0.25s ease-in-out;
+  transition: height 0.25s;
 }
 
 .cardSelectComponent {
@@ -63,6 +70,7 @@ export default {
   },
   data: function() {
     return {
+      clicked: false
       // cardName: "uber"
     };
   },
@@ -72,6 +80,13 @@ export default {
   methods: {
     getFile() {
       return require(`@/assets/cardImages/${this.name}.png`);
+    },
+    toggleDescVis() {
+      this.clicked = !this.clicked;
+    },
+    componentDragHandler(event) {
+      console.log(event.target, "drag handler");
+      // event.preventDefault();
     }
   }
 };

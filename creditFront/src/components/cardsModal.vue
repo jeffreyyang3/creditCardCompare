@@ -1,10 +1,20 @@
 <template>
   <div class="cardsModalContent">
     <div class="leftSide">
-      <cardSelectComponent v-for="card in unSelectedCards" :key="card.name" :name="card.name" />
+      <cardSelectComponent
+        v-for="card in unSelectedCards"
+        :key="card.name"
+        :name="card.name"
+        ref="leftSide"
+      />
     </div>
-    <div class="rightSide">
-      <cardSelectComponent v-for="card in selectedCards" :key="card.name" :name="card.name" />
+    <div class="rightSide" v-on:dragover="dragOverHandler">
+      <cardSelectComponent
+        v-for="card in selectedCards"
+        :key="card.name"
+        :name="card.name"
+        ref="rightSide"
+      />
     </div>
   </div>
 </template>
@@ -53,6 +63,9 @@ export default {
     }
   },
   methods: {
+    dragOverHandler: function() {
+      console.log("dragged over");
+    },
     toggleVis: function() {
       this.isActive = !this.isActive;
       console.log(this.isActive);
