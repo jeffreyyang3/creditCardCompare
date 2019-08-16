@@ -38,6 +38,25 @@ export default () => {
                 amount: 0
             }
         },
+        cap1QuickSilver: {
+            displayName: "Capital One Quicksilver",
+            categories: {
+                all: {
+                    percent: 0.015,
+                    cap: false
+                }
+            },
+            bonus: {
+                type: "standard",
+                bonuses: [{ msr: 1000, rewardAmount: 200 }],
+                expire: 3
+            },
+            annualFee: {
+                has: false,
+                waiveFirst: false,
+                amount: 0
+            }
+        },
 
         amexBCE: {
             displayName: "Amex Blue Cash Everyday",

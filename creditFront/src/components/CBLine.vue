@@ -118,7 +118,8 @@ export default {
       chart: null,
       categorySpend: this.$store.state.categorySpend,
       max: 4000,
-      cards: []
+      cards: [],
+      months: 12
     };
   },
 
@@ -157,12 +158,12 @@ export default {
     createHighChart: function(cards) {
       Highcharts.chart(this.containerDiv, {
         title: {
-          text: "Cash Back Comparison"
+          text: "Rewards Comparison"
         },
 
         yAxis: {
           title: {
-            text: "$ Cash Back"
+            text: "$ in Rewards"
           },
           gridLineWidth: 1
         },
@@ -200,6 +201,7 @@ export default {
     cardToSeriesData: function(card) {
       const seriesData = [];
       const monthCB = this.CStoMonthCB(card).totalCB;
+      console.log(monthCB, "monthcb");
       const monthTotalSpend = this.CStoMonthCB(card).totalSpend;
       let bonuses;
       if (card.bonus.type === "standard") {
@@ -210,7 +212,7 @@ export default {
 
       let totalCB = 0;
       let totalSpend = 0;
-      for (let month = 1; month <= 25; month++) {
+      for (let month = 1; month <= this.months; month++) {
         let cbMultiplier = 1;
         console.log("total spend", totalSpend[0]);
 

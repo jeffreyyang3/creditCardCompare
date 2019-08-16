@@ -21,7 +21,7 @@ $cardHeight: 158px;
 .cardSelectComponent {
   width: $cardWidth;
   height: $cardHeight;
-  margin: 3px;
+  margin: 10px;
 }
 .cardImage {
   width: $cardWidth;
