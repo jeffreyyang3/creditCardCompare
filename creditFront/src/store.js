@@ -49,8 +49,7 @@ export default new Vuex.Store({
                 return;
             }
             state.selectedCards.push(state.unSelectedCards[cardKey]);
-            // Vue.delete(state.unSelectedCards, cardKey);
-            delete state.unSelectedCards[cardKey];
+            Vue.delete(state.unSelectedCards, cardKey);
         },
         unSelectCard(state, cardKey) {
             let toAdd;

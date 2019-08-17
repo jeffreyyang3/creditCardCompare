@@ -59,7 +59,7 @@ export default () => {
         },
 
         amexBCE: {
-            displayName: "Amex Blue Cash Everyday",
+            displayName: "American Express Blue Cash Everyday",
             categories: {
                 all: {
                     percent: 0.01,
