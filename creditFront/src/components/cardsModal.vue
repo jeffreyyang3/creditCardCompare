@@ -1,8 +1,8 @@
 <template>
   <div class="cardsModalContent">
     <div ref="leftSide" id="leftSide" v-on:dragover="dragOverHandler" v-on:drop="dropHandler">
-      <h3>press add if everythings blank</h3>
-      <cardSelectComponent v-for="card in unSelectedCards" :key="card.name" :name="card.name" />
+      <typeAhead />
+      <!-- <cardSelectComponent v-for="card in unSelectedCards" :key="card.name" :name="card.name" /> -->
     </div>
     <div ref="rightSide" id="rightSide" v-on:drop="dropHandler" v-on:dragover="dragOverHandler">
       <h3>selected cards drag to right to add</h3>
@@ -33,10 +33,12 @@
 <script type="text/javascript">
 import { mapState } from "vuex";
 import cardSelectComponent from "@/components/cardSelectComponent";
+import typeAhead from "@/components/typeAhead";
 export default {
   name: "cardsModal",
   components: {
-    cardSelectComponent
+    cardSelectComponent,
+    typeAhead
   },
   // components: cardSelectComponent,
   data: function() {

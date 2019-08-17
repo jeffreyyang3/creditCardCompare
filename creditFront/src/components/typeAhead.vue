@@ -44,7 +44,7 @@ export default {
         matchString = matchString.replace(sub.old, sub.new);
       });
 
-      if (!matchString) return [];
+      if (!matchString) return this.unSelectedCardsList;
 
       return this.unSelectedCardsList.filter(card => {
         return new RegExp(matchString, "i").test(card.displayName);
