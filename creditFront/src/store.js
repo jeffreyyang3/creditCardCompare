@@ -21,9 +21,14 @@ export default new Vuex.Store({
         },
         usingExData: false,
         selectedCards: [],
-        unSelectedCards: false
+        unSelectedCards: false,
+        currentDraggedCard: null
     },
     mutations: {
+        setCurrentDrag(state, cardName) {
+            state.currentDraggedCard = cardName;
+        },
+
         initCards(state) {
             console.log("initialized");
             state.selectedCards = [];
@@ -36,15 +41,24 @@ export default new Vuex.Store({
         },
         addCard(state, cardKey) {
             if (!cardKey || !state.unSelectedCards[cardKey]) {
-                alert("Card doesn't exist");
+                console.log(`Card ${cardKey} doesn't exist`);
                 return;
             }
             state.selectedCards.push(state.unSelectedCards[cardKey]);
             // Vue.delete(state.unSelectedCards, cardKey);
             delete state.unSelectedCards[cardKey];
         },
-        removeOne(state) {
-            state.selectedCards.pop();
+        unSelectCard(state, cardKey) {
+            let toAdd;
+            for (let i = 0; i < state.selectedCards.length; i++) {
+                if (state.selectedCards[i].name === cardKey) {
+                    toAdd = state.selectedCards[i];
+                    state.selectedCards = state.selectedCards.filter(
+                        card => card.name !== cardKey
+                    );
+                    Vue.set(state.unSelectedCards, cardKey, toAdd);
+                }
+            }
         },
 
         resetCards(state) {
@@ -93,6 +107,13 @@ export default new Vuex.Store({
         getCategorySpend: state => state.categorySpend
     },
     actions: {
+        handleDropOnRight({ commit, state }) {
+            commit("addCard", state.currentDraggedCard);
+            state.currentDraggedCard = null;
+        },
+        handleDropOnLeft({ commit, state }) {
+            state.currentDraggedFromRight = null;
+        },
         addRandomCard({ commit, state }) {
             if (!state.unSelectedCards) {
                 commit("initCards");

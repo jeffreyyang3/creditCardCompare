@@ -3,20 +3,15 @@
     class="cardSelectComponent"
     draggable="true"
     @click="toggleDescVis"
-    v-on:dragstart="componentDragHandler"
+    v-on:dragstart="componentDragStartHandler"
     :class="{ clicked }"
   >
     <img class="cardImage" :src="getFile()" />
     <div class="cardDesc">
-      <h3>placeholder</h3>
-      <h3>detail</h3>
-      <h3>long text long text long text</h3>
-      <h3>adsf</h3>
-      <h3>fd</h3>
-      <h3>fd</h3>
-      <h3>ff</h3>
-      <h3>ffff</h3>
-      <h3>waddup</h3>
+      <h5>asdf</h5>
+      <h5>fadsfasfadsfadsfasd</h5>
+      <h5>fasdfasd fsfdadsf fd</h5>
+      <h5>fdfdfd</h5>
     </div>
   </div>
 </template>
@@ -34,8 +29,10 @@ $descHeight: 180px;
   opacity: 1;
   width: $cardWidth;
   height: $cardHeight;
+  transition: opacity 0.3s;
 }
-.cardSelectComponent.clicked img {
+// .cardSelectComponent.clicked img,
+.cardSelectComponent:hover img {
   opacity: 0.8;
 }
 .cardImage {
@@ -55,7 +52,7 @@ $descHeight: 180px;
 
   height: 0;
   overflow: scroll;
-  transition: height 0.25s;
+  transition: height 0.35s;
 }
 
 .cardSelectComponent {
@@ -84,8 +81,9 @@ export default {
     toggleDescVis() {
       this.clicked = !this.clicked;
     },
-    componentDragHandler(event) {
-      console.log(event.target, "drag handler");
+    componentDragStartHandler(event) {
+      console.log(document.getElementById("leftSide").contains(this.$el));
+      this.$store.commit("setCurrentDrag", this.name);
       // event.preventDefault();
     }
   }

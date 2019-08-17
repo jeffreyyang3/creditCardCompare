@@ -34,10 +34,6 @@
 export default {
   name: "topNavbar",
   components: {},
-  methods: {
-    pop: function() {
-      this.$store.commit("removeOne");
-    }
-  }
+  methods: {}
 };
 </script>

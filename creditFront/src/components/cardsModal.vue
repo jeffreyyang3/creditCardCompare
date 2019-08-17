@@ -1,6 +1,6 @@
 <template>
   <div class="cardsModalContent">
-    <div class="leftSide">
+    <div id="leftSide">
       <cardSelectComponent
         v-for="card in unSelectedCards"
         :key="card.name"
@@ -8,13 +8,8 @@
         ref="leftSide"
       />
     </div>
-    <div class="rightSide" v-on:dragover="dragOverHandler">
-      <cardSelectComponent
-        v-for="card in selectedCards"
-        :key="card.name"
-        :name="card.name"
-        ref="rightSide"
-      />
+    <div ref="rightSide" id="rightSide" v-on:drop="dropHandler" v-on:dragover="dragOverHandler">
+      <cardSelectComponent v-for="card in selectedCards" :key="card.name" :name="card.name" />
     </div>
   </div>
 </template>
@@ -24,17 +19,17 @@
   width: 100%;
   min-height: 100%;
 }
-.leftSide,
-.rightSide {
+#leftSide,
+#rightSide {
   box-sizing: border-box;
   padding: 10px;
   width: 50%;
   min-height: 100%;
 }
-.leftSide {
+#leftSide {
   background-color: #f8f8f8;
 }
-.rightSide {
+#rightSide {
   background-color: white;
 }
 </style>
@@ -63,16 +58,19 @@ export default {
     }
   },
   methods: {
-    dragOverHandler: function() {
-      console.log("dragged over");
+    dragOverHandler: function(event) {
+      event.preventDefault();
+      // console.log("dragged over");
+    },
+    dropHandler: function() {
+      console.log("drop handler");
+      this.$store.dispatch("handleDropOnRight");
     },
     toggleVis: function() {
       this.isActive = !this.isActive;
       console.log(this.isActive);
     }
   },
-  mounted() {
-    console.log("cardsmodal", this.unSelectedCards, this.selectedCards);
-  }
+  mounted() {}
 };
 </script>
