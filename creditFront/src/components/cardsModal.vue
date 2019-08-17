@@ -1,11 +1,11 @@
 <template>
   <div class="cardsModalContent">
     <div ref="leftSide" id="leftSide" v-on:dragover="dragOverHandler" v-on:drop="dropHandler">
-      <h1>press add if everythings blank</h1>
+      <h3>press add if everythings blank</h3>
       <cardSelectComponent v-for="card in unSelectedCards" :key="card.name" :name="card.name" />
     </div>
     <div ref="rightSide" id="rightSide" v-on:drop="dropHandler" v-on:dragover="dragOverHandler">
-      <h1>selected cards</h1>
+      <h3>selected cards drag to right to add</h3>
       <cardSelectComponent v-for="card in selectedCards" :key="card.name" :name="card.name" />
     </div>
   </div>
