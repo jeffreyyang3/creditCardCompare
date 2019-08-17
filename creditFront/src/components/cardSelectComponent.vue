@@ -82,8 +82,11 @@ export default {
       this.clicked = !this.clicked;
     },
     componentDragStartHandler(event) {
-      console.log(document.getElementById("leftSide").contains(this.$el));
-      this.$store.commit("setCurrentDrag", this.name);
+      if (document.getElementById("leftSide").contains(this.$el)) {
+        this.$store.commit("setDragLeft", this.name);
+        return;
+      }
+      this.$store.commit("setDragRight", this.name);
       // event.preventDefault();
     }
   }

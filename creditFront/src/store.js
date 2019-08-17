@@ -22,11 +22,15 @@ export default new Vuex.Store({
         usingExData: false,
         selectedCards: [],
         unSelectedCards: false,
-        currentDraggedCard: null
+        currentDraggedFromLeft: null,
+        currentDraggedFromRight: null
     },
     mutations: {
-        setCurrentDrag(state, cardName) {
-            state.currentDraggedCard = cardName;
+        setDragLeft(state, cardName) {
+            state.currentDraggedFromLeft = cardName;
+        },
+        setDragRight(state, cardName) {
+            state.currentDraggedFromRight = cardName;
         },
 
         initCards(state) {
@@ -108,10 +112,11 @@ export default new Vuex.Store({
     },
     actions: {
         handleDropOnRight({ commit, state }) {
-            commit("addCard", state.currentDraggedCard);
-            state.currentDraggedCard = null;
+            commit("addCard", state.currentDraggedFromLeft);
+            state.currentDraggedFromLeft = null;
         },
         handleDropOnLeft({ commit, state }) {
+            commit("unSelectCard", state.currentDraggedFromRight);
             state.currentDraggedFromRight = null;
         },
         addRandomCard({ commit, state }) {
