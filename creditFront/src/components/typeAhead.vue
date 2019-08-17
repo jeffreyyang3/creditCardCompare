@@ -1,8 +1,11 @@
 <template>
   <div class="typeAhead">
     <input type="text" v-model="currentTyped" />
+    <div v-for="card in suggestions" :key="card.cardKey">{{ card.displayName}}</div>
 
-    <div v-for="card in suggestions" :key="card.displayName">{{ card.displayName }}</div>
+    <div v-for="card in suggestions" :key="card.displayName">
+      <cardSelectComponent :name="card.cardKey" />
+    </div>
     <!-- <div v-for="card in unSelectedCardsList" :key="card.cardKey">{{ card.displayName }}</div> -->
   </div>
 </template>
@@ -10,9 +13,10 @@
 </style>
 <script type="text/javascript">
 import { mapState } from "vuex";
+import cardSelectComponent from "@/components/cardSelectComponent";
 export default {
   name: "typeAhead",
-  components: {},
+  components: { cardSelectComponent },
   data: function() {
     return {
       currentTyped: ""
@@ -33,7 +37,13 @@ export default {
     },
 
     suggestions: function() {
-      const matchString = this.currentTyped.trim();
+      const substitutions = [{ old: "amex", new: "american express" }];
+
+      let matchString = this.currentTyped.trim();
+      substitutions.forEach(sub => {
+        matchString = matchString.replace(sub.old, sub.new);
+      });
+
       if (!matchString) return [];
 
       return this.unSelectedCardsList.filter(card => {
