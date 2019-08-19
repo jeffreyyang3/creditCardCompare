@@ -12,12 +12,18 @@
       <h5>fadsfasfadsfadsfasd</h5>
       <h5>fasdfasd fsfdadsf fd</h5>
       <h5>fdfdfd</h5>
+      <h5>iadsf</h5>
+      <h5>dfd</h5>
+      <h5>fd</h5>
+      <h5>sasdfasdfasdfasdf</h5>
+      <h5>asdf asdfasd fdfdfdfasdf </h5>
     </div>
   </div>
 </template>
 <style scoped lang="scss">
-$cardWidth: 250px;
-$cardHeight: 158px;
+
+$cardWidth: 125;
+$cardHeight: 78px;
 $descHeight: 180px;
 
 .cardSelectComponent {
@@ -45,7 +51,6 @@ $descHeight: 180px;
 }
 
 .cardSelectComponent .cardDesc * {
-  margin-left: 10px;
 }
 .cardDesc {
   margin-top: 5px;
@@ -58,6 +63,7 @@ $descHeight: 180px;
 .cardSelectComponent {
   position: relative;
 }
+
 </style>
 <script type="text/javascript">
 export default {
@@ -78,14 +84,17 @@ export default {
     getFile() {
       return require(`@/assets/cardImages/${this.name}.png`);
     },
+
     toggleDescVis() {
       this.clicked = !this.clicked;
     },
+
     componentDragStartHandler(event) {
       if (document.getElementById("leftSide").contains(this.$el)) {
         this.$store.commit("setDragLeft", this.name);
         return;
       }
+
       this.$store.commit("setDragRight", this.name);
       // event.preventDefault();
     }

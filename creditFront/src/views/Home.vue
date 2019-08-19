@@ -20,8 +20,8 @@
   </div>
 </template>
 <style>
+
 body {
-  height: 10000px;
   background-color: #fefefe;
 }
 .nonNavbar {
@@ -30,14 +30,17 @@ body {
 .modalButton {
   font-weight: bold;
 }
+
 .home {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+
 </style>
 <script>
+
 // @ is an alias to /src
 import Req from "@/components/Req";
 import CBLine from "@/components/CBLine";

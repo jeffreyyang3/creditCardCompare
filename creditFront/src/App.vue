@@ -21,7 +21,7 @@
 }
 #otherContent {
   margin-top: 46px;
-  height: 100%;
+  height: calc(100vh - 46px);
 }
 /* Enter and leave animations can use different */
 /* durations and timing functions.              */

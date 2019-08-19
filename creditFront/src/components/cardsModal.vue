@@ -7,6 +7,8 @@
     <div ref="rightSide" id="rightSide" v-on:drop="dropHandler" v-on:dragover="dragOverHandler">
       <h3>selected cards drag to right to add</h3>
       <cardSelectComponent v-for="card in selectedCards" :key="card.name" :name="card.name" />
+      <CBLine v-if="showGraph"></CBLine>
+
     </div>
   </div>
 </template>
@@ -34,11 +36,14 @@
 import { mapState } from "vuex";
 import cardSelectComponent from "@/components/cardSelectComponent";
 import typeAhead from "@/components/typeAhead";
+import CBLine from "@/components/CBLine"
+
 export default {
   name: "cardsModal",
   components: {
     cardSelectComponent,
-    typeAhead
+    typeAhead,
+    CBLine
   },
   // components: cardSelectComponent,
   data: function() {
@@ -48,7 +53,10 @@ export default {
     };
   },
   computed: {
-    ...mapState(["unSelectedCards", "selectedCards"])
+    ...mapState(["unSelectedCards", "selectedCards"]),
+    showGraph: function() {
+      return this.selectedCards.length !== 0;
+    }
   },
   watch: {
     selectedCards: function() {
