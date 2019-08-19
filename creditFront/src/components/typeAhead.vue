@@ -1,41 +1,29 @@
 <template>
   <div class="typeAhead">
-
-    <input class="searchBar" type="text" v-model="currentTyped" />
+    <input placeholder="Search for a card!" class="searchBar" type="text" v-model="currentTyped" />
     <div class="suggestions">
-
-
-      <div class="suggestionsItem" v-for="card in suggestions" :key="card.cardKey"> 
+      <div class="suggestionsItem" v-for="card in suggestions" :key="card.cardKey">
         <div class="cardTitle">{{ card.displayName }}</div>
         <div class="typeAheadCard">
-      <cardSelectComponent   :name="card.cardKey"></cardSelectComponent>
-      
+          <cardSelectComponent :name="card.cardKey"></cardSelectComponent>
+        </div>
       </div>
-
-
-
-
-
-
-
-      </div>
-
     </div>
 
-<!-- 
+    <!-- 
     <div v-for="card in suggestions" :key="card.displayName">
       <cardSelectComponent :name="card.cardKey" />
-    </div> -->
+    </div>-->
     <!-- <div v-for="card in unSelectedCardsList" :key="card.cardKey">{{ card.displayName }}</div> -->
   </div>
-
 </template>
 <style scoped lang="scss">
 $componentWidth: 75%;
-$inputWidth: 50% ;
+$inputWidth: 50%;
 $cardTitleWidth: 80%;
-$hotBoxShadow: 2px 10px 0 rgba(34,36,38,.15);
-$hotBoxShadow: 0 2px 4px 0 rgba(34,36,38,.12), 0 2px 10px 0 rgba(34,36,38,.15); 
+$hotBoxShadow: 2px 10px 0 rgba(34, 36, 38, 0.15);
+$hotBoxShadow: 0 2px 4px 0 rgba(34, 36, 38, 0.12),
+  0 2px 10px 0 rgba(34, 36, 38, 0.15);
 $border: 1px solid #d4d4d5;
 .searchBar {
   margin: 10px;
@@ -44,9 +32,11 @@ $border: 1px solid #d4d4d5;
   border: $border;
   border-radius: 20px;
   box-shadow: $hotBoxShadow;
+  padding: 10px;
+  font-size: 90%;
 }
 .searchBar:focus {
-  outline: none
+  outline: none;
 }
 
 .suggestions {
@@ -54,11 +44,8 @@ $border: 1px solid #d4d4d5;
   border-radius: 20px;
   box-shadow: $hotBoxShadow;
   margin: 10px;
-  width: 100%
-
-  
+  width: 100%;
 }
-
 
 .typeAhead {
   width: $componentWidth;
@@ -69,14 +56,13 @@ $border: 1px solid #d4d4d5;
   justify-content: center;
 }
 .typeAheadCard .cardSelectComponent {
-  max-width: 50%
+  max-width: 50%;
 }
 .cardTitle {
-  font-weight: bold; 
+  font-weight: bold;
   margin-left: 5px;
   width: calc($cardTitleWidth - 5px);
 }
-
 
 .suggestionsItem {
   border-bottom: $border;
@@ -84,12 +70,10 @@ $border: 1px solid #d4d4d5;
   align-items: center;
   display: flex;
   justify-content: space-between;
-
 }
 .suggestions .suggestionsItem:last-of-type {
-  border-bottom: none
+  border-bottom: none;
 }
-
 </style>
 <script type="text/javascript">
 import { mapState } from "vuex";
