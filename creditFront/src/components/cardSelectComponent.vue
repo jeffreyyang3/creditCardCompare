@@ -7,7 +7,7 @@
     :class="{ clicked }"
   >
     <img class="cardImage" :src="getFile()" />
-    <div class="cardDesc">
+    <div class="cardDesc" v-if="clickable">
       <h5>asdf</h5>
       <h5>fadsfasfadsfadsfasd</h5>
       <h5>fasdfasd fsfdadsf fd</h5>
@@ -22,7 +22,7 @@
 </template>
 <style scoped lang="scss">
 
-$cardWidth: 125;
+$cardWidth: 125px;
 $cardHeight: 78px;
 $descHeight: 180px;
 
@@ -38,9 +38,9 @@ $descHeight: 180px;
   transition: opacity 0.3s;
 }
 // .cardSelectComponent.clicked img,
-.cardSelectComponent:hover img {
-  opacity: 0.8;
-}
+// .cardSelectComponent:hover img {
+//   opacity: 0.8;
+// }
 .cardImage {
   width: $cardWidth;
   height: $cardHeight;
@@ -69,7 +69,8 @@ $descHeight: 180px;
 export default {
   name: "cardSelectComponent",
   props: {
-    name: String
+    name: String,
+    clickable: Boolean
   },
   data: function() {
     return {
@@ -77,6 +78,7 @@ export default {
       // cardName: "uber"
     };
   },
+
   mounted() {
     console.log("dfdfdfdfdf");
   },

@@ -66,6 +66,8 @@ export default {
   },
   mounted() {
     // this.$store.commit("initCards");
+    console.log("asdf")
+    if(this.$store.notInitialized) this.$store.commit("initCards");
   }
 };
 </script>

@@ -23,7 +23,8 @@ export default new Vuex.Store({
         selectedCards: [],
         unSelectedCards: false,
         currentDraggedFromLeft: null,
-        currentDraggedFromRight: null
+        currentDraggedFromRight: null,
+        notInitialized: true
     },
     mutations: {
         setDragLeft(state, cardName) {
@@ -34,7 +35,7 @@ export default new Vuex.Store({
         },
 
         initCards(state) {
-            console.log("initialized");
+            state.notInitialized = false;
             state.selectedCards = [];
             state.unSelectedCards = cardsDb();
             for (let key in state.unSelectedCards) {

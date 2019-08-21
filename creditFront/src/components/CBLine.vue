@@ -1,6 +1,12 @@
 <template>
   <div class="CBLineContainer">
-    <div class="highChartContainer" ref="highChartContainer"></div>
+    <div v-show="showGraph" class="highChartContainer" ref="highChartContainer"></div>
+    <div v-show="!showGraph" class="noGraphText"> 
+      <h1>No Cards Selected</h1>
+      <typeAhead v-if="!showGraph"/>
+    </div>
+
+
     <div class="allMod">
       <div class="categoryMod" v-for="(amount, cat) in categorySpend" v-bind:key="cat">
         <span class="categoryTitle">{{ cat.charAt(0).toUpperCase() + cat.slice(1) }}:</span>
@@ -19,10 +25,18 @@
         <!-- {{ modCategorySpend[cat] | displayMoneyFilter}} -->
       </div>
     </div>
+    <div class="graphSideCards" >
+        <cardSelectComponent v-for="card in selectedCards" :key="card.name"
+         :name="card.name" />
+    </div>
   </div>
 </template>
 
 <style scoped>
+.graphSideCards {
+  display: flex;
+  flex-direction: row
+}
 .categoryMod {
   display: flex;
   /* width: 80%; */
@@ -93,6 +107,8 @@ input[type="number"] {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  width: 90%;
+  height: 65%;
   align-items: center;
 }
 
@@ -108,9 +124,14 @@ input[type="number"] {
 import { mapState } from "vuex";
 import Highcharts from "highcharts";
 import cardsDb from "@/data/cards";
-
+import typeAhead from "@/components/typeAhead";
+import cardSelectComponent from "@/components/cardSelectComponent";
 export default {
   name: "CBLine",
+  components: {
+    typeAhead,
+    cardSelectComponent
+  },
 
   data: function() {
     return {
@@ -121,6 +142,13 @@ export default {
       cards: [],
       months: 12
     };
+  },
+  computed: {
+
+    ...mapState(["unSelectedCards", "selectedCards"]),
+    showGraph: function() {
+      return this.selectedCards.length !== 0;
+    }
   },
 
   methods: {
@@ -156,7 +184,9 @@ export default {
     },
 
     createHighChart: function(cards) {
-      Highcharts.chart(this.containerDiv, {
+      
+
+      Highcharts.chart(this.$refs.highChartContainer, {
         title: {
           text: "Rewards Comparison"
         },
@@ -248,9 +278,7 @@ export default {
       };
     }
   },
-  computed: {
-    ...mapState(["selectedCards"])
-  },
+  
   watch: {
     selectedCards: function() {
       this.createHighChart(this.selectedCards);
@@ -263,12 +291,8 @@ export default {
     //   this.$store.commit("addCard", cardss[key]);
     // }
     console.log("mount");
-    if (this.$store.state.selectedCards.length == 0) {
-      this.$store.commit("initCards");
-      this.$store.dispatch("addRandomCard");
-    }
+    if (this.$store.state.selectedCards.length == 0) this.$store.commit("initCards");
 
-    this.containerDiv = this.$refs.highChartContainer;
     // console.log(this.$store.state.selectedCards)
     this.createHighChart(this.$store.state.selectedCards);
   }

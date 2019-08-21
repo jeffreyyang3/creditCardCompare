@@ -7,6 +7,7 @@
         <div class="typeAheadCard">
           <cardSelectComponent :name="card.cardKey"></cardSelectComponent>
         </div>
+        <div class="addButton btn btn-primary" @click="$store.commit('addCard', card.cardKey)"> + </div>
       </div>
     </div>
 
@@ -18,9 +19,9 @@
   </div>
 </template>
 <style scoped lang="scss">
-$componentWidth: 75%;
+$componentWidth: 95%;
 $inputWidth: 50%;
-$cardTitleWidth: 80%;
+$cardTitleWidth: 55%;
 $hotBoxShadow: 2px 10px 0 rgba(34, 36, 38, 0.15);
 $hotBoxShadow: 0 2px 4px 0 rgba(34, 36, 38, 0.12),
   0 2px 10px 0 rgba(34, 36, 38, 0.15);
@@ -38,7 +39,11 @@ $border: 1px solid #d4d4d5;
 .searchBar:focus {
   outline: none;
 }
-
+.addButton {
+  margin-right: 5%;
+  border-radius: 50%;
+  font-weight: bold
+}
 .suggestions {
   border: $border;
   border-radius: 20px;
@@ -51,17 +56,14 @@ $border: 1px solid #d4d4d5;
   width: $componentWidth;
 }
 .typeAheadCard {
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 .typeAheadCard .cardSelectComponent {
-  max-width: 50%;
 }
 .cardTitle {
   font-weight: bold;
+  font-size: 90%;
   margin-left: 5px;
-  width: calc($cardTitleWidth - 5px);
+  width: calc(#{$cardTitleWidth} - 5px);
 }
 
 .suggestionsItem {
