@@ -2,8 +2,9 @@
   <nav class="topNavbar">
     <div class="navItems">
       <router-link to="/">Home</router-link>
-      <router-link to="/about">searchbar test</router-link>
+
       <router-link to="/chooseCards">Choose Cards</router-link>
+      <router-link to="/about">Choose Cards: Fullscreen Edition</router-link>
       <div class="btn btn-primary" @click="$store.dispatch('addRandomCard')">add</div>
     </div>
   </nav>

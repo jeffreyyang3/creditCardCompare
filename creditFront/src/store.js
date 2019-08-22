@@ -14,19 +14,24 @@ export default new Vuex.Store({
         apiToken: null,
         accData: {},
         categorySpend: {
-            dining: 400,
-            travel: 400,
-            groceries: 400,
-            all: 400
+            dining: 300,
+            travel: 300,
+            groceries: 300,
+            all: 300
         },
         usingExData: false,
         selectedCards: [],
         unSelectedCards: false,
         currentDraggedFromLeft: null,
         currentDraggedFromRight: null,
-        notInitialized: true
+        notInitialized: true,
+        cardTotalCB: {},
     },
     mutations: {
+        setCardCB(state, payload) {
+            Vue.set(state.cardTotalCB, payload.name, payload.amount);
+            console.log("vue set")
+        },
         setDragLeft(state, cardName) {
             state.currentDraggedFromLeft = cardName;
         },
@@ -133,7 +138,6 @@ export default new Vuex.Store({
                     publicToken
                 });
                 context.commit("setApiToken", response.data.apiToken);
-                console.log(response.data.apiToken);
             } catch (error) {
                 console.error(error);
             }

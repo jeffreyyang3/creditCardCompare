@@ -16,12 +16,11 @@
       <h5>dfd</h5>
       <h5>fd</h5>
       <h5>sasdfasdfasdfasdf</h5>
-      <h5>asdf asdfasd fdfdfdfasdf </h5>
+      <h5>asdf asdfasd fdfdfdfasdf</h5>
     </div>
   </div>
 </template>
 <style scoped lang="scss">
-
 $cardWidth: 125px;
 $cardHeight: 78px;
 $descHeight: 180px;
@@ -63,7 +62,6 @@ $descHeight: 180px;
 .cardSelectComponent {
   position: relative;
 }
-
 </style>
 <script type="text/javascript">
 export default {

@@ -1,11 +1,10 @@
 <template>
   <div class="CBLineContainer">
     <div v-show="showGraph" class="highChartContainer" ref="highChartContainer"></div>
-    <div v-show="!showGraph" class="noGraphText"> 
-      <h1>No Cards Selected</h1>
-      <typeAhead v-if="!showGraph"/>
+    <div v-show="!showGraph" class="noGraphText">
+      <h1 class="noSelect">No Cards Selected</h1>
+      <typeAhead v-if="!showGraph" />
     </div>
-
 
     <div class="allMod">
       <div class="categoryMod" v-for="(amount, cat) in categorySpend" v-bind:key="cat">
@@ -25,17 +24,23 @@
         <!-- {{ modCategorySpend[cat] | displayMoneyFilter}} -->
       </div>
     </div>
-    <div class="graphSideCards" >
-        <cardSelectComponent v-for="card in selectedCards" :key="card.name"
-         :name="card.name" />
+    <div class="graphSideCards">
+      <div v-for="card in selectedCards" :key="card.name">
+        <cardSelectComponent :name="card.name" />
+        <div>{{ cardTotalCB[card.name] }}</div>
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped>
+.noSelect {
+  text-align: center;
+}
+
 .graphSideCards {
   display: flex;
-  flex-direction: row
+  flex-direction: row;
 }
 .categoryMod {
   display: flex;
@@ -144,17 +149,14 @@ export default {
     };
   },
   computed: {
-
-    ...mapState(["unSelectedCards", "selectedCards"]),
+    ...mapState(["unSelectedCards", "selectedCards", "cardTotalCB"]),
     showGraph: function() {
       return this.selectedCards.length !== 0;
     }
   },
 
   methods: {
-    test: function() {
-      console.log("asdf");
-    },
+    test: function() {},
     displayMoney: function(item) {
       if (item !== "") {
         return "$" + item.toFixed(2);
@@ -184,8 +186,6 @@ export default {
     },
 
     createHighChart: function(cards) {
-      
-
       Highcharts.chart(this.$refs.highChartContainer, {
         title: {
           text: "Rewards Comparison"
@@ -231,20 +231,16 @@ export default {
     cardToSeriesData: function(card) {
       const seriesData = [];
       const monthCB = this.CStoMonthCB(card).totalCB;
-      console.log(monthCB, "monthcb");
       const monthTotalSpend = this.CStoMonthCB(card).totalSpend;
       let bonuses;
       if (card.bonus.type === "standard") {
-        console.log(card.bonus.bonuses);
         bonuses = JSON.parse(JSON.stringify(card.bonus.bonuses));
-        console.log("orig", bonuses);
       }
 
       let totalCB = 0;
       let totalSpend = 0;
       for (let month = 1; month <= this.months; month++) {
         let cbMultiplier = 1;
-        console.log("total spend", totalSpend[0]);
 
         if (card.bonus.type === "standard" && bonuses.length !== 0) {
           if (totalSpend >= bonuses[0].msr) {
@@ -269,6 +265,12 @@ export default {
           y: totalCB
         });
       }
+
+      // setCardCB(state, cardName, amount, months) {
+      this.$store.commit("setCardCB", {
+        name: card.name,
+        amount: totalCB
+      });
       return {
         name: card.displayName,
         data: seriesData,
@@ -278,10 +280,14 @@ export default {
       };
     }
   },
-  
+
   watch: {
     selectedCards: function() {
       this.createHighChart(this.selectedCards);
+    },
+
+    cardTotalCB: function() {
+      console.log("cardtotalcb", this.cardTotalCB);
     }
   },
 
@@ -290,8 +296,8 @@ export default {
     // for (let key in cardss) {
     //   this.$store.commit("addCard", cardss[key]);
     // }
-    console.log("mount");
-    if (this.$store.state.selectedCards.length == 0) this.$store.commit("initCards");
+    if (this.$store.state.selectedCards.length == 0)
+      this.$store.commit("initCards");
 
     // console.log(this.$store.state.selectedCards)
     this.createHighChart(this.$store.state.selectedCards);
