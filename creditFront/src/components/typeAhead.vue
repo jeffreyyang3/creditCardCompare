@@ -1,13 +1,13 @@
 <template>
   <div class="typeAhead">
     <input placeholder="Search for a card!" class="searchBar" type="text" v-model="currentTyped" />
-    <div class="suggestions">
+    <div class="suggestions" v-show="showSuggestions">
       <div class="suggestionsItem" v-for="card in suggestions" :key="card.cardKey">
         <div class="cardTitle">{{ card.displayName }}</div>
         <div class="typeAheadCard">
           <cardSelectComponent :name="card.cardKey"></cardSelectComponent>
         </div>
-        <div class="addButton btn btn-primary" @click="$store.commit('addCard', card.cardKey)"> + </div>
+        <div class="addButton btn btn-primary" @click="$store.commit('addCard', card.cardKey)">+</div>
       </div>
     </div>
 
@@ -42,7 +42,7 @@ $border: 1px solid #d4d4d5;
 .addButton {
   margin-right: 5%;
   border-radius: 50%;
-  font-weight: bold
+  font-weight: bold;
 }
 .suggestions {
   border: $border;
@@ -100,6 +100,10 @@ export default {
         });
       }
       return outLst;
+    },
+    showSuggestions: function() {
+      console.log(this.suggestions);
+      return this.suggestions.length !== 0;
     },
 
     suggestions: function() {

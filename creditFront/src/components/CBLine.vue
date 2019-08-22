@@ -24,10 +24,23 @@
         <!-- {{ modCategorySpend[cat] | displayMoneyFilter}} -->
       </div>
     </div>
+
+    <h1 style="text-align: center">
+      Rewards After
+      <input
+        class="monthInput"
+        size="2"
+        type="number"
+        step="1"
+        v-model.number="months"
+        @change="createHighChart(selectedCards)"
+      /> Months
+    </h1>
+
     <div class="graphSideCards">
       <div v-for="card in selectedCards" :key="card.name">
         <cardSelectComponent :name="card.name" />
-        <div>{{ cardTotalCB[card.name] }}</div>
+        <div class="cbAmount">${{ cardTotalCB[card.name].toFixed(2) }}</div>
       </div>
     </div>
   </div>
@@ -36,6 +49,19 @@
 <style scoped>
 .noSelect {
   text-align: center;
+}
+
+.monthInput {
+  width: 1.5em;
+  text-align: center;
+  border: 1px solid #d3d3d3;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.cbAmount {
+  text-align: center;
+  font-weight: bold;
 }
 
 .graphSideCards {
@@ -67,7 +93,8 @@
   cursor: pointer;
   border: none;
 }
-.categoryMod input:focus {
+.categoryMod input:focus,
+.monthInput:focus {
   outline: none;
 }
 .categoryMod .inputContainer:before {
@@ -243,7 +270,7 @@ export default {
         let cbMultiplier = 1;
 
         if (card.bonus.type === "standard" && bonuses.length !== 0) {
-          if (totalSpend >= bonuses[0].msr) {
+          if (totalSpend >= bonuses[0].msr && month <= card.bonus.expire) {
             totalCB += bonuses[0].rewardAmount;
             bonuses.shift();
           }
