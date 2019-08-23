@@ -20,12 +20,10 @@
   </div>
 </template>
 <style>
-
 body {
   background-color: #fefefe;
 }
 .nonNavbar {
-  margin-top: 30px;
 }
 .modalButton {
   font-weight: bold;
@@ -37,13 +35,11 @@ body {
   flex-direction: column;
   align-items: center;
 }
-
 </style>
 <script>
-
 // @ is an alias to /src
 import Req from "@/components/Req";
-import CBLine from "@/components/CBLine";
+import CBLine from "@/views/CBLine";
 import topNavbar from "@/components/topNavbar";
 // import PlaidLink from "vue-plaid-link";
 

@@ -26,7 +26,7 @@
     </div>
 
     <h1 style="text-align: center">
-      Rewards After
+      $ in rewards after
       <input
         class="monthInput"
         size="2"
@@ -34,13 +34,15 @@
         step="1"
         v-model.number="months"
         @change="createHighChart(selectedCards)"
-      /> Months
+      />
+      <span v-if="months === 1">month</span>
+      <span v-else>months</span>
     </h1>
 
     <div class="graphSideCards">
       <div v-for="card in selectedCards" :key="card.name">
         <cardSelectComponent :name="card.name" />
-        <div class="cbAmount">${{ cardTotalCB[card.name].toFixed(2) }}</div>
+        <div class="cbAmount odometer">${{ cardTotalCB[card.name].toFixed(2) }}</div>
       </div>
     </div>
   </div>
@@ -57,6 +59,7 @@
   border: 1px solid #d3d3d3;
   border-radius: 4px;
   cursor: pointer;
+  margin-right: 8px;
 }
 
 .cbAmount {
@@ -67,6 +70,7 @@
 .graphSideCards {
   display: flex;
   flex-direction: row;
+  overflow-x: scroll;
 }
 .categoryMod {
   display: flex;
@@ -176,7 +180,12 @@ export default {
     };
   },
   computed: {
-    ...mapState(["unSelectedCards", "selectedCards", "cardTotalCB"]),
+    ...mapState([
+      "unSelectedCards",
+      "selectedCards",
+      "cardTotalCB",
+      "cardModifications"
+    ]),
     showGraph: function() {
       return this.selectedCards.length !== 0;
     }
@@ -270,7 +279,9 @@ export default {
         let cbMultiplier = 1;
 
         if (card.bonus.type === "standard" && bonuses.length !== 0) {
-          if (totalSpend >= bonuses[0].msr && month <= card.bonus.expire) {
+          console.log("totalspend expire", totalSpend, bonuses[0].expire);
+          if (totalSpend >= bonuses[0].msr && month - 1 <= bonuses[0].expire) {
+            //off by 1 stuff idk
             totalCB += bonuses[0].rewardAmount;
             bonuses.shift();
           }
@@ -310,6 +321,10 @@ export default {
 
   watch: {
     selectedCards: function() {
+      this.createHighChart(this.selectedCards);
+    },
+
+    cardModifications: function() {
       this.createHighChart(this.selectedCards);
     },
 

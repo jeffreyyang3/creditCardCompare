@@ -37,7 +37,7 @@
 
 <script>
 const axios = require("axios");
-import CBLine from "@/components/CBLine";
+import CBLine from "@/views/CBLine";
 import cards from "@/data/cards";
 
 export default {

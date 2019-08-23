@@ -6,13 +6,12 @@
     </div>
     <div ref="rightSide" id="rightSide" v-on:drop="dropHandler" v-on:dragover="dragOverHandler">
       <CBLine v-if="showGraph"></CBLine>
-      
     </div>
   </div>
 </template>
 <style scoped type="text/css">
 .cardsModalRightCards {
-  display: flex
+  display: flex;
 }
 
 .cardsModalContent {
@@ -20,15 +19,12 @@
   width: 100%;
   min-height: 100%;
 }
-.graphSideCards
-
-#leftSide,
+.graphSideCards #leftSide,
 #rightSide {
   box-sizing: border-box;
   padding: 10px;
- /* width: 50%; */
+  /* width: 50%; */
   min-height: 100%;
-
 }
 #leftSide {
   width: 42%;
@@ -42,7 +38,7 @@
 <script type="text/javascript">
 import { mapState } from "vuex";
 import typeAhead from "@/components/typeAhead";
-import CBLine from "@/components/CBLine"
+import CBLine from "@/views/CBLine";
 
 export default {
   name: "cardsModal",

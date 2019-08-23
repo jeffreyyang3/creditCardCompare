@@ -1,6 +1,7 @@
 <template>
   <div class="typeAhead">
     <input placeholder="Search for a card!" class="searchBar" type="text" v-model="currentTyped" />
+
     <div class="suggestions" v-show="showSuggestions">
       <div class="suggestionsItem" v-for="card in suggestions" :key="card.cardKey">
         <div class="cardTitle">{{ card.displayName }}</div>
