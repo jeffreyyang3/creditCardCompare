@@ -2,7 +2,7 @@
   <div class="typeAhead">
     <input placeholder="Search for a card!" class="searchBar" type="text" v-model="currentTyped" />
 
-    <div class="suggestions" v-show="showSuggestions">
+    <div class="suggestions" v-if="showSuggestions">
       <div class="suggestionsItem" v-for="card in suggestions" :key="card.cardKey">
         <div class="cardTitle">{{ card.displayName }}</div>
         <div class="typeAheadCard">
@@ -11,6 +11,7 @@
         <div class="addButton btn btn-primary" @click="$store.commit('addCard', card.cardKey)">+</div>
       </div>
     </div>
+    <h1 class="noCards" v-else>🎶 ain't got no cards left to add... 🎶</h1>
 
     <!-- 
     <div v-for="card in suggestions" :key="card.displayName">
@@ -23,10 +24,12 @@
 $componentWidth: 95%;
 $inputWidth: 50%;
 $cardTitleWidth: 55%;
-$hotBoxShadow: 2px 10px 0 rgba(34, 36, 38, 0.15);
 $hotBoxShadow: 0 2px 4px 0 rgba(34, 36, 38, 0.12),
   0 2px 10px 0 rgba(34, 36, 38, 0.15);
 $border: 1px solid #d4d4d5;
+.noCards {
+  margin-left: 10px;
+}
 .searchBar {
   margin: 10px;
   height: 40px;

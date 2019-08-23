@@ -1,5 +1,5 @@
 <template>
-  <div class="modifyCards"></div>
+  <div class="modifyCards">fdf</div>
 </template>
 
 <style>

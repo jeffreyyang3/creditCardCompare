@@ -29,6 +29,10 @@ export default () => {
       },
       annualFee: {
         has: false
+      },
+      otherInfo: {
+        type: "cashBack",
+        network: "amex"
       }
     },
 
@@ -48,8 +52,30 @@ export default () => {
         has: true,
         waiveFirst: true,
         amount: 95
+      },
+
+      otherInfo: { network: "visa", type: "cashBack" }
+    },
+    citiDC: {
+      displayName: "Citi Double Cash",
+      categories: {
+        all: {
+          percent: 0.02,
+          cap: false
+        }
+      },
+      bonus: {
+        type: "none"
+      },
+      annualFee: {
+        has: false
+      },
+      otherInfo: {
+        type: "cashBack",
+        network: "masterCard"
       }
     },
+
     cfu: {
       displayName: "Chase Freedom Unlimited",
       categories: {
@@ -67,8 +93,13 @@ export default () => {
         has: false,
         waiveFirst: false,
         amount: 0
+      },
+      otherInfo: {
+        type: "cashBack",
+        network: "visa"
       }
     },
+
     cap1QuickSilver: {
       displayName: "Capital One Quicksilver",
       categories: {
@@ -85,6 +116,10 @@ export default () => {
         has: false,
         waiveFirst: false,
         amount: 0
+      },
+      otherInfo: {
+        type: "cashBack",
+        network: "masterCard"
       }
     },
 
@@ -115,7 +150,8 @@ export default () => {
       },
 
       otherInfo: {
-        type: "American Express"
+        network: "amex",
+        type: "cashBack"
       }
     },
 
@@ -150,7 +186,8 @@ export default () => {
       },
 
       otherInfo: {
-        type: "Visa"
+        network: "visa",
+        type: "cashBack"
       }
     }
   };

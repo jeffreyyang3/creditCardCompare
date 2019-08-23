@@ -48,12 +48,15 @@
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
+$hotBoxShadow: 0 2px 4px 0 rgba(34, 36, 38, 0.12),
+  0 2px 10px 0 rgba(34, 36, 38, 0.15);
 .noSelect {
   text-align: center;
 }
 
 .monthInput {
+  box-shadow: $hotBoxShadow;
   width: 1.5em;
   text-align: center;
   border: 1px solid #d3d3d3;
@@ -278,21 +281,17 @@ export default {
       for (let month = 1; month <= this.months; month++) {
         let cbMultiplier = 1;
 
-        if (card.bonus.type === "standard" && bonuses.length !== 0) {
-          console.log("totalspend expire", totalSpend, bonuses[0].expire);
-          if (totalSpend >= bonuses[0].msr && month - 1 <= bonuses[0].expire) {
-            //off by 1 stuff idk
-            totalCB += bonuses[0].rewardAmount;
-            bonuses.shift();
-          }
-        } else if (
-          card.bonus.type === "percentTime" &&
-          month <= card.bonus.length
-        ) {
+        if (card.bonus.type === "percentTime" && month <= card.bonus.length) {
           cbMultiplier = card.bonus.multiplier;
         }
         totalCB += monthCB * cbMultiplier;
         totalSpend += monthTotalSpend;
+        if (card.bonus.type === "standard" && bonuses.length !== 0) {
+          if (totalSpend >= bonuses[0].msr && month <= bonuses[0].expire) {
+            totalCB += bonuses[0].rewardAmount;
+            bonuses.shift();
+          }
+        }
         if (card.annualFee.has && month % 12 === 0) {
           if (!(card.annualFee.waiveFirst && month === 12)) {
             totalCB -= card.annualFee.amount;
