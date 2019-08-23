@@ -73,7 +73,9 @@ $hotBoxShadow: 0 2px 4px 0 rgba(34, 36, 38, 0.12),
 .graphSideCards {
   display: flex;
   flex-direction: row;
-  overflow-x: scroll;
+  overflow: scroll;
+  width: 100%;
+  padding-bottom: 10px;
 }
 .categoryMod {
   display: flex;
@@ -142,12 +144,11 @@ input[type="number"] {
   display: none;
 }
 .CBLineContainer {
-  margin: 15px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   width: 90%;
-  height: 65%;
+  height: 100%;
   align-items: center;
 }
 

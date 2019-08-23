@@ -3,8 +3,10 @@
     <div class="navItems">
       <router-link to="/">Home</router-link>
 
-      <router-link to="/chooseCards">Choose Cards</router-link>
+      <router-link to="/chooseCards">Split Screen Sadness</router-link>
       <router-link to="/about">Choose Cards: Fullscreen Edition</router-link>
+
+      <router-link to="/modifyCards">Modify Cards</router-link>
       <div class="btn btn-primary" @click="$store.dispatch('addRandomCard')">add</div>
     </div>
   </nav>

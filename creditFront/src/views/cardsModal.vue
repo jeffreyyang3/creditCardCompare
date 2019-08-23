@@ -31,6 +31,8 @@
   background-color: #f8f8f8;
 }
 #rightSide {
+  display: flex;
+  justify-content: center;
   width: 58%;
   background-color: white;
 }

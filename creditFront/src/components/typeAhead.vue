@@ -11,7 +11,7 @@
         <div class="addButton btn btn-primary" @click="$store.commit('addCard', card.cardKey)">+</div>
       </div>
     </div>
-    <h1 class="noCards" v-else>🎶 ain't got no cards left to add... 🎶</h1>
+    <h1 class="noCards" v-else>ain't got no cards left to add...</h1>
 
     <!-- 
     <div v-for="card in suggestions" :key="card.displayName">
@@ -92,6 +92,11 @@ export default {
       currentTyped: ""
     };
   },
+  props: {
+    noImages: Boolean,
+    forMod: Boolean
+  },
+
   computed: {
     ...mapState(["unSelectedCards", "selectedCards"]),
     unSelectedCardsList: function() {
