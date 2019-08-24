@@ -17,7 +17,7 @@ export default new Vuex.Store({
       dining: 300,
       travel: 300,
       groceries: 300,
-      all: 300
+      other: 300
     },
     usingExData: false,
     selectedCards: [],
@@ -110,7 +110,7 @@ export default new Vuex.Store({
         dining: 0,
         travel: 0,
         groceries: 0,
-        all: 0
+        other: 0
       };
     },
     setPublicToken(state, token) {

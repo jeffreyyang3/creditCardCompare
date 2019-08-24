@@ -1,18 +1,39 @@
 <template>
   <nav class="topNavbar">
     <div class="navItems">
+      <div class="navDropDown">
+        <div @click="quickAddClicked = !quickAddClicked" class="btn btn-primary">Quick Add</div>
+        <div :class="{active: quickAddClicked}" class="navDropDownContent">
+          <typeAhead />
+        </div>
+      </div>
+
+      <router-link to="/modifyCards">Modify Cards</router-link>
       <router-link to="/">Home</router-link>
 
       <router-link to="/chooseCards">Split Screen Sadness</router-link>
       <router-link to="/about">Choose Cards: Fullscreen Edition</router-link>
-
-      <router-link to="/modifyCards">Modify Cards</router-link>
-      <div class="btn btn-primary" @click="$store.dispatch('addRandomCard')">add</div>
     </div>
   </nav>
 </template>	
 
 <style type="text/css">
+.navDropDownContent .typeAheadCard {
+  display: none;
+}
+
+.navDropDownContent .suggestions {
+  background-color: white;
+}
+
+.navDropDownContent {
+  position: absolute;
+  display: none;
+}
+
+.navDropDownContent.active {
+  display: block;
+}
 .topNavbar {
   z-index: 123456789;
   width: 100%;
@@ -33,9 +54,15 @@
 </style>
 
 <script>
+import typeAhead from "@/components/typeAhead";
 export default {
   name: "topNavbar",
-  components: {},
+  components: { typeAhead },
+  data: function() {
+    return {
+      quickAddClicked: false
+    };
+  },
   methods: {}
 };
 </script>

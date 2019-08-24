@@ -98,7 +98,7 @@ export default {
         dining: 0,
         travel: 0,
         groceries: 0,
-        all: 0
+        other: 0
       };
       const notCounted = new Set(["Payment", "Transfer"]);
 

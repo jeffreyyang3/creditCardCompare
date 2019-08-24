@@ -3,7 +3,7 @@ export default () => {
     wfPropel: {
       displayName: "Wells Fargo Propel",
       categories: {
-        all: {
+        other: {
           percent: 0.01,
           cap: false
         },
@@ -39,7 +39,7 @@ export default () => {
     cap1Venture: {
       displayName: "Capital One Venture",
       categories: {
-        all: {
+        other: {
           percent: 0.02,
           cap: false
         }
@@ -59,7 +59,7 @@ export default () => {
     citiDC: {
       displayName: "Citi Double Cash",
       categories: {
-        all: {
+        other: {
           percent: 0.02,
           cap: false
         }
@@ -79,7 +79,7 @@ export default () => {
     cfu: {
       displayName: "Chase Freedom Unlimited",
       categories: {
-        all: {
+        other: {
           percent: 0.015,
           cap: false
         }
@@ -103,7 +103,7 @@ export default () => {
     cap1QuickSilver: {
       displayName: "Capital One Quicksilver",
       categories: {
-        all: {
+        other: {
           percent: 0.015,
           cap: false
         }
@@ -126,7 +126,7 @@ export default () => {
     amexBCE: {
       displayName: "American Express Blue Cash Everyday",
       categories: {
-        all: {
+        other: {
           percent: 0.01,
           cap: false
         },
@@ -158,7 +158,7 @@ export default () => {
     uber: {
       displayName: "Barclays Uber Visa",
       categories: {
-        all: {
+        other: {
           percent: 0.01,
           cap: false
         },

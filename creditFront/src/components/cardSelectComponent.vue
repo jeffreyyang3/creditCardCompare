@@ -8,14 +8,15 @@
   >
     <img class="cardImage" :src="getFile()" />
     <div class="cardDesc" v-if="clickable">
-        <div class="cardCbInfo">
-            <div class="cb"
-                 :key="$store.state.original[name].displayName + category"
-                 v-for="(data, category) in $store.state.original[name].categories">
-           {{ category}}     {{ data }}
-            </div>
+      <div class="cardCbInfo">
+        <div
+          class="cb"
+          :key="$store.state.original[name].displayName + category"
+          v-for="(data, category) in $store.state.original[name].categories"
+        >
+          <h5>{{ categoryDisplayFilter(category)}}: {{ data.percent }}</h5>
         </div>
-
+      </div>
     </div>
   </div>
 </template>
@@ -24,18 +25,19 @@ $cardWidth: 125px;
 $cardHeight: 78px;
 $descHeight: 180px;
 
-
 .cardSelectComponent {
   width: $cardWidth;
   // height: $cardHeight + 50px;
   margin: 10px;
 }
+
 .cardSelectComponent img {
   opacity: 1;
   width: $cardWidth;
   height: $cardHeight;
   transition: opacity 0.3s;
 }
+
 // .cardSelectComponent.clicked img,
 // .cardSelectComponent:hover img {
 //   opacity: 0.8;
@@ -51,6 +53,7 @@ $descHeight: 180px;
 
 .cardSelectComponent .cardDesc * {
 }
+
 .cardDesc {
   margin-top: 5px;
 
@@ -68,7 +71,7 @@ export default {
   name: "cardSelectComponent",
   props: {
     name: String,
-    clickable: Boolean,
+    clickable: Boolean
   },
   data: function() {
     return {
@@ -77,12 +80,21 @@ export default {
     };
   },
 
-  mounted() {
-    console.log("dfdfdfdfdf");
-  },
+  mounted() {},
+
   methods: {
     getFile() {
       return require(`@/assets/cardImages/${this.name}.png`);
+    },
+    categoryDisplayFilter(category) {
+      if (
+        Object.keys(this.$store.state.original[this.name].categories).length ===
+        1
+      ) {
+        return "All";
+      } else {
+        return category.charAt(0).toUpperCase() + category.slice(1);
+      }
     },
 
     toggleDescVis() {

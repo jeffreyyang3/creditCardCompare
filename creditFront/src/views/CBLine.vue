@@ -35,14 +35,16 @@
         v-model.number="months"
         @change="createHighChart(selectedCards)"
       />
-      <span v-if="months === 1">month</span>
-      <span v-else>months</span>
+      <span v-show="months === 1">month</span>
+      <span v-show="months !== 1">months</span>
     </h1>
 
     <div class="graphSideCards">
-      <div v-for="card in selectedCards" :key="card.name">
-        <cardSelectComponent :name="card.name" />
-        <div class="cbAmount odometer">${{ cardTotalCB[card.name].toFixed(2) }}</div>
+      <div v-for="card in selectedCards"  :key="card.name">
+        <cardSelectComponent :clickable="false" @dblclick="console.log('fd')" :name="card.name"
+        />
+
+        <div class="cbAmount">${{ cardTotalCB[card.name].toFixed(2) }}</div>
       </div>
     </div>
   </div>
@@ -212,9 +214,10 @@ export default {
         if (card.categories[category]) {
           subTotal =
             card.categories[category].percent * this.categorySpend[category];
-        } else if (card.categories.all) {
-          subTotal = card.categories.all.percent * this.categorySpend[category];
+        } else if (card.categories.other) {
+          subTotal = card.categories.other.percent * this.categorySpend[category];
         }
+
 
         totalCB += subTotal;
         totalSpend += this.categorySpend[category];
