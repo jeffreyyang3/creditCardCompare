@@ -59,6 +59,7 @@
 </style>
 <script>
 import topNavbar from "@/components/topNavbar";
+require("@/assets/css/bootstrap.css");
 export default {
   name: "app",
   components: {
@@ -66,7 +67,7 @@ export default {
   },
   mounted() {
     // this.$store.commit("initCards");
-    console.log("asdf")
+
     if(this.$store.notInitialized) this.$store.commit("initCards");
   }
 };

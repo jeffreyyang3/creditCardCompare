@@ -6,7 +6,7 @@
       <div class="suggestionsItem" v-for="card in suggestions" :key="card.cardKey">
         <div class="cardTitle">{{ card.displayName }}</div>
         <div class="typeAheadCard">
-          <cardSelectComponent :name="card.cardKey"></cardSelectComponent>
+          <cardSelectComponent :clickable="true" :name="card.cardKey"></cardSelectComponent>
         </div>
         <div class="addButton btn btn-primary" @click="$store.commit('addCard', card.cardKey)">+</div>
       </div>

@@ -8,15 +8,14 @@
   >
     <img class="cardImage" :src="getFile()" />
     <div class="cardDesc" v-if="clickable">
-      <h5>asdf</h5>
-      <h5>fadsfasfadsfadsfasd</h5>
-      <h5>fasdfasd fsfdadsf fd</h5>
-      <h5>fdfdfd</h5>
-      <h5>iadsf</h5>
-      <h5>dfd</h5>
-      <h5>fd</h5>
-      <h5>sasdfasdfasdfasdf</h5>
-      <h5>asdf asdfasd fdfdfdfasdf</h5>
+        <div class="cardCbInfo">
+            <div class="cb"
+                 :key="$store.state.original[name].displayName + category"
+                 v-for="(data, category) in $store.state.original[name].categories">
+           {{ category}}     {{ data }}
+            </div>
+        </div>
+
     </div>
   </div>
 </template>
@@ -24,6 +23,7 @@
 $cardWidth: 125px;
 $cardHeight: 78px;
 $descHeight: 180px;
+
 
 .cardSelectComponent {
   width: $cardWidth;
@@ -68,7 +68,7 @@ export default {
   name: "cardSelectComponent",
   props: {
     name: String,
-    clickable: Boolean
+    clickable: Boolean,
   },
   data: function() {
     return {
