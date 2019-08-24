@@ -40,10 +40,10 @@
     </h1>
 
     <div class="graphSideCards">
-      <div v-for="card in selectedCards" :key="card.name">
-        <cardSelectComponent :clickable="false" @dblclick="console.log('fd')" :name="card.name" />
+      <div v-for="card in sortedCards" :key="card.cardName">
+        <cardSelectComponent :clickable="false" :name="card.cardName" />
 
-        <div class="cbAmount">${{ cardTotalCB[card.name].toFixed(2) }}</div>
+        <div class="cbAmount">${{ card.amount }}</div>
       </div>
     </div>
   </div>
@@ -167,6 +167,7 @@ import Highcharts from "highcharts";
 import cardsDb from "@/data/cards";
 import typeAhead from "@/components/typeAhead";
 import cardSelectComponent from "@/components/cardSelectComponent";
+import { mkdir } from "fs"; //?????
 export default {
   name: "CBLine",
   components: {
@@ -193,6 +194,19 @@ export default {
     ]),
     showGraph: function() {
       return this.selectedCards.length !== 0;
+    },
+    sortedCards: function() {
+      const lst = [];
+      Object.keys(this.cardTotalCB).forEach(key => {
+        lst.push({
+          cardName: key,
+          amount: this.cardTotalCB[key]
+        });
+      });
+
+      return lst.sort((a, b) => {
+        return b.amount - a.amount;
+      });
     }
   },
 
@@ -307,10 +321,12 @@ export default {
       }
 
       // setCardCB(state, cardName, amount, months) {
+
       this.$store.commit("setCardCB", {
         name: card.name,
         amount: totalCB
       });
+
       return {
         name: card.displayName,
         data: seriesData,
@@ -330,9 +346,7 @@ export default {
       this.createHighChart(this.selectedCards);
     },
 
-    cardTotalCB: function() {
-      console.log("cardtotalcb", this.cardTotalCB);
-    }
+    cardTotalCB: function() {}
   },
 
   mounted() {

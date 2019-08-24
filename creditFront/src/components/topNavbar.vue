@@ -1,18 +1,17 @@
 <template>
   <nav class="topNavbar">
     <div class="navItems">
+      <router-link to="/modifyCards">Modify Cards</router-link>
+      <router-link to="/">Home</router-link>
+
+      <router-link to="/chooseCards">Split Screen Sadness</router-link>
+      <router-link to="/about">Choose Cards: Fullscreen Edition</router-link>
       <div class="navDropDown">
         <div @click="quickAddClicked = !quickAddClicked" class="btn btn-primary">Quick Add</div>
         <div :class="{active: quickAddClicked}" class="navDropDownContent">
           <typeAhead />
         </div>
       </div>
-
-      <router-link to="/modifyCards">Modify Cards</router-link>
-      <router-link to="/">Home</router-link>
-
-      <router-link to="/chooseCards">Split Screen Sadness</router-link>
-      <router-link to="/about">Choose Cards: Fullscreen Edition</router-link>
     </div>
   </nav>
 </template>	
@@ -28,6 +27,7 @@
 
 .navDropDownContent {
   position: absolute;
+  transform: translateX(-55%);
   display: none;
 }
 

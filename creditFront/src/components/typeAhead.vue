@@ -3,7 +3,7 @@
     <input placeholder="Search for a card!" class="searchBar" type="text" v-model="currentTyped" />
 
     <div class="suggestions" v-if="showSuggestions">
-      <div class="suggestionsItem" v-for="card in suggestions" :key="card.cardKey">
+      <div class="suggestionsItem" v-for="card in sortedSuggestions" :key="card.cardKey">
         <div class="cardTitle">{{ card.displayName }}</div>
         <div class="typeAheadCard">
           <cardSelectComponent :clickable="true" :name="card.cardKey"></cardSelectComponent>
@@ -11,7 +11,7 @@
         <div class="addButton btn btn-primary" @click="$store.commit('addCard', card.cardKey)">+</div>
       </div>
     </div>
-    <h1 class="noCards" v-else>ain't got no cards left to add...</h1>
+    <h1 class="noCards" v-else>no cards left to add...</h1>
 
     <!-- 
     <div v-for="card in suggestions" :key="card.displayName">
@@ -27,15 +27,19 @@ $cardTitleWidth: 55%;
 $hotBoxShadow: 0 2px 4px 0 rgba(34, 36, 38, 0.12),
   0 2px 10px 0 rgba(34, 36, 38, 0.15);
 $border: 1px solid #d4d4d5;
+$borderRadius: 8px;
 .noCards {
   margin-left: 10px;
+  background-color: white;
+  border-radius: $borderRadius;
+  border: $border;
 }
 .searchBar {
   margin: 10px;
   height: 40px;
   width: 100%;
   border: $border;
-  border-radius: 20px;
+  border-radius: $borderRadius;
   box-shadow: $hotBoxShadow;
   padding: 10px;
   font-size: 90%;
@@ -50,7 +54,7 @@ $border: 1px solid #d4d4d5;
 }
 .suggestions {
   border: $border;
-  border-radius: 20px;
+  border-radius: $borderRadius;
   box-shadow: $hotBoxShadow;
   margin: 10px;
   width: 100%;
@@ -100,7 +104,6 @@ export default {
   computed: {
     ...mapState(["unSelectedCards", "selectedCards"]),
     unSelectedCardsList: function() {
-      console.log("asdf");
       var outLst = [];
       for (let cardKey in this.unSelectedCards) {
         outLst.push({
@@ -110,9 +113,22 @@ export default {
       }
       return outLst;
     },
+
     showSuggestions: function() {
-      console.log(this.suggestions);
       return this.suggestions.length !== 0;
+    },
+    sortedSuggestions: function() {
+      const copy = this.suggestions.slice();
+      copy.sort((a, b) => {
+        if (a.displayName < b.displayName) {
+          return -1;
+        }
+        if (a.displayName > b.displayName) {
+          return 1;
+        }
+        return 0;
+      });
+      return copy;
     },
 
     suggestions: function() {
@@ -133,9 +149,10 @@ export default {
   watch: {},
   methods: {},
   mounted() {
+    console.log("mounted called");
     if (
       Object.keys(this.$store.state.unSelectedCards).length === 0 &&
-      this.$store.state.unSelectedCards.length === 0
+      this.$store.state.selectedCards.length === 0
     )
       this.$store.commit("initCards");
   }
