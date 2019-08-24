@@ -132,6 +132,12 @@ export default {
   },
   watch: {},
   methods: {},
-  mounted() {}
+  mounted() {
+    if (
+      Object.keys(this.$store.state.unSelectedCards).length === 0 &&
+      this.$store.state.unSelectedCards.length === 0
+    )
+      this.$store.commit("initCards");
+  }
 };
 </script>

@@ -40,9 +40,8 @@
     </h1>
 
     <div class="graphSideCards">
-      <div v-for="card in selectedCards"  :key="card.name">
-        <cardSelectComponent :clickable="false" @dblclick="console.log('fd')" :name="card.name"
-        />
+      <div v-for="card in selectedCards" :key="card.name">
+        <cardSelectComponent :clickable="false" @dblclick="console.log('fd')" :name="card.name" />
 
         <div class="cbAmount">${{ cardTotalCB[card.name].toFixed(2) }}</div>
       </div>
@@ -50,7 +49,7 @@
   </div>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss">
 $hotBoxShadow: 0 2px 4px 0 rgba(34, 36, 38, 0.12),
   0 2px 10px 0 rgba(34, 36, 38, 0.15);
 .noSelect {
@@ -215,9 +214,9 @@ export default {
           subTotal =
             card.categories[category].percent * this.categorySpend[category];
         } else if (card.categories.other) {
-          subTotal = card.categories.other.percent * this.categorySpend[category];
+          subTotal =
+            card.categories.other.percent * this.categorySpend[category];
         }
-
 
         totalCB += subTotal;
         totalSpend += this.categorySpend[category];
