@@ -17,6 +17,7 @@ export default new Vuex.Store({
             dining: 300,
             travel: 300,
             groceries: 300,
+            gas: 300,
             other: 300
         },
         usingExData: false,

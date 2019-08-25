@@ -6,7 +6,12 @@
         <div class="cardAllMod">
           <cardSelectComponent :clickable="false" :name="card.name" />
           <div class="modInputs">
-            <div class="categoryMod" v-for="mod in modifications" :key="mod.name">
+            <div
+              :class="mod.toChange"
+              class="categoryMod"
+              v-for="mod in modifications"
+              :key="mod.name"
+            >
               <span class="categoryTitle">{{ mod.name }}</span>
 
               <!-- <input type="number" step=".01" min="0" :max="max" v-model.number="modCategorySpend[cat]" /> -->
@@ -38,8 +43,16 @@ $leftWidth: 35%;
   width: 100%;
 }
 
+.categoryMod.pointValue .inputContainer::before {
+  display: none;
+}
+.categoryMod.pointValue .inputContainer::after {
+  content: "¢";
+}
+
 .modifyCards {
   padding: 8px;
+  display: flex;
 }
 .cardAllMod {
   display: flex;

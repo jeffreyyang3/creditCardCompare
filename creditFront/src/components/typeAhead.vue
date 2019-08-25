@@ -1,6 +1,12 @@
 <template>
   <div class="typeAhead">
-    <input placeholder="Search for a card!" class="searchBar" type="text" v-model="currentTyped" />
+    <input
+      v-show="showSuggestions"
+      placeholder="Search for a card!"
+      class="searchBar"
+      type="text"
+      v-model="currentTyped"
+    />
 
     <div class="suggestions" v-if="showSuggestions">
       <div class="suggestionsItem" v-for="card in sortedSuggestions" :key="card.cardKey">
@@ -29,13 +35,11 @@ $hotBoxShadow: 0 2px 4px 0 rgba(34, 36, 38, 0.12),
 $border: 1px solid #d4d4d5;
 $borderRadius: 8px;
 .noCards {
-  margin-left: 10px;
-  background-color: white;
-  border-radius: $borderRadius;
-  border: $border;
+}
+.typeAhead {
+  margin: 2%;
 }
 .searchBar {
-  margin: 10px;
   height: 40px;
   width: 100%;
   border: $border;
@@ -43,6 +47,7 @@ $borderRadius: 8px;
   box-shadow: $hotBoxShadow;
   padding: 10px;
   font-size: 90%;
+  margin-bottom: 7px;
 }
 .searchBar:focus {
   outline: none;
@@ -56,7 +61,6 @@ $borderRadius: 8px;
   border: $border;
   border-radius: $borderRadius;
   box-shadow: $hotBoxShadow;
-  margin: 10px;
   width: 100%;
 }
 

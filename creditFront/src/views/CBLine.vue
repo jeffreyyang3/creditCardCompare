@@ -5,6 +5,7 @@
       <h1 class="noSelect">No Cards Selected</h1>
       <typeAhead v-if="!showGraph" />
     </div>
+    <h1 style="text-align: center">Your monthly spend on ...</h1>
 
     <div class="allMod">
       <div class="categoryMod" v-for="(amount, cat) in categorySpend" v-bind:key="cat">
@@ -43,7 +44,7 @@
       <div v-for="card in sortedCards" :key="card.cardName">
         <cardSelectComponent :clickable="false" :name="card.cardName" />
 
-        <div class="cbAmount">${{ card.amount }}</div>
+        <div class="cbAmount">${{ card.amount.toFixed(2) }}</div>
       </div>
     </div>
   </div>
@@ -77,6 +78,7 @@ $hotBoxShadow: 0 2px 4px 0 rgba(34, 36, 38, 0.12),
   overflow: scroll;
   width: 100%;
   padding-bottom: 10px;
+  justify-content: center;
 }
 .categoryMod {
   display: flex;
@@ -243,6 +245,13 @@ export default {
 
     createHighChart: function(cards) {
       Highcharts.chart(this.$refs.highChartContainer, {
+        plotOptions: {
+          series: {
+            animation: {
+              duration: 600
+            }
+          }
+        },
         title: {
           text: "Rewards Comparison"
         },

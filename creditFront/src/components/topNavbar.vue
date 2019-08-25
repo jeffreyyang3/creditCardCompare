@@ -31,8 +31,32 @@
   display: none;
 }
 
+.navDropDownContent .searchBar,
+.navDropDownContent .suggestions {
+  box-shadow: none;
+}
+.navDropDownContent .noCards {
+  margin-left: 0;
+  border: 1px solid black;
+}
+
+.navDropDownContent .searchBar {
+  border-radius: 3px 3px 0 0;
+  margin-bottom: 0;
+  border-bottom: none;
+}
+.navDropDownContent .suggestions {
+  border-radius: 0 0 3px 3px;
+}
+
 .navDropDownContent.active {
+  background-color: white;
+  border-radius: 4px;
   display: block;
+}
+
+.navDropDownContent div {
+  box-shadow: none;
 }
 .topNavbar {
   z-index: 123456789;
