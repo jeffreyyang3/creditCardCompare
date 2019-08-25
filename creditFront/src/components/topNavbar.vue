@@ -25,9 +25,13 @@
   background-color: white;
 }
 
+.navDropDownContent .addButton {
+  background-color: transparent;
+  color: black;
+  border: none;
+}
 .navDropDownContent {
   position: absolute;
-  transform: translateX(-55%);
   display: none;
 }
 

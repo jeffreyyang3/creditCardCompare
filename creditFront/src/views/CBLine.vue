@@ -15,7 +15,7 @@
         <div class="inputContainer">
           <input
             type="number"
-            step=".01"
+            step="100"
             v-model.number="categorySpend[cat]"
             @change="createHighChart(selectedCards)"
           />
@@ -157,6 +157,7 @@ input[type="number"] {
 
 .allMod {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
   justify-content: space-evenly;
   width: 100%;

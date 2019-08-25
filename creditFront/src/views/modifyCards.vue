@@ -2,7 +2,7 @@
   <div class="modifyCards">
     <div class="modifyCardsLeft">
       <h3>add cards to modify them!</h3>
-      <div class="selectedCards" v-for="card in selectedCards">
+      <div class="selectedCards" :key="card.name" v-for="card in selectedCards">
         <div class="cardAllMod">
           <cardSelectComponent :clickable="false" :name="card.name" />
           <div class="modInputs">
@@ -16,7 +16,7 @@
 
               <!-- <input type="number" step=".01" min="0" :max="max" v-model.number="modCategorySpend[cat]" /> -->
               <div class="inputContainer">
-                <input type="number" step=".01" />
+                <input type="number" step=".1" v-model="card.rewards[mod.toChange]" />
               </div>
               <!-- <h2>${{ modCategorySpend[cat].toFixed(0) }}</h2> -->
               <!-- <h2>{{ displayMoney(modCategorySpend[cat]) }}</h2> -->
@@ -44,9 +44,6 @@ $leftWidth: 35%;
 }
 
 .categoryMod.pointValue .inputContainer::before {
-  display: none;
-}
-.categoryMod.pointValue .inputContainer::after {
   content: "¢";
 }
 

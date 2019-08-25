@@ -17,7 +17,11 @@
         <div class="addButton btn btn-primary" @click="$store.commit('addCard', card.cardKey)">+</div>
       </div>
     </div>
-    <h1 class="noCards" v-else>no cards left to add...</h1>
+    <div class="suggestions" v-else>
+      <div class="suggestionsItem">
+        <div class="cardTitle">🎵 no cards left to add 🎵</div>
+      </div>
+    </div>
 
     <!-- 
     <div v-for="card in suggestions" :key="card.displayName">
