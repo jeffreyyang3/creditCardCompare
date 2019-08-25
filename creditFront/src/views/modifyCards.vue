@@ -16,7 +16,13 @@
 
               <!-- <input type="number" step=".01" min="0" :max="max" v-model.number="modCategorySpend[cat]" /> -->
               <div class="inputContainer">
-                <input type="number" step=".1" v-model="card.rewards[mod.toChange]" />
+                <input
+                  type="number"
+                  step=".1"
+                  v-model.number="card.rewards[mod.toChange]"
+                  @change="handleModChange(mod.toChange, card.rewards[mod.toChange],
+                   card)"
+                />
               </div>
               <!-- <h2>${{ modCategorySpend[cat].toFixed(0) }}</h2> -->
               <!-- <h2>{{ displayMoney(modCategorySpend[cat]) }}</h2> -->
@@ -72,10 +78,21 @@ $leftWidth: 35%;
 import cardSelectComponent from "@/components/cardSelectComponent";
 import { mapState } from "vuex";
 export default {
-  name: "Req",
+  name: "modifyCards",
   components: { cardSelectComponent },
   computed: {
     ...mapState(["selectedCards"])
+  },
+  methods: {
+    handleModChange: function(modName, amount, card) {
+      console.log(modName, amount, card);
+      const payload = { mod: {} };
+      payload.card = card;
+      payload.mod.modName = modName;
+      payload.mod.amount = amount;
+
+      this.$store.commit("setMod", payload);
+    }
   },
 
   data: function() {

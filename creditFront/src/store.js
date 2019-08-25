@@ -31,29 +31,12 @@ export default new Vuex.Store({
         original: cardsDb()
     },
     mutations: {
-        setModification(state, payload) {
-            if (payload.hasOwnProperty("effectiveAF")) {
-                Vue.set(
-                    state.cardModifications[payload.cardName],
-                    "effectiveAF",
-                    payload.effectiveAF
-                );
-            }
-            if (payload.hasOwnProperty("pointValue")) {
-                Vue.set(
-                    state.cardModifications[payload.cardName],
-                    "pointValue",
-                    payload.pointValue
-                );
-            }
-
-            if (payload.hasOwnProperty("flatBonus")) {
-                Vue.set(
-                    state.cardModifications[payload.cardName],
-                    "flatBonus",
-                    payload.flatBonus
-                );
-            }
+        setMod(state, payload) {
+            Vue.set(
+                payload.card.rewards,
+                payload.mod.modName,
+                payload.mod.amount
+            );
         },
 
         setCardCB(state, payload) {

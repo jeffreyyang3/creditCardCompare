@@ -238,6 +238,7 @@ export default {
         totalCB += subTotal;
         totalSpend += this.categorySpend[category];
       }
+      totalCB *= card.rewards.pointValue;
       return {
         totalCB,
         totalSpend
@@ -298,6 +299,7 @@ export default {
       const seriesData = [];
       const monthCB = this.CStoMonthCB(card).totalCB;
       const monthTotalSpend = this.CStoMonthCB(card).totalSpend;
+      console.log("changed");
       let bonuses;
       if (card.bonus.type === "standard") {
         bonuses = JSON.parse(JSON.stringify(card.bonus.bonuses));
@@ -306,6 +308,9 @@ export default {
       let totalCB = 0;
       let totalSpend = 0;
       for (let month = 1; month <= this.months; month++) {
+        if (month == 1) {
+          totalCB += card.rewards.flatBonus;
+        }
         let cbMultiplier = 1;
 
         if (card.bonus.type === "percentTime" && month <= card.bonus.length) {
@@ -315,13 +320,13 @@ export default {
         totalSpend += monthTotalSpend;
         if (card.bonus.type === "standard" && bonuses.length !== 0) {
           if (totalSpend >= bonuses[0].msr && month <= bonuses[0].expire) {
-            totalCB += bonuses[0].rewardAmount;
+            totalCB += bonuses[0].rewardAmount * card.rewards.pointValue;
             bonuses.shift();
           }
         }
-        if (card.annualFee.has && month % 12 === 0) {
+        if (month % 12 === 0) {
           if (!(card.annualFee.waiveFirst && month === 12)) {
-            totalCB -= card.annualFee.amount;
+            totalCB -= card.rewards.effectiveAF;
           }
         }
         seriesData.push({
@@ -349,6 +354,7 @@ export default {
 
   watch: {
     selectedCards: function() {
+      console.log(this.selectedCards);
       this.createHighChart(this.selectedCards);
     },
 
