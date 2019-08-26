@@ -5,7 +5,7 @@
       <h1 class="noSelect">No Cards Selected</h1>
       <typeAhead v-if="!showGraph" />
     </div>
-    <h1 style="text-align: center">Your monthly spend on ...</h1>
+    <h3 style="text-align: center">Your monthly spend on ...</h3>
 
     <div class="allMod">
       <div class="categoryMod" v-for="(amount, cat) in categorySpend" v-bind:key="cat">
@@ -26,7 +26,7 @@
       </div>
     </div>
 
-    <h1 style="text-align: center">
+    <h3 style="text-align: center">
       $ in rewards after
       <input
         class="monthInput"
@@ -38,11 +38,12 @@
       />
       <span v-show="months === 1">month</span>
       <span v-show="months !== 1">months</span>
-    </h1>
+    </h3>
 
     <div class="graphSideCards">
       <div v-for="card in sortedCards" :key="card.cardName">
         <cardSelectComponent :clickable="false" :name="card.cardName" />
+        <div class="cbAmount">would net you</div>
 
         <div class="cbAmount">${{ card.amount.toFixed(2) }}</div>
       </div>
@@ -137,6 +138,7 @@ input[type="number"] {
 
 .highChartContainer {
   -moz-box-shadow: 0 0 3px #ccc;
+  border-radius: 10px;
   -webkit-box-shadow: 0 0 3px #ccc;
   box-shadow: 0 0 3px #ccc;
   margin: auto;

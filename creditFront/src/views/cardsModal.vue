@@ -19,12 +19,14 @@
   width: 100%;
   min-height: 100%;
 }
-.graphSideCards #leftSide,
+#leftSide,
 #rightSide {
   box-sizing: border-box;
   padding: 10px;
   /* width: 50%; */
   min-height: 100%;
+  max-height: calc(100vh - 46px);
+  overflow-y: scroll;
 }
 #leftSide {
   width: 42%;

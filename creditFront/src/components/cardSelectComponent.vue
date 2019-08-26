@@ -14,7 +14,7 @@
           :key="$store.state.original[name].displayName + category"
           v-for="(data, category) in $store.state.original[name].categories"
         >
-          <h5>{{ categoryDisplayFilter(category)}}: {{ data.percent }}</h5>
+          <div>{{ categoryDisplayFilter(category)}}: {{ percentFilter(data.percent) }}</div>
         </div>
       </div>
     </div>
@@ -23,7 +23,7 @@
 <style scoped lang="scss">
 $cardWidth: 125px;
 $cardHeight: 78px;
-$descHeight: 180px;
+$descHeight: 90px;
 
 .cardSelectComponent {
   width: $cardWidth;
@@ -95,6 +95,9 @@ export default {
       } else {
         return category.charAt(0).toUpperCase() + category.slice(1);
       }
+    },
+    percentFilter(decimal) {
+      return `${(100 * decimal).toFixed(1)}%`;
     },
 
     toggleDescVis() {
