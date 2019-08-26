@@ -78,7 +78,6 @@ $hotBoxShadow: 0 2px 4px 0 rgba(34, 36, 38, 0.12),
   overflow: scroll;
   width: 100%;
   padding-bottom: 10px;
-  justify-content: center;
 }
 .categoryMod {
   display: flex;

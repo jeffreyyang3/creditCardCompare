@@ -1,5 +1,210 @@
 export default () => {
     return {
+        usBankFPGold: {
+            displayName: "US Bank FlexPerks Gold",
+            categories: {
+                other: {
+                    percent: 0.01,
+                    cap: false
+                },
+                travel: {
+                    percent: 0.02,
+                    cap: false
+                },
+                dining: {
+                    percent: 0.03,
+                    cap: false
+                },
+                gas: {
+                    percent: 0.03,
+                    cap: false
+                }
+            },
+            bonus: {
+                type: "standard",
+                bonuses: [{ msr: 2000, rewardAmount: 300, expire: 4 }]
+            },
+            annualFee: {
+                has: true,
+                waiveFirst: false,
+                amount: 85
+            },
+            rewards: {
+                flatBonus: 0,
+                pointValue: 1.5,
+                effectiveAF: 85
+            },
+            otherInfo: {
+                type: "travel",
+                network: "amex",
+                issuer: "US Bank"
+            }
+        },
+
+        csr: {
+            displayName: "Chase Sapphire Reserve",
+            categories: {
+                other: {
+                    percent: 0.01,
+                    cap: false
+                },
+                travel: {
+                    percent: 0.03,
+                    cap: false
+                },
+                dining: {
+                    percent: 0.04,
+                    cap: false
+                }
+            },
+            bonus: {
+                type: "standard",
+                bonuses: [{ msr: 4000, rewardAmount: 500, expire: 3 }]
+            },
+            annualFee: {
+                has: true,
+                waiveFirst: false,
+                amount: 450
+            },
+            rewards: {
+                flatBonus: 0,
+                pointValue: 1.5,
+                effectiveAF: 150
+            },
+            otherInfo: {
+                type: "travel",
+                network: "visa",
+                issuer: "Chase"
+            }
+        },
+        amexGold: {
+            displayName: "American Express Gold",
+            categories: {
+                other: {
+                    percent: 0.01,
+                    cap: false
+                },
+                travel: {
+                    percent: 0.04,
+                    cap: false
+                },
+                groceries: {
+                    percent: 0.04,
+                    cap: 25000
+                },
+                dining: {
+                    percent: 0.04,
+                    cap: false
+                }
+            },
+            bonus: {
+                type: "standard",
+                bonuses: [{ msr: 2000, rewardAmount: 500, expire: 3 }]
+            },
+            annualFee: {
+                has: true,
+                waiveFirst: false,
+                amount: 250
+            },
+            rewards: {
+                flatBonus: 0,
+                pointValue: 1,
+                effectiveAF: 250
+            },
+            otherInfo: {
+                type: "travel",
+                network: "amex",
+                issuer: "American Express"
+            }
+        },
+        amexPlatinum: {
+            displayName: "American Express Platinum",
+            categories: {
+                other: {
+                    percent: 0.01,
+                    cap: false
+                },
+                travel: {
+                    percent: 0.05,
+                    cap: false
+                }
+            },
+
+            bonus: {
+                type: "standard",
+                bonuses: [
+                    {
+                        msr: 5000,
+                        rewardAmount: 750,
+                        expire: 3
+                    }
+                ]
+            },
+            annualFee: {
+                has: true,
+                waiveFirst: false,
+                amount: 550
+            },
+
+            rewards: {
+                flatBonus: 0,
+                pointValue: 1,
+                effectiveAF: 550
+            },
+            otherInfo: {
+                type: "travel",
+                network: "amex",
+                issuer: "American Express"
+            }
+        },
+
+        amexBCP: {
+            displayName: "American Express Blue Cash Preferred",
+            categories: {
+                other: {
+                    percent: 0.01,
+                    cap: false
+                },
+                transit: {
+                    percent: 0.03,
+                    cap: false
+                },
+                gas: {
+                    percent: 0.03,
+                    cap: false
+                },
+
+                streaming: {
+                    percent: 0.06,
+                    cap: false
+                },
+
+                groceries: {
+                    percent: 0.06,
+                    cap: 6000
+                }
+            },
+            bonus: {
+                type: "standard",
+                bonuses: [{ msr: 1000, expire: 3, rewardAmount: 300 }]
+            },
+            annualFee: {
+                has: true,
+                waiveFirst: false,
+                amount: 95
+            },
+
+            rewards: {
+                flatBonus: 0,
+                pointValue: 1,
+                effectiveAF: 95
+            },
+            otherInfo: {
+                type: "cashBack",
+                network: "amex",
+                issuer: "American Express"
+            }
+        },
         wfPropel: {
             displayName: "Wells Fargo Propel",
             categories: {
@@ -37,7 +242,8 @@ export default () => {
             },
             otherInfo: {
                 type: "cashBack",
-                network: "amex"
+                network: "amex",
+                issuer: "Wells Fargo"
             }
         },
 
@@ -64,7 +270,11 @@ export default () => {
                 effectiveAF: 95
             },
 
-            otherInfo: { network: "visa", type: "cashBack" }
+            otherInfo: {
+                network: "visa",
+                issuer: "Capital One",
+                type: "cashBack"
+            }
         },
         citiDC: {
             displayName: "Citi Double Cash",
@@ -87,7 +297,8 @@ export default () => {
             },
             otherInfo: {
                 type: "cashBack",
-                network: "masterCard"
+                network: "masterCard",
+                issuer: "Citi"
             }
         },
 
@@ -111,6 +322,7 @@ export default () => {
             },
             otherInfo: {
                 type: "cashBack",
+                issuer: "Chase",
                 network: "visa"
             },
             rewards: {
@@ -144,7 +356,8 @@ export default () => {
             },
             otherInfo: {
                 type: "cashBack",
-                network: "masterCard"
+                network: "masterCard",
+                issuer: "Capital One"
             }
         },
 
@@ -181,7 +394,8 @@ export default () => {
 
             otherInfo: {
                 network: "amex",
-                type: "cashBack"
+                type: "cashBack",
+                issuer: "American Express"
             }
         },
 
@@ -222,7 +436,8 @@ export default () => {
 
             otherInfo: {
                 network: "visa",
-                type: "cashBack"
+                type: "cashBack",
+                issuer: "Barclays"
             }
         }
     };
