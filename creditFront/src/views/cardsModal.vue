@@ -1,17 +1,30 @@
 <template>
   <div class="cardsModalContent">
     <div ref="leftSide" id="leftSide" v-on:dragover="dragOverHandler" v-on:drop="dropHandler">
-      <typeAhead />
+      <div class="searchToggleButtons">
+        <button type="button" class="btn btn-primary" @click="currentView = 'choose'">Select Cards</button>
+        <button
+          type="button"
+          class="btn btn-secondary"
+          @click="currentView = 'modify'"
+        >Modify Selected Cards</button>
+      </div>
+      <typeAhead v-show="currentView === 'choose'" />
+      <modifyCards v-show="currentView === 'modify'" />
       <!-- <cardSelectComponent v-for="card in unSelectedCards" :key="card.name" :name="card.name" /> -->
     </div>
     <div ref="rightSide" id="rightSide" v-on:drop="dropHandler" v-on:dragover="dragOverHandler">
-      <CBLine v-if="showGraph"></CBLine>
+      <CBLine v-if="showGraph" />
     </div>
   </div>
 </template>
 <style scoped type="text/css">
 .cardsModalRightCards {
   display: flex;
+}
+.searchToggleButtons {
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .cardsModalContent {
@@ -43,18 +56,21 @@
 import { mapState } from "vuex";
 import typeAhead from "@/components/typeAhead";
 import CBLine from "@/views/CBLine";
+import modifyCards from "@/views/modifyCards";
 
 export default {
   name: "cardsModal",
   components: {
     typeAhead,
-    CBLine
+    CBLine,
+    modifyCards
   },
   // components: cardSelectComponent,
   data: function() {
     return {
       isActive: false,
-      unselectedCards: []
+      unselectedCards: [],
+      currentView: "choose"
     };
   },
   computed: {
