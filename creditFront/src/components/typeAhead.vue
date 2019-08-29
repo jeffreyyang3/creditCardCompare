@@ -157,7 +157,6 @@ export default {
   watch: {},
   methods: {},
   mounted() {
-    console.log("mounted called");
     if (
       Object.keys(this.$store.state.unSelectedCards).length === 0 &&
       this.$store.state.selectedCards.length === 0

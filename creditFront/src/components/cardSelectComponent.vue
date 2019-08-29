@@ -38,10 +38,9 @@ $descHeight: 90px;
   transition: opacity 0.3s;
 }
 
-// .cardSelectComponent.clicked img,
-// .cardSelectComponent:hover img {
-//   opacity: 0.8;
-// }
+.typeAhead .cardSelectComponent:hover img {
+  opacity: 0.5;
+}
 .cardImage {
   width: $cardWidth;
   height: $cardHeight;

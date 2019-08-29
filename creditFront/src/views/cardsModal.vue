@@ -1,5 +1,8 @@
 <template>
   <div class="cardsModalContent">
+    <div ref="rightSide" id="rightSide" v-on:drop="dropHandler" v-on:dragover="dragOverHandler">
+      <CBLine v-if="showGraph" />
+    </div>
     <div ref="leftSide" id="leftSide" v-on:dragover="dragOverHandler" v-on:drop="dropHandler">
       <div class="searchToggleButtons">
         <button type="button" class="btn btn-primary" @click="currentView = 'choose'">Select Cards</button>
@@ -12,9 +15,6 @@
       <typeAhead v-show="currentView === 'choose'" />
       <modifyCards v-show="currentView === 'modify'" />
       <!-- <cardSelectComponent v-for="card in unSelectedCards" :key="card.name" :name="card.name" /> -->
-    </div>
-    <div ref="rightSide" id="rightSide" v-on:drop="dropHandler" v-on:dragover="dragOverHandler">
-      <CBLine v-if="showGraph" />
     </div>
   </div>
 </template>
@@ -43,13 +43,11 @@
 }
 #leftSide {
   width: 42%;
-  background-color: #f8f8f8;
 }
 #rightSide {
   display: flex;
   justify-content: center;
   width: 58%;
-  background-color: white;
 }
 </style>
 <script type="text/javascript">

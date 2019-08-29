@@ -40,10 +40,13 @@
       <span v-show="months !== 1">months</span>
     </h3>
 
-    <div class="graphSideCards">
+    <div class="graphSideCards" ref="graphSideCards">
       <div v-for="card in sortedCards" :key="card.cardName">
-        <cardSelectComponent :clickable="false" :name="card.cardName" />
-        <div class="cbAmount">would net you</div>
+        <cardSelectComponent
+          :clickable="false"
+          :name="card.cardName"
+          @hover="handleGraphCardHover(card.cardName)"
+        />
 
         <div class="cbAmount">${{ card.amount.toFixed(2) }}</div>
       </div>
@@ -137,11 +140,11 @@ input[type="number"] {
 }
 
 .highChartContainer {
+  overflow: visible !important;
   -moz-box-shadow: 0 0 3px #ccc;
   border-radius: 10px;
   -webkit-box-shadow: 0 0 3px #ccc;
   box-shadow: 0 0 3px #ccc;
-  margin: auto;
   width: 100%;
 }
 .highcharts-yaxis-grid > path:last-of-type {
@@ -150,7 +153,6 @@ input[type="number"] {
 .CBLineContainer {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   width: 90%;
   height: 100%;
   align-items: center;
@@ -171,7 +173,7 @@ import Highcharts from "highcharts";
 import cardsDb from "@/data/cards";
 import typeAhead from "@/components/typeAhead";
 import cardSelectComponent from "@/components/cardSelectComponent";
-import { mkdir } from "fs"; //?????
+import utils from "@/utils";
 export default {
   name: "CBLine",
   components: {
@@ -186,7 +188,8 @@ export default {
       categorySpend: this.$store.state.categorySpend,
       max: 4000,
       cards: [],
-      months: 12
+      months: 12,
+      currentChart: false
     };
   },
   computed: {
@@ -221,6 +224,7 @@ export default {
         return "$" + item.toFixed(2);
       }
     },
+    handleGraphCardHover: function() {},
 
     CStoMonthCB: function(card) {
       let totalCB = 0;
@@ -247,7 +251,17 @@ export default {
     },
 
     createHighChart: function(cards) {
-      Highcharts.chart(this.$refs.highChartContainer, {
+      if (this.currentChart) {
+        this.currentChart.destroy();
+      }
+      this.currentChart = Highcharts.chart(this.$refs.highChartContainer, {
+        // chart: {
+        //   events: {
+        //     render: function() {
+        //       setTimeout(this.reflow.bind(this), 100);
+        //     }
+        //   }
+        // },
         plotOptions: {
           series: {
             animation: {
@@ -308,6 +322,8 @@ export default {
 
       let totalCB = 0;
       let totalSpend = 0;
+      let asdf = this.months;
+
       for (let month = 1; month <= this.months; month++) {
         if (month == 1) {
           totalCB += card.rewards.flatBonus;
@@ -357,6 +373,8 @@ export default {
     selectedCards: function() {
       console.log(this.selectedCards);
       this.createHighChart(this.selectedCards);
+      console.log(utils.isSideOverflowing(this.$refs.graphSideCards));
+      this.currentChart.reflow();
     },
 
     cardModifications: function() {

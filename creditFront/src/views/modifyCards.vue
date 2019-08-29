@@ -1,7 +1,7 @@
 <template>
   <div class="modifyCards">
     <div class="modifyCardsLeft">
-      <h3>add cards to modify them!</h3>
+      <h3 v-if="selectedCards.length === 0">add cards to modify them!</h3>
       <div class="selectedCards" :key="card.name" v-for="card in selectedCards">
         <div class="cardAllMod">
           <cardSelectComponent :clickable="false" :name="card.name" />

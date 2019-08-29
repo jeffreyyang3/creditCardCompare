@@ -40,6 +40,42 @@ export default () => {
                 issuer: "US Bank"
             }
         },
+        csp: {
+            displayName: "Chase Sapphire Preferred",
+            categories: {
+                other: {
+                    percent: 0.01,
+                    cap: false
+                },
+                travel: {
+                    percent: 0.02,
+                    cap: false
+                },
+                dining: {
+                    percent: 0.02,
+                    cap: false
+                }
+            },
+            bonus: {
+                type: "standard",
+                bonuses: [{ msr: 4000, rewardAmount: 600, expire: 3 }]
+            },
+            annualFee: {
+                has: true,
+                waiveFirst: false,
+                amount: 95
+            },
+            rewards: {
+                flatBonus: 0,
+                pointValue: 1.25,
+                effectiveAF: 95
+            },
+            otherInfo: {
+                type: "travel",
+                network: "visa",
+                issuer: "Chase"
+            }
+        },
 
         csr: {
             displayName: "Chase Sapphire Reserve",
@@ -329,6 +365,43 @@ export default () => {
                 pointValue: 1,
                 effectiveAF: 0,
                 flatBonus: 0
+            }
+        },
+
+        citiPrestige: {
+            displayName: "Citi Prestige",
+            categories: {
+                other: {
+                    percent: 0.01,
+                    cap: false
+                },
+                travel: {
+                    percent: 0.04,
+                    cap: false
+                },
+                dining: {
+                    percent: 0.05,
+                    cap: false
+                }
+            },
+            bonus: {
+                type: "standard",
+                bonuses: [{ msr: 4000, rewardAmount: 500, expire: 3 }]
+            },
+            annualFee: {
+                has: true,
+                waiveFirst: false,
+                amount: 495
+            },
+            rewards: {
+                pointValue: 1,
+                effectiveAF: 245,
+                flatBonus: 0
+            },
+            otherInfo: {
+                type: "cashBack",
+                network: "masterCard",
+                issuer: "Citi"
             }
         },
 
