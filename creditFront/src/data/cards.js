@@ -35,8 +35,8 @@ export default () => {
                 effectiveAF: 85
             },
             otherInfo: {
-                type: "travel",
-                network: "amex",
+                type: "Travel",
+                network: "American Express",
                 issuer: "US Bank"
             }
         },
@@ -71,8 +71,8 @@ export default () => {
                 effectiveAF: 95
             },
             otherInfo: {
-                type: "travel",
-                network: "visa",
+                type: "Travel",
+                network: "Visa",
                 issuer: "Chase"
             }
         },
@@ -108,8 +108,8 @@ export default () => {
                 effectiveAF: 150
             },
             otherInfo: {
-                type: "travel",
-                network: "visa",
+                type: "Travel",
+                network: "Visa",
                 issuer: "Chase"
             }
         },
@@ -148,8 +148,8 @@ export default () => {
                 effectiveAF: 250
             },
             otherInfo: {
-                type: "travel",
-                network: "amex",
+                type: "Travel",
+                network: "American Express",
                 issuer: "American Express"
             }
         },
@@ -188,8 +188,8 @@ export default () => {
                 effectiveAF: 550
             },
             otherInfo: {
-                type: "travel",
-                network: "amex",
+                type: "Travel",
+                network: "American Express",
                 issuer: "American Express"
             }
         },
@@ -236,8 +236,8 @@ export default () => {
                 effectiveAF: 95
             },
             otherInfo: {
-                type: "cashBack",
-                network: "amex",
+                type: "Cash Back",
+                network: "American Express",
                 issuer: "American Express"
             }
         },
@@ -277,8 +277,8 @@ export default () => {
                 effectiveAF: 0
             },
             otherInfo: {
-                type: "cashBack",
-                network: "amex",
+                type: "Cash Back",
+                network: "American Express",
                 issuer: "Wells Fargo"
             }
         },
@@ -307,9 +307,9 @@ export default () => {
             },
 
             otherInfo: {
-                network: "visa",
+                network: "Visa",
                 issuer: "Capital One",
-                type: "cashBack"
+                type: "Cash Back"
             }
         },
         citiDC: {
@@ -332,8 +332,8 @@ export default () => {
                 has: false
             },
             otherInfo: {
-                type: "cashBack",
-                network: "masterCard",
+                type: "Cash Back",
+                network: "Mastercard",
                 issuer: "Citi"
             }
         },
@@ -357,9 +357,9 @@ export default () => {
                 amount: 0
             },
             otherInfo: {
-                type: "cashBack",
+                type: "Cash Back",
                 issuer: "Chase",
-                network: "visa"
+                network: "Visa"
             },
             rewards: {
                 pointValue: 1,
@@ -399,8 +399,8 @@ export default () => {
                 flatBonus: 0
             },
             otherInfo: {
-                type: "cashBack",
-                network: "masterCard",
+                type: "Cash Back",
+                network: "Mastercard",
                 issuer: "Citi"
             }
         },
@@ -428,8 +428,8 @@ export default () => {
                 flatBonus: 0
             },
             otherInfo: {
-                type: "cashBack",
-                network: "masterCard",
+                type: "Cash Back",
+                network: "Mastercard",
                 issuer: "Capital One"
             }
         },
@@ -466,8 +466,8 @@ export default () => {
             },
 
             otherInfo: {
-                network: "amex",
-                type: "cashBack",
+                network: "American Express",
+                type: "Cash Back",
                 issuer: "American Express"
             }
         },
@@ -508,8 +508,8 @@ export default () => {
             },
 
             otherInfo: {
-                network: "visa",
-                type: "cashBack",
+                network: "Visa",
+                type: "Cash Back",
                 issuer: "Barclays"
             }
         }

@@ -156,6 +156,7 @@ export default {
   },
   watch: {},
   methods: {},
+
   mounted() {
     if (
       Object.keys(this.$store.state.unSelectedCards).length === 0 &&

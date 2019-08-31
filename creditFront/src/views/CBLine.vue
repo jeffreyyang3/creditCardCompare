@@ -5,40 +5,41 @@
       <h1 class="noSelect">No Cards Selected</h1>
       <typeAhead v-if="!showGraph" />
     </div>
-    <h3 style="text-align: center">Your monthly spend on ...</h3>
+    <div class="modsAndHeadings">
+      <h4 style="text-align: center">Your Monthly Spending on..</h4>
+      <div class="allMod">
+        <div class="categoryMod" v-for="(amount, cat) in categorySpend" v-bind:key="cat">
+          <span class="categoryTitle">{{ cat.charAt(0).toUpperCase() + cat.slice(1) }}:</span>
 
-    <div class="allMod">
-      <div class="categoryMod" v-for="(amount, cat) in categorySpend" v-bind:key="cat">
-        <span class="categoryTitle">{{ cat.charAt(0).toUpperCase() + cat.slice(1) }}:</span>
-
-        <!-- <input type="number" step=".01" min="0" :max="max" v-model.number="modCategorySpend[cat]" /> -->
-        <div class="inputContainer">
-          <input
-            type="number"
-            step="100"
-            v-model.number="categorySpend[cat]"
-            @change="createHighChart(selectedCards)"
-          />
+          <!-- <input type="number" step=".01" min="0" :max="max" v-model.number="modCategorySpend[cat]" /> -->
+          <div class="inputContainer">
+            <input
+              type="number"
+              step="100"
+              v-model.number="categorySpend[cat]"
+              @change="createHighChart(selectedCards)"
+            />
+          </div>
+          <!-- <h2>${{ modCategorySpend[cat].toFixed(0) }}</h2> -->
+          <!-- <h2>{{ displayMoney(modCategorySpend[cat]) }}</h2> -->
+          <!-- {{ modCategorySpend[cat] | displayMoneyFilter}} -->
         </div>
-        <!-- <h2>${{ modCategorySpend[cat].toFixed(0) }}</h2> -->
-        <!-- <h2>{{ displayMoney(modCategorySpend[cat]) }}</h2> -->
-        <!-- {{ modCategorySpend[cat] | displayMoneyFilter}} -->
       </div>
-    </div>
 
-    <h3 style="text-align: center">
-      $ in rewards after
-      <input
-        class="monthInput"
-        size="2"
-        type="number"
-        step="1"
-        v-model.number="months"
-        @change="createHighChart(selectedCards)"
-      />
-      <span v-show="months === 1">month</span>
-      <span v-show="months !== 1">months</span>
-    </h3>
+      <h4 style="text-align: center">
+        $ in rewards after
+        <input
+          class="monthInput"
+          size="2"
+          type="number"
+          step="1"
+          v-model.number="months"
+          @change="createHighChart(selectedCards)"
+        />
+        <span v-show="months === 1">month</span>
+        <span v-show="months !== 1">months</span>
+      </h4>
+    </div>
 
     <div class="graphSideCards" ref="graphSideCards">
       <div v-for="card in sortedCards" :key="card.cardName">
@@ -79,7 +80,7 @@ $hotBoxShadow: 0 2px 4px 0 rgba(34, 36, 38, 0.12),
 .graphSideCards {
   display: flex;
   flex-direction: row;
-  overflow: scroll;
+  overflow-x: scroll;
   width: 100%;
   padding-bottom: 10px;
 }
@@ -146,6 +147,12 @@ input[type="number"] {
   -webkit-box-shadow: 0 0 3px #ccc;
   box-shadow: 0 0 3px #ccc;
   width: 100%;
+  height: 50%;
+}
+.modsAndHeadings {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
 }
 .highcharts-yaxis-grid > path:last-of-type {
   display: none;
@@ -210,6 +217,11 @@ export default {
           amount: this.cardTotalCB[key]
         });
       });
+
+      this.$store.state.selectedCards.sort((a, b) => {
+        return this.cardTotalCB[b.name] - this.cardTotalCB[a.name];
+      });
+      this.$store.state.selectedCards.push();
 
       return lst.sort((a, b) => {
         return b.amount - a.amount;

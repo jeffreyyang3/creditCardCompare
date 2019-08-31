@@ -1,9 +1,9 @@
 <template>
   <div class="cardsModalContent">
-    <div ref="rightSide" id="rightSide" v-on:drop="dropHandler" v-on:dragover="dragOverHandler">
+    <div ref="leftSide" id="leftSide" v-on:drop="dropHandler" v-on:dragover="dragOverHandler">
       <CBLine v-if="showGraph" />
     </div>
-    <div ref="leftSide" id="leftSide" v-on:dragover="dragOverHandler" v-on:drop="dropHandler">
+    <div ref="rightSide" id="rightSide" v-on:dragover="dragOverHandler" v-on:drop="dropHandler">
       <div class="searchToggleButtons">
         <button type="button" class="btn btn-primary" @click="currentView = 'choose'">Select Cards</button>
         <button
@@ -11,6 +11,12 @@
           class="btn btn-secondary"
           @click="currentView = 'modify'"
         >Modify Selected Cards</button>
+        <button
+          v-show="showAddAll"
+          type="button"
+          class="btn btn-success"
+          @click="$store.commit('addAllRemaining')"
+        >Add All</button>
       </div>
       <typeAhead v-show="currentView === 'choose'" />
       <modifyCards v-show="currentView === 'modify'" />
@@ -41,10 +47,10 @@
   max-height: calc(100vh - 46px);
   overflow-y: scroll;
 }
-#leftSide {
+#rightSide {
   width: 42%;
 }
-#rightSide {
+#leftSide {
   display: flex;
   justify-content: center;
   width: 58%;
@@ -75,6 +81,9 @@ export default {
     ...mapState(["unSelectedCards", "selectedCards"]),
     showGraph: function() {
       return this.selectedCards.length !== 0;
+    },
+    showAddAll: function() {
+      return Object.keys(this.unSelectedCards).length !== 0;
     }
   },
   watch: {

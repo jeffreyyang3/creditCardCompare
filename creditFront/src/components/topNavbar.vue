@@ -7,11 +7,13 @@
           <typeAhead />
         </div>
       </div>
-      <router-link to="/modifyCards">Modify Cards</router-link>
+      <!-- <router-link to="/modifyCards">Modify Cards</router-link> -->
       <router-link to="/">Home</router-link>
 
-      <router-link to="/chooseCards">Split Screen Sadness</router-link>
-      <router-link to="/about">Choose Cards: Fullscreen Edition</router-link>
+      <!-- <router-link to="/chooseCards">Split Screen Sadness</router-link> -->
+      <!-- <router-link to="/about">Choose Cards: Fullscreen Edition</router-link> -->
+
+      <router-link to="/viewGraph">View Graph: Fullscreen Edition</router-link>
     </div>
   </nav>
 </template>	
