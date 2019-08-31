@@ -6,11 +6,18 @@
     <div ref="rightSide" id="rightSide" v-on:dragover="dragOverHandler" v-on:drop="dropHandler">
       <div class="searchToggleButtons">
         <button type="button" class="btn btn-primary" @click="currentView = 'choose'">Select Cards</button>
+
+        <button
+          v-show="showGraph"
+          type="button"
+          class="btn btn-danger"
+          @click="currentView = 'remove'"
+        >Remove Cards</button>
         <button
           type="button"
           class="btn btn-secondary"
           @click="currentView = 'modify'"
-        >Modify Selected Cards</button>
+        >Modify Selected</button>
         <button
           v-show="showAddAll"
           type="button"
@@ -19,6 +26,8 @@
         >Add All</button>
       </div>
       <typeAhead v-show="currentView === 'choose'" />
+
+      <typeAhead v-show="currentView === 'remove'" forRemove />
       <modifyCards v-show="currentView === 'modify'" />
       <!-- <cardSelectComponent v-for="card in unSelectedCards" :key="card.name" :name="card.name" /> -->
     </div>
@@ -87,10 +96,7 @@ export default {
     }
   },
   watch: {
-    selectedCards: function() {
-      console.log("selected cards", this.selectedCards);
-      console.log("unselected", this.unSelectedCards);
-    }
+    selectedCards: function() {}
   },
   methods: {
     dragOverHandler: function(event) {

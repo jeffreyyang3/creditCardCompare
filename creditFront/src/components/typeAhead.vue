@@ -8,7 +8,7 @@
       v-model="currentTyped"
     />
 
-    <div class="suggestions" v-if="showSuggestions">
+    <div class="suggestions" v-if="showSuggestions && !forRemove">
       <div class="suggestionsItem" v-for="card in sortedSuggestions" :key="card.cardKey">
         <div class="cardTitle">{{ card.displayName }}</div>
         <div class="typeAheadCard">
@@ -17,9 +17,24 @@
         <div class="addButton btn btn-primary" @click="$store.commit('addCard', card.cardKey)">+</div>
       </div>
     </div>
-    <div class="suggestions" v-else>
+    <div class="suggestions" v-if="!forRemove && !showSuggestions">
       <div class="suggestionsItem">
         <div class="cardTitle">🎵 no cards left to add 🎵</div>
+      </div>
+    </div>
+
+    <div class="suggestions" v-if="forRemove && selectedCards.length !== 0">
+      <div class="suggestionsItem" v-for="card in selectedCards" :key="card.name">
+        <div class="cardTitle">{{ card.displayName}}</div>
+        <div class="typeAheadCard">
+          <cardSelectComponent :clickable="true" :name="card.name"></cardSelectComponent>
+        </div>
+        <div class="addButton btn btn-danger" @click="$store.commit('unSelectCard', card.name)">−</div>
+      </div>
+    </div>
+    <div class="suggestions" v-if="forRemove && selectedCards.length === 0">
+      <div class="suggestionsItem">
+        <div class="cardTitle">🎵 no cards left to remove 🎵</div>
       </div>
     </div>
 
@@ -106,7 +121,7 @@ export default {
   },
   props: {
     noImages: Boolean,
-    forMod: Boolean
+    forRemove: Boolean
   },
 
   computed: {

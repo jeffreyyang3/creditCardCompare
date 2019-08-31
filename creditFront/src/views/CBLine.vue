@@ -218,11 +218,6 @@ export default {
         });
       });
 
-      this.$store.state.selectedCards.sort((a, b) => {
-        return this.cardTotalCB[b.name] - this.cardTotalCB[a.name];
-      });
-      this.$store.state.selectedCards.push();
-
       return lst.sort((a, b) => {
         return b.amount - a.amount;
       });
@@ -393,7 +388,12 @@ export default {
       this.createHighChart(this.selectedCards);
     },
 
-    cardTotalCB: function() {}
+    cardTotalCB: function() {
+      this.$store.state.selectedCards.sort((a, b) => {
+        return this.cardTotalCB[b.name] - this.cardTotalCB[a.name];
+      });
+      this.$store.state.selectedCards.push();
+    }
   },
 
   mounted() {
