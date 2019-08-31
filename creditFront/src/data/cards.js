@@ -338,8 +338,8 @@ export default () => {
             }
         },
 
-        cfu: {
-            displayName: "Chase Freedom Unlimited",
+        discoverItMiles: {
+            displayName: "Discover It Miles",
             categories: {
                 other: {
                     percent: 0.015,
@@ -357,9 +357,9 @@ export default () => {
                 amount: 0
             },
             otherInfo: {
-                type: "Cash Back",
-                issuer: "Chase",
-                network: "Visa"
+                type: "Travel",
+                issuer: "Discover",
+                network: "Discover"
             },
             rewards: {
                 pointValue: 1,
@@ -431,6 +431,43 @@ export default () => {
                 type: "Cash Back",
                 network: "Mastercard",
                 issuer: "Capital One"
+            }
+        },
+        ducksUnlimited: {
+            displayName: "Ducks Unlimited Visa",
+            categories: {
+                other: {
+                    percent: 0.01,
+                    cap: false
+                },
+                gas: {
+                    percent: 0.05,
+                    cap: false
+                },
+                "Sporting Goods": {
+                    percent: 0.05,
+                    cap: false
+                }
+            },
+            bonus: {
+                type: "standard",
+                bonuses: [{ msr: 12341234, rewardAmount: 0, expire: 3 }]
+            },
+            rewards: {
+                pointValue: 1,
+                effectiveAF: 0,
+                flatBonus: 0
+            },
+            annualFee: {
+                has: false,
+                waiveFirst: false,
+                amount: 0
+            },
+
+            otherInfo: {
+                network: "Visa",
+                type: "Cash Back",
+                issuer: "First Bankcard"
             }
         },
 

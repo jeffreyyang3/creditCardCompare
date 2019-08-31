@@ -63,6 +63,12 @@ export default new Vuex.Store({
         setCardCB(state, payload) {
             Vue.set(state.cardTotalCB, payload.name, payload.amount);
         },
+        resetCardCB(state) {
+            Vue.set(state, "cardTotalCB", {});
+        },
+        resetSelectedCards(state) {
+            Vue.set(state, "selectedCards", []);
+        },
 
         setDragLeft(state, cardName) {
             state.currentDraggedFromLeft = cardName;
@@ -86,6 +92,7 @@ export default new Vuex.Store({
                 console.log(`Card ${cardKey} doesn't exist`);
                 return;
             }
+            console.log(state.selectedCards);
             state.selectedCards.push(state.unSelectedCards[cardKey]);
             Vue.delete(state.unSelectedCards, cardKey);
         },
@@ -103,10 +110,6 @@ export default new Vuex.Store({
             }
         },
 
-        resetCards(state) {
-            state.selectedCards = [];
-            state.unSelectedCards = cards;
-        },
         setCategory(state, category, amount) {
             state.categorySpend[category] = amount;
             console.log(`categoryspend set ${state.categorySpend}`);
@@ -149,14 +152,30 @@ export default new Vuex.Store({
         getCategorySpend: state => state.categorySpend
     },
     actions: {
+        unSelectAll({ state, commit }) {
+            const toSpread = {};
+            state.selectedCards.forEach(card => {
+                toSpread[card.name] = card;
+            });
+            // Vue.set(state, "selectedCards", []);
+            Vue.set(state, "unSelectedCards", {
+                ...state.unSelectedCards,
+                ...toSpread
+            });
+            commit("resetSelectedCards");
+            commit("resetCardCB");
+        },
+
         handleDropOnRight({ commit, state }) {
             commit("addCard", state.currentDraggedFromLeft);
             state.currentDraggedFromLeft = null;
         },
+
         handleDropOnLeft({ commit, state }) {
             commit("unSelectCard", state.currentDraggedFromRight);
             state.currentDraggedFromRight = null;
         },
+
         addRandomCard({ commit, state }) {
             if (!state.unSelectedCards) {
                 commit("initCards");

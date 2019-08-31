@@ -22,7 +22,7 @@
           v-show="showAddAll"
           type="button"
           class="btn btn-success"
-          @click="$store.commit('addAllRemaining')"
+          @click="$store.dispatch('unSelectAll')"
         >Add All</button>
       </div>
       <typeAhead v-show="currentView === 'choose'" />
@@ -34,6 +34,7 @@
   </div>
 </template>
 <style scoped type="text/css">
+/* addAllRemaining */
 .cardsModalRightCards {
   display: flex;
 }
