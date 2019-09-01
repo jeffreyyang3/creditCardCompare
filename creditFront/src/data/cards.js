@@ -433,6 +433,34 @@ export default () => {
                 issuer: "Capital One"
             }
         },
+        cfu: {
+            displayName: "Chase Freedom Unlimited",
+            categories: {
+                other: {
+                    percent: 0.015,
+                    cap: false
+                }
+            },
+            bonus: {
+                type: "standard",
+                bonuses: [{ msr: 500, rewardAmount: 200, expire: 3 }]
+            },
+            annualFee: {
+                has: false,
+                waiveFirst: false,
+                amount: 0
+            },
+            rewards: {
+                pointValue: 1,
+                effectiveAF: 0,
+                flatBonus: 0
+            },
+            otherInfo: {
+                type: "Cash Back",
+                network: "Visa",
+                issuer: "Chase"
+            }
+        },
         ducksUnlimited: {
             displayName: "Ducks Unlimited Visa",
             categories: {

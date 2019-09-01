@@ -5,7 +5,12 @@
     </div>
     <div ref="rightSide" id="rightSide" v-on:dragover="dragOverHandler" v-on:drop="dropHandler">
       <div class="searchToggleButtons">
-        <button type="button" class="btn btn-primary" @click="currentView = 'choose'">Select Cards</button>
+        <button
+          type="button"
+          v-show="showSelect"
+          class="btn btn-primary"
+          @click="currentView = 'choose'"
+        >Select Cards</button>
 
         <button
           v-show="showGraph"
@@ -13,17 +18,24 @@
           class="btn btn-danger"
           @click="currentView = 'remove'"
         >Remove Cards</button>
+
+        <button
+          v-show="showAddAll"
+          type="button"
+          class="btn btn-success"
+          @click="$store.commit('addAllRemaining')"
+        >Add All</button>
+        <button
+          v-show="showRemoveAll"
+          type="button"
+          class="btn btn-danger"
+          @click="$store.dispatch('unSelectAll')"
+        >Remove All</button>
         <button
           type="button"
           class="btn btn-secondary"
           @click="currentView = 'modify'"
         >Modify Selected</button>
-        <button
-          v-show="showAddAll"
-          type="button"
-          class="btn btn-success"
-          @click="$store.dispatch('unSelectAll')"
-        >Add All</button>
       </div>
       <typeAhead v-show="currentView === 'choose'" />
 
@@ -35,6 +47,7 @@
 </template>
 <style scoped type="text/css">
 /* addAllRemaining */
+/* store dispatch unSelectAll */
 .cardsModalRightCards {
   display: flex;
 }
@@ -92,8 +105,17 @@ export default {
     showGraph: function() {
       return this.selectedCards.length !== 0;
     },
+    showSelect: function() {
+      return (
+        Object.keys(this.unSelectedCards).length !== 0
+        // this.currentView === "choose"
+      );
+    },
     showAddAll: function() {
-      return Object.keys(this.unSelectedCards).length !== 0;
+      return this.showSelect && this.currentView === "choose";
+    },
+    showRemoveAll: function() {
+      return this.currentView === "remove" && this.selectedCards.length !== 0;
     }
   },
   watch: {
