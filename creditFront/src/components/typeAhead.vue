@@ -7,6 +7,7 @@
       type="text"
       v-model="currentTyped"
     />
+    <cardFilter :name="'test'" :options="[1,2,3,4]" />
 
     <div class="suggestions" v-if="showSuggestions && !forRemove">
       <div class="suggestionsItem" v-for="card in sortedSuggestions" :key="card.cardKey">
@@ -110,10 +111,12 @@ $borderRadius: 8px;
 </style>
 <script type="text/javascript">
 import { mapState } from "vuex";
+import cardFilter from "@/components/Filter";
 import cardSelectComponent from "@/components/cardSelectComponent";
+import cardFilters from "@/data/cardFilters";
 export default {
   name: "typeAhead",
-  components: { cardSelectComponent },
+  components: { cardSelectComponent, cardFilter },
   data: function() {
     return {
       currentTyped: ""

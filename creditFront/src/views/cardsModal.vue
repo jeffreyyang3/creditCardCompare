@@ -1,7 +1,10 @@
 <template>
   <div class="cardsModalContent">
     <div ref="leftSide" id="leftSide" v-on:drop="dropHandler" v-on:dragover="dragOverHandler">
-      <CBLine v-if="showGraph" />
+      <CBLine v-show="showGraph" />
+      <div v-show="!showGraph" class="noGraph">
+        <h1>Add a card from the right!</h1>
+      </div>
     </div>
     <div ref="rightSide" id="rightSide" v-on:dragover="dragOverHandler" v-on:drop="dropHandler">
       <div class="searchToggleButtons">
@@ -48,6 +51,13 @@
 <style scoped type="text/css">
 /* addAllRemaining */
 /* store dispatch unSelectAll */
+.noGraph {
+  height: 100%;
+  align-self: center;
+}
+.noGraph * {
+  text-align: center;
+}
 .cardsModalRightCards {
   display: flex;
 }

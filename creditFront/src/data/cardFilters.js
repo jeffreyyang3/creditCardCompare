@@ -11,7 +11,7 @@ export default {
     },
     network: {
         displayName: "Network",
-        filterFn: (card, network) => card.otherInfo.network === issuer,
+        filterFn: (card, network) => card.otherInfo.network === network,
         options: ""
     },
 
@@ -25,19 +25,17 @@ export default {
                 track.add(category)
             );
         });
-        categories = [...categories];
-        issuers = [...issuers];
 
         return {
             categories: {
                 filterFn: (card, category) =>
                     card.categories.hasOwnProperty(category),
-                options: categories
+                options: [...categories]
             },
 
             issuers: {
                 filterFn: (card, issuer) => card.otherInfo.issuer === issuer,
-                options: issuers
+                options: [...issuers]
             }
         };
 

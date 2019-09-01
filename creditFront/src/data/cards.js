@@ -1,3 +1,8 @@
+const pointsMessage = `The points this card earns vary in value based on 
+the way you redeem the points. This card also comes with perks and credits
+that may or may not have value to you. These can be modified based on personal
+value in the modify cards tab, using the point value, effective annual fee, and 
+flat bonus categories.`;
 export default () => {
     return {
         usBankFPGold: {
@@ -73,7 +78,8 @@ export default () => {
             otherInfo: {
                 type: "Travel",
                 network: "Visa",
-                issuer: "Chase"
+                issuer: "Chase",
+                notices: [pointsMessage]
             }
         },
 
@@ -110,7 +116,8 @@ export default () => {
             otherInfo: {
                 type: "Travel",
                 network: "Visa",
-                issuer: "Chase"
+                issuer: "Chase",
+                notices: [pointsMessage]
             }
         },
         amexGold: {
@@ -150,7 +157,8 @@ export default () => {
             otherInfo: {
                 type: "Travel",
                 network: "American Express",
-                issuer: "American Express"
+                issuer: "American Express",
+                notices: [pointsMessage]
             }
         },
         amexPlatinum: {
@@ -190,7 +198,8 @@ export default () => {
             otherInfo: {
                 type: "Travel",
                 network: "American Express",
-                issuer: "American Express"
+                issuer: "American Express",
+                notices: [pointsMessage]
             }
         },
 
@@ -402,6 +411,68 @@ export default () => {
                 type: "Cash Back",
                 network: "Mastercard",
                 issuer: "Citi"
+            }
+        },
+        bofaPremiumRewards: {
+            displayName: "Bank of America Premium Rewards",
+            categories: {
+                other: {
+                    percent: 0.015,
+                    cap: false
+                },
+                travel: {
+                    percent: 0.02,
+                    cap: false
+                }
+            },
+            bonus: {
+                type: "standard",
+                bonuses: [{ msr: 3000, rewardAmount: 500, expire: 3 }]
+            },
+            annualFee: {
+                has: true,
+                waiveFirst: false,
+                amount: 95
+            },
+            rewards: {
+                pointValue: 1,
+                effectiveAF: 95,
+                flatBonus: 0
+            },
+            otherInfo: {
+                type: "Travel",
+                network: "Visa",
+                issuer: "Bank of America",
+                notices: `Preferred Rewards members can get 25-75% more point value. 
+                      Adjust point value if this applies to you`
+            }
+        },
+        bofaTravelRewards: {
+            displayName: "Bank of America Travel Rewards",
+            categories: {
+                other: {
+                    percent: 0.015,
+                    cap: false
+                }
+            },
+            bonus: {
+                type: "standard",
+                bonuses: [{ msr: 1000, rewardAmount: 250, expire: 3 }]
+            },
+            annualFee: {
+                has: false,
+                waiveFirst: false,
+                amount: 0
+            },
+            rewards: {
+                pointValue: 1,
+                effectiveAF: 0,
+                flatBonus: 0
+            },
+            otherInfo: {
+                type: "Travel",
+                network: "Visa",
+                issuer: "Bank of America"
             }
         },
 

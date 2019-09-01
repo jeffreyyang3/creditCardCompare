@@ -8,8 +8,7 @@
     "lint": "vue-cli-service lint"
   },
   "resolutions": {
-      "@vue/cli-service/portfinder": "1.0.21"
-      
+    "@vue/cli-service/portfinder": "1.0.21"
   },
   "dependencies": {
     "axios": "^0.18.0",
