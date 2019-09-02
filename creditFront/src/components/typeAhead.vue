@@ -8,6 +8,7 @@
       v-model="currentTyped"
     />
     <cardFilter :name="'test'" :options="[1,2,3,4]" />
+    <div v-for="i in filteredSuggestions" :key="Math.random() + i">{{i }}</div>
 
     <div class="suggestions" v-if="showSuggestions && !forRemove">
       <div class="suggestionsItem" v-for="card in sortedSuggestions" :key="card.cardKey">
@@ -138,6 +139,17 @@ export default {
         });
       }
       return outLst;
+    },
+    filteredSuggestions: function() {
+      console.log(cardFilters, "why");
+
+      const filterFn = cardFilters.network.filterFn;
+      return this.sortedSuggestions.filter(card => {
+        return filterFn(
+          this.$store.state.allCardsInfo[card.cardKey],
+          "American Express"
+        );
+      });
     },
 
     showSuggestions: function() {

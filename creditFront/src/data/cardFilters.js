@@ -11,7 +11,10 @@ export default {
     },
     network: {
         displayName: "Network",
-        filterFn: (card, network) => card.otherInfo.network === network,
+        filterFn: (card, network) => {
+            console.log(card)
+            return card.otherInfo.network === network
+        },
         options: ""
     },
 

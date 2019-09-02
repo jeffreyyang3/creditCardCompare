@@ -28,6 +28,7 @@ export default new Vuex.Store({
         notInitialized: true,
         cardTotalCB: {},
         cardModifications: {},
+        allCardsInfo: {},
         original: cardsDb()
     },
     mutations: {
@@ -86,6 +87,9 @@ export default new Vuex.Store({
                     state.unSelectedCards[key].name = key;
                 }
             }
+
+            state.allCardsInfo = { ...state.unSelectedCards }
+            console.log(state.allCardsInfo)
         },
         addCard(state, cardKey) {
             if (!cardKey || !state.unSelectedCards[cardKey]) {
