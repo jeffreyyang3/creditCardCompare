@@ -7,12 +7,13 @@
       type="text"
       v-model="currentTyped"
     />
+    <!-- <div v-for="filter in allFilters" :key="filter.displayName">{{ filter }}</div> -->
     <cardFilter
-      v-on:optionChange="handleOptionChange('df')"
-      :name="cardFilters.network.displayName"
-      :options="cardFilters.network.options"
+      v-for="filter in allFilters"
+      :name="filter.displayName"
+      :options="filter.options"
+      :key="filter.displayName"
     />
-    <div v-for="i in filteredSuggestions" :key="Math.random() + i">{{i }}</div>
 
     <div class="suggestions" v-if="showSuggestions && !forRemove">
       <div class="suggestionsItem" v-for="card in sortedSuggestions" :key="card.cardKey">
@@ -125,8 +126,7 @@ export default {
   data: function() {
     return {
       currentTyped: "",
-      activeFilters: [],
-      cardFilters
+      activeFilters: []
     };
   },
   props: {
@@ -135,7 +135,22 @@ export default {
   },
 
   computed: {
-    ...mapState(["unSelectedCards", "selectedCards"]),
+    ...mapState(["unSelectedCards", "selectedCards", "allCardsInfo"]),
+
+    allFilters: function() {
+      const outLst = [];
+      Object.keys(cardFilters).forEach(key => {
+        if (key === "categoryAndIssuer") {
+          const cai = cardFilters[key](this.allCardsInfo);
+          outLst.push(cai.categories, cai.issuers);
+        } else {
+          outLst.push(cardFilters[key]);
+        }
+      });
+      console.log({ outLst });
+      return outLst;
+    },
+
     unSelectedCardsList: function() {
       var outLst = [];
       for (let cardKey in this.unSelectedCards) {
@@ -146,17 +161,17 @@ export default {
       }
       return outLst;
     },
-    filteredSuggestions: function() {
-      console.log(cardFilters, "why");
+    // filteredSuggestions: function() {
+    //   console.log(cardFilters, "why");
 
-      const filterFn = cardFilters.network.filterFn;
-      return this.sortedSuggestions.filter(card => {
-        return filterFn(
-          this.$store.state.allCardsInfo[card.cardKey],
-          "American Express"
-        );
-      });
-    },
+    //   // const filterFn = cardFilters.network.filterFn;
+    //   // return this.sortedSuggestions.filter(card => {
+    //   //   return filterFn(
+    //   //     this.$store.state.allCardsInfo[card.cardKey],
+    //   //     "American Express"
+    //   //   );
+    //   // });
+    // },
 
     showSuggestions: function() {
       return this.suggestions.length !== 0;

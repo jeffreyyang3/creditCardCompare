@@ -88,7 +88,7 @@ export default new Vuex.Store({
                 }
             }
 
-            state.allCardsInfo = { ...state.unSelectedCards }
+            Vue.set(state, "allCardsInfo", { ...state.unSelectedCards })
             console.log(state.allCardsInfo)
         },
         addCard(state, cardKey) {
