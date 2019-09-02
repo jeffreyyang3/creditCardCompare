@@ -1,8 +1,11 @@
 <template>
   <div class="filterContainer">
     <div class="filterName">{{ name }}</div>
-    <select class="form-control filterOptions" v-model="selected">
-      <option value="#noFilter">No Filter</option>
+    <select
+      @change="$emit('optionChange', selected) "
+      class="form-control filterOptions"
+      v-model="selected"
+    >
       <option v-for="option in options" :value="option" :key="Math.random() + option ">{{ option }}</option>
     </select>
   </div>
@@ -28,7 +31,7 @@ export default {
   },
   data: function() {
     return {
-      selected: "#noFilter"
+      selected: "No Filter"
     };
   }
 };

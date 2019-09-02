@@ -11,11 +11,12 @@ export default {
     },
     network: {
         displayName: "Network",
-        filterFn: (card, network) => {
-            console.log(card)
-            return card.otherInfo.network === network
-        },
-        options: ""
+
+
+
+
+        filterFn: (card, network) => card.otherInfo.network === network,
+        options: ["American Express", "Discover", "MasterCard", "Visa"]
     },
 
     categoryAndIssuer: allCards => {

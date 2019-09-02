@@ -7,7 +7,11 @@
       type="text"
       v-model="currentTyped"
     />
-    <cardFilter :name="'test'" :options="[1,2,3,4]" />
+    <cardFilter
+      v-on:optionChange="handleOptionChange('df')"
+      :name="cardFilters.network.displayName"
+      :options="cardFilters.network.options"
+    />
     <div v-for="i in filteredSuggestions" :key="Math.random() + i">{{i }}</div>
 
     <div class="suggestions" v-if="showSuggestions && !forRemove">
@@ -120,7 +124,9 @@ export default {
   components: { cardSelectComponent, cardFilter },
   data: function() {
     return {
-      currentTyped: ""
+      currentTyped: "",
+      activeFilters: [],
+      cardFilters
     };
   },
   props: {
@@ -185,7 +191,11 @@ export default {
     }
   },
   watch: {},
-  methods: {},
+  methods: {
+    handleOptionChange: function(arg1, arg2) {
+      console.log(arg1, arg2);
+    }
+  },
 
   mounted() {
     if (
