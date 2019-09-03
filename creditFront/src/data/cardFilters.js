@@ -8,17 +8,10 @@ export default {
         displayName: "Annual Fee",
         filterFn: (card, _) => card.annualFee.has,
 
-
-
-
-
         options: ["No Annual Fee"]
     },
     network: {
         displayName: "Network",
-
-
-
 
         filterFn: (card, network) => card.otherInfo.network === network,
         options: ["American Express", "Discover", "MasterCard", "Visa"]
@@ -27,8 +20,6 @@ export default {
     categoryAndIssuer: allCards => {
         let categories = new Set();
         let issuers = new Set();
-
-        console.log(allCards)
 
         Object.keys(allCards).forEach(card => {
             issuers.add(allCards[card].otherInfo.issuer);

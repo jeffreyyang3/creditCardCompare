@@ -13,7 +13,9 @@
       :name="filter.displayName"
       :options="filter.options"
       :key="filter.displayName"
+      v-on:optionChange="handleOptionChange(filter)($event)"
     />
+    <div v-for="card in filteredCards">asd</div>
 
     <div class="suggestions" v-if="showSuggestions && !forRemove">
       <div class="suggestionsItem" v-for="card in sortedSuggestions" :key="card.cardKey">
@@ -126,7 +128,8 @@ export default {
   data: function() {
     return {
       currentTyped: "",
-      activeFilters: []
+      activeFilters: [],
+      filterState: {}
     };
   },
   props: {
@@ -136,6 +139,17 @@ export default {
 
   computed: {
     ...mapState(["unSelectedCards", "selectedCards", "allCardsInfo"]),
+    filteredCards: function() {
+      let _ = [...this.sortedSuggestions];
+
+      Object.keys(this.filterState).forEach(filterName => {
+          console.log(this.filterState)
+        _ = _.filter(sad => {
+          return this.filterState[filterName](this.allCardsInfo[sad.cardKey]);
+        });
+      });
+      return _;
+    },
 
     allFilters: function() {
       const outLst = [];
@@ -147,7 +161,6 @@ export default {
           outLst.push(cardFilters[key]);
         }
       });
-      console.log({ outLst });
       return outLst;
     },
 
@@ -207,8 +220,19 @@ export default {
   },
   watch: {},
   methods: {
-    handleOptionChange: function(arg1, arg2) {
-      console.log(arg1, arg2);
+    // <cardFilter
+    //   v-for="filter in allFilters"
+    //   :name="filter.displayName"
+    //   :options="filter.options"
+    //   :key="filter.displayName"
+    //   v-on:optionChange="handleOptionChange(filter)"
+    // />
+    handleOptionChange: function(filter) {
+      return value => {
+        this.$set(this.filterState, filter.displayName, card => {
+          return filter.filterFn(card, value);
+        });
+      };
     }
   },
 
