@@ -15,10 +15,10 @@
       :key="filter.displayName"
       v-on:optionChange="handleOptionChange(filter)($event)"
     />
-    <div v-for="card in filteredCards" :key="card.cardKey"> {{ card.displayName }}</div>
+    <!-- <div v-for="card in filteredCards" :key="card.cardKey"> {{ card.displayName }}</div> -->
 
     <div class="suggestions" v-if="showSuggestions && !forRemove">
-      <div class="suggestionsItem" v-for="card in sortedSuggestions" :key="card.cardKey">
+      <div class="suggestionsItem" v-for="card in filteredCards" :key="card.cardKey">
         <div class="cardTitle">{{ card.displayName }}</div>
         <div class="typeAheadCard">
           <cardSelectComponent :clickable="true" :name="card.cardKey"></cardSelectComponent>
@@ -143,7 +143,6 @@ export default {
       let _ = [...this.sortedSuggestions];
 
       Object.keys(this.filterState).forEach(filterName => {
-          console.log(this.filterState)
         _ = _.filter(sad => {
           return this.filterState[filterName](this.allCardsInfo[sad.cardKey]);
         });
@@ -230,6 +229,7 @@ export default {
     handleOptionChange: function(filter) {
       return value => {
         this.$set(this.filterState, filter.displayName, card => {
+          if (value === "No Filter") return () => true;
           return filter.filterFn(card, value);
         });
       };

@@ -6,7 +6,8 @@ export default {
     // has category
     noAnnualFee: {
         displayName: "Annual Fee",
-        filterFn: (card, _) => card.annualFee.has,
+        filterFn: (card, _) => !card.annualFee.has,
+
 
         options: ["No Annual Fee"]
     },

@@ -6,6 +6,7 @@
       class="form-control filterOptions"
       v-model="selected"
     >
+      <option value="No Filter">No Filter</option>
       <option v-for="option in options" :value="option" :key="Math.random() + option ">{{ option }}</option>
     </select>
   </div>
