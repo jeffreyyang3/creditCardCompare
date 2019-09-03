@@ -15,7 +15,7 @@
       :key="filter.displayName"
       v-on:optionChange="handleOptionChange(filter)($event)"
     />
-    <div v-for="card in filteredCards">asd</div>
+    <div v-for="card in filteredCards" :key="card.cardKey"> {{ card.displayName }}</div>
 
     <div class="suggestions" v-if="showSuggestions && !forRemove">
       <div class="suggestionsItem" v-for="card in sortedSuggestions" :key="card.cardKey">

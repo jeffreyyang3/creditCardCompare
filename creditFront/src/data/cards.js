@@ -342,7 +342,7 @@ export default () => {
             },
             otherInfo: {
                 type: "Cash Back",
-                network: "Mastercard",
+                network: "MasterCard",
                 issuer: "Citi"
             }
         },
@@ -409,7 +409,7 @@ export default () => {
             },
             otherInfo: {
                 type: "Cash Back",
-                network: "Mastercard",
+                network: "MasterCard",
                 issuer: "Citi"
             }
         },
@@ -500,7 +500,7 @@ export default () => {
             },
             otherInfo: {
                 type: "Cash Back",
-                network: "Mastercard",
+                network: "MasterCard",
                 issuer: "Capital One"
             }
         },
