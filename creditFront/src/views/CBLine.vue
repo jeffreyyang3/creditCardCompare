@@ -6,10 +6,10 @@
       <typeAhead v-if="!showGraph" />
     </div>
     <div class="modsAndHeadings">
-      <h4 style="text-align: center">Your Monthly Spending on..</h4>
+      <h4>Your Monthly Spending on..</h4>
       <div class="allMod">
         <div class="categoryMod" v-for="(amount, cat) in categorySpend" v-bind:key="cat">
-          <span class="categoryTitle">{{ cat.charAt(0).toUpperCase() + cat.slice(1) }}:</span>
+          <span class="categoryTitle">{{ cat }}</span>
 
           <!-- <input type="number" step=".01" min="0" :max="max" v-model.number="modCategorySpend[cat]" /> -->
           <div class="inputContainer">
@@ -40,24 +40,34 @@
         <span v-show="months !== 1">months</span>
       </h4>
     </div>
-
-    <div class="graphSideCards" ref="graphSideCards">
-      <div v-for="card in sortedCards" :key="card.cardName">
-        <cardSelectComponent
-          :clickable="false"
-          :name="card.cardName"
-          @hover="handleGraphCardHover(card.cardName)"
-        />
-
-        <div class="cbAmount">${{ card.amount.toFixed(2) }}</div>
-      </div>
-    </div>
+    <table class="cashBackList">
+      <tr v-for="card in sortedCards" :key="card.cardName">
+        <td>{{ allCardsInfo[card.cardName].displayName }}</td>
+        <td>${{ card.amount.toFixed(2)}}</td>
+      </tr>
+    </table>
   </div>
 </template>
 
 <style lang="scss">
+// <div class="graphSideCards" ref="graphSideCards">
+//       <div v-for="card in sortedCards" :key="card.cardName">
+//         <!-- <cardSelectComponent
+//           :clickable="false"
+//           :name="card.cardName"
+//           @hover="handleGraphCardHover(card.cardName)"
+//         />-->
+//         <div class="cardName">{{ allCardsInfo[card.cardName].displayName }}</div>
+
+//         <div class="cbAmount">${{ card.amount.toFixed(2) }}</div>
+//       </div>
+//     </div>
 $hotBoxShadow: 0 2px 4px 0 rgba(34, 36, 38, 0.12),
   0 2px 10px 0 rgba(34, 36, 38, 0.15);
+
+.cashBackList {
+  border: 1px solid black;
+}
 .noSelect {
   text-align: center;
 }
@@ -87,24 +97,23 @@ $hotBoxShadow: 0 2px 4px 0 rgba(34, 36, 38, 0.12),
 .categoryMod {
   display: flex;
   /* width: 80%; */
-  flex-direction: row;
-  align-items: baseline;
+  flex-direction: column;
+  width: 50%;
+
   /* -moz-box-shadow: 0 0 3px #ccc;
   -webkit-box-shadow: 0 0 3px #ccc;
   box-shadow: 0 0 3px #ccc; */
-  margin: 10px;
   font-size: 19px;
-  width: 200px;
-  font-weight: 700;
 }
 .categoryTitle {
   white-space: nowrap;
+  margin-left: 5px;
+  margin-bottom: 5px;
 }
 .categoryMod input {
   font-family: inherit;
   font-size: 19px;
-  font-weight: 700;
-  width: 85px;
+  width: 65px;
   color: inherit;
   cursor: pointer;
   border: none;
@@ -115,6 +124,7 @@ $hotBoxShadow: 0 2px 4px 0 rgba(34, 36, 38, 0.12),
 }
 .categoryMod .inputContainer:before {
   content: "$";
+  font-weight: normal;
 }
 .inputContainer {
   margin-left: 4px;
@@ -169,8 +179,9 @@ input[type="number"] {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  justify-content: space-evenly;
-  width: 100%;
+  // justify-content: space-evenly;
+  width: 280px;
+  border: 1px solid black;
 }
 </style>
 
@@ -204,7 +215,9 @@ export default {
       "unSelectedCards",
       "selectedCards",
       "cardTotalCB",
-      "cardModifications"
+      "cardModifications",
+      "allCardsInfo"
+      // "categorySpend"
     ]),
     showGraph: function() {
       return this.selectedCards.length !== 0;

@@ -9,7 +9,7 @@
     />
     <div class="allSelects">
       <div v-for="filter in allFilters" :key="filter.displayName" class="vueSelectWrapper">
-        <h5>{{ filter.displayName }}</h5>
+        <div class="filterName">{{ filter.displayName }}</div>
         <VueSelect :options="filter.options" @input="handleOptionChange(filter)($event)" />
       </div>
     </div>
@@ -77,6 +77,7 @@ $borderRadius: 8px;
   justify-content: space-between;
   margin-top: 10px;
   margin-bottom: 10px;
+  cursor: pointer;
 }
 .v-select {
   min-width: 30%;

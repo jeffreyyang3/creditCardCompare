@@ -1,12 +1,6 @@
 <template>
   <div class="cardsModalContent">
-    <div ref="leftSide" id="leftSide" v-on:drop="dropHandler" v-on:dragover="dragOverHandler">
-      <CBLine v-show="showGraph" />
-      <div v-show="!showGraph" class="noGraph">
-        <h1>Add a card from the right!</h1>
-      </div>
-    </div>
-    <div ref="rightSide" id="rightSide" v-on:dragover="dragOverHandler" v-on:drop="dropHandler">
+    <div ref="leftSide" id="leftSide" v-on:dragover="dragOverHandler" v-on:drop="dropHandler">
       <div class="searchToggleButtons">
         <button
           type="button"
@@ -46,11 +40,18 @@
       <modifyCards v-show="currentView === 'modify'" />
       <!-- <cardSelectComponent v-for="card in unSelectedCards" :key="card.name" :name="card.name" /> -->
     </div>
+    <div ref="rightSide" id="rightSide" v-on:drop="dropHandler" v-on:dragover="dragOverHandler">
+      <CBLine v-show="showGraph" />
+      <div v-show="!showGraph" class="noGraph">
+        <h1>Add a card from the right!</h1>
+      </div>
+    </div>
   </div>
 </template>
-<style scoped type="text/css">
+<style scoped lang="scss">
 /* addAllRemaining */
 /* store dispatch unSelectAll */
+$leftSideWidth: 33%;
 .noGraph {
   height: 100%;
   align-self: center;
@@ -80,13 +81,13 @@
   max-height: calc(100vh - 46px);
   overflow-y: scroll;
 }
-#rightSide {
-  width: 42%;
-}
 #leftSide {
+  width: $leftSideWidth;
+}
+#rightSide {
   display: flex;
   justify-content: center;
-  width: 58%;
+  width: calc(100% - #{$leftSideWidth});
 }
 </style>
 <script type="text/javascript">

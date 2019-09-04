@@ -486,7 +486,7 @@ export default () => {
             },
             bonus: {
                 type: "standard",
-                bonuses: [{ msr: 1000, rewardAmount: 200, expire: 3 }]
+                bonuses: [{ msr: 500, rewardAmount: 150, expire: 3 }]
             },
             annualFee: {
                 has: false,

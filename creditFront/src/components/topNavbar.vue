@@ -19,6 +19,9 @@
 </template>	
 
 <style type="text/css">
+.navDropDownContent .vueSelectWrapper {
+  display: none;
+}
 .navDropDownContent .typeAheadCard {
   display: none;
 }

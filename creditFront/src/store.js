@@ -27,7 +27,6 @@ export default new Vuex.Store({
         currentDraggedFromRight: null,
         notInitialized: true,
         cardTotalCB: {},
-        cardModifications: {},
         allCardsInfo: {},
         original: cardsDb()
     },
@@ -113,9 +112,10 @@ export default new Vuex.Store({
             }
         },
 
-        setCategory(state, category, amount) {
-            state.categorySpend[category] = amount;
-            console.log(`categoryspend set ${state.categorySpend}`);
+        setCategory(state, payload) {
+            console.log(payload)
+            Vue.set(state.categorySpend, payload.category, payload.amount);
+            console.log(state.categorySpend)
         },
         resetCategories(state) {
             state.categorySpend = {
