@@ -1,19 +1,48 @@
 <template>
   <nav class="topNavbar">
     <div class="navItems">
+      <!-- <router-link to="/modifyCards">Modify Cards</router-link> -->
+      <button
+        type="button"
+        class="btn btn-primary"
+        @click="$store.commit('setView', 'choose')"
+      >Select Cards</button>
+
+      <button
+        type="button"
+        class="btn btn-danger"
+        @click="$store.commit('setView', 'remove')"
+      >Remove Cards</button>
+
+      <button
+        type="button"
+        class="btn btn-success"
+        @click="$store.commit('addAllRemaining')"
+        v-show="showSelect"
+      >Add All</button>
+      <button
+        type="button"
+        class="btn btn-danger"
+        @click="$store.dispatch('unSelectAll')"
+        v-show="showRemoveAll"
+      >Remove All</button>
+      <button
+        type="button"
+        class="btn btn-secondary"
+        @click="$store.commit('setView', 'modify')"
+      >Modify Selected</button>
+      <!-- <router-link to="/">Home</router-link> -->
+
+      <!-- <router-link to="/chooseCards">Split Screen Sadness</router-link> -->
+      <!-- <router-link to="/about">Choose Cards: Fullscreen Edition</router-link> -->
+
+      <!-- <router-link to="/viewGraph">View Graph: Fullscreen Edition</router-link> -->
       <div class="navDropDown">
         <div @click="quickAddClicked = !quickAddClicked" class="btn btn-primary">Quick Add</div>
         <div :class="{active: quickAddClicked}" class="navDropDownContent">
           <typeAhead />
         </div>
       </div>
-      <!-- <router-link to="/modifyCards">Modify Cards</router-link> -->
-      <router-link to="/">Home</router-link>
-
-      <!-- <router-link to="/chooseCards">Split Screen Sadness</router-link> -->
-      <!-- <router-link to="/about">Choose Cards: Fullscreen Edition</router-link> -->
-
-      <router-link to="/viewGraph">View Graph: Fullscreen Edition</router-link>
     </div>
   </nav>
 </template>	
@@ -88,6 +117,7 @@
 
 <script>
 import typeAhead from "@/components/typeAhead";
+import { mapState } from "vuex";
 export default {
   name: "topNavbar",
   components: { typeAhead },
@@ -95,6 +125,18 @@ export default {
     return {
       quickAddClicked: false
     };
+  },
+  computed: {
+    ...mapState(["currentView", "selectedCards", "unSelectedCards"]),
+    showRemoveAll: function() {
+      return this.selectedCards.length !== 0;
+    },
+    showSelect: function() {
+      return (
+        Object.keys(this.unSelectedCards).length !== 0
+        // this.currentView === "choose"
+      );
+    }
   },
   methods: {}
 };

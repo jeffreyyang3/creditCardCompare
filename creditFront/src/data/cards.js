@@ -8,11 +8,7 @@ export default () => {
         usBankFPGold: {
             displayName: "US Bank FlexPerks Gold",
             categories: {
-                other: {
-                    percent: 0.01,
-                    cap: false
-                },
-                travel: {
+                                travel: {
                     percent: 0.02,
                     cap: false
                 },
@@ -23,7 +19,12 @@ export default () => {
                 gas: {
                     percent: 0.03,
                     cap: false
-                }
+                },
+                other: {
+                    percent: 0.01,
+                    cap: false
+                },
+
             },
             bonus: {
                 type: "standard",
@@ -264,6 +265,10 @@ export default () => {
                 dining: {
                     percent: 0.03,
                     cap: false
+                },
+                transit: {
+                    percent: 0.03,
+                    cap: false
                 }
             },
             bonus: {
@@ -318,7 +323,7 @@ export default () => {
             otherInfo: {
                 network: "Visa",
                 issuer: "Capital One",
-                type: "Cash Back"
+                type: "Travel"
             }
         },
         citiDC: {

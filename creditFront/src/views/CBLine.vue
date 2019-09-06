@@ -25,7 +25,9 @@
           <!-- {{ modCategorySpend[cat] | displayMoneyFilter}} -->
         </div>
       </div>
+    </div>
 
+    <div class="cashBackTableContainer">
       <h4 style="text-align: center">
         $ in rewards after
         <input
@@ -39,13 +41,13 @@
         <span v-show="months === 1">month</span>
         <span v-show="months !== 1">months</span>
       </h4>
+      <table class="cashBackTable">
+        <tr v-for="card in sortedCards" :key="card.cardName">
+          <td>{{ allCardsInfo[card.cardName].displayName }}</td>
+          <td>${{ card.amount.toFixed(2)}}</td>
+        </tr>
+      </table>
     </div>
-    <table class="cashBackList">
-      <tr v-for="card in sortedCards" :key="card.cardName">
-        <td>{{ allCardsInfo[card.cardName].displayName }}</td>
-        <td>${{ card.amount.toFixed(2)}}</td>
-      </tr>
-    </table>
   </div>
 </template>
 
@@ -65,7 +67,7 @@
 $hotBoxShadow: 0 2px 4px 0 rgba(34, 36, 38, 0.12),
   0 2px 10px 0 rgba(34, 36, 38, 0.15);
 
-.cashBackList {
+.cashBackTable {
   border: 1px solid black;
 }
 .noSelect {
@@ -169,10 +171,12 @@ input[type="number"] {
 }
 .CBLineContainer {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   width: 90%;
   height: 100%;
   align-items: center;
+
+  flex-wrap: wrap;
 }
 
 .allMod {
@@ -393,8 +397,8 @@ export default {
     selectedCards: function() {
       console.log(this.selectedCards);
       this.createHighChart(this.selectedCards);
-      console.log(utils.isSideOverflowing(this.$refs.graphSideCards));
-      this.currentChart.reflow();
+      // console.log(utils.isSideOverflowing(this.$refs.graphSideCards));
+      // this.currentChart.reflow();
     },
 
     cardModifications: function() {

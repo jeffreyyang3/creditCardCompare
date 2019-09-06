@@ -32,7 +32,6 @@
         </div>
       </div>
     </div>
-    <div class="modifyCardsRight"></div>
   </div>
 </template>
 
@@ -41,12 +40,43 @@ $leftWidth: 35%;
 
 .modInputs {
   flex-grow: 1;
+  width: 100%
 }
 .inputContainer {
   margin-left: auto;
 }
+
 .categoryMod {
+  display: flex;
+  /* width: 80%; */
+  flex-direction: row;
+  align-items: baseline;
+  /* -moz-box-shadow: 0 0 3px #ccc;
+  -webkit-box-shadow: 0 0 3px #ccc;
+  box-shadow: 0 0 3px #ccc; */
+  margin: 10px;
+  font-size: 19px;
   width: 100%;
+  font-weight: 700;
+}
+.categoryTitle {
+  white-space: nowrap;
+}
+.categoryMod input {
+  font-family: inherit;
+  font-size: 19px;
+  font-weight: 700;
+  width: 85px;
+  color: inherit;
+  cursor: pointer;
+  border: none;
+}
+.categoryMod input:focus,
+.monthInput:focus {
+  outline: none;
+}
+.categoryMod .inputContainer:before {
+  content: "$";
 }
 
 .categoryMod.pointValue .inputContainer::before {
@@ -64,14 +94,10 @@ $leftWidth: 35%;
 
 .modifyCardsLeft {
   height: 100%;
-  width: $leftWidth;
+  width: 100%
 }
 
-.modifyCardsRight {
-  height: 100%;
-  width: calc(100% - #{$leftWidth});
-  background-color: red;
-}
+
 </style>
 
 <script>

@@ -78,6 +78,7 @@ $borderRadius: 8px;
   margin-top: 10px;
   margin-bottom: 10px;
   cursor: pointer;
+  padding-left: 5px;
 }
 .v-select {
   min-width: 30%;
@@ -114,10 +115,7 @@ $borderRadius: 8px;
 .typeAhead {
   width: $componentWidth;
 }
-.typeAheadCard {
-}
-.typeAheadCard .cardSelectComponent {
-}
+
 .cardTitle {
   font-weight: bold;
   font-size: 90%;

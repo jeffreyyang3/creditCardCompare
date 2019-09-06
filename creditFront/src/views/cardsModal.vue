@@ -2,15 +2,15 @@
   <div class="cardsModalContent">
     <div ref="leftSide" id="leftSide" v-on:dragover="dragOverHandler" v-on:drop="dropHandler">
       <div class="searchToggleButtons">
-        <button
+        <!-- <button
           type="button"
-          v-show="showSelect"
+          v-show="showSelect && currentView !== 'choose'"
           class="btn btn-primary"
           @click="currentView = 'choose'"
         >Select Cards</button>
 
         <button
-          v-show="showGraph"
+          v-show="showGraph && currentView !== 'remove'"
           type="button"
           class="btn btn-danger"
           @click="currentView = 'remove'"
@@ -29,10 +29,11 @@
           @click="$store.dispatch('unSelectAll')"
         >Remove All</button>
         <button
+          v-show="showGraph"
           type="button"
           class="btn btn-secondary"
           @click="currentView = 'modify'"
-        >Modify Selected</button>
+        >Modify Selected</button>-->
       </div>
       <typeAhead v-show="currentView === 'choose'" />
 
@@ -43,7 +44,7 @@
     <div ref="rightSide" id="rightSide" v-on:drop="dropHandler" v-on:dragover="dragOverHandler">
       <CBLine v-show="showGraph" />
       <div v-show="!showGraph" class="noGraph">
-        <h1>Add a card from the right!</h1>
+        <h1>Add a card from the left!</h1>
       </div>
     </div>
   </div>
@@ -51,10 +52,12 @@
 <style scoped lang="scss">
 /* addAllRemaining */
 /* store dispatch unSelectAll */
-$leftSideWidth: 33%;
+$leftSideWidth: 38%;
 .noGraph {
   height: 100%;
   align-self: center;
+  display: flex;
+  align-items: center
 }
 .noGraph * {
   text-align: center;
@@ -64,7 +67,8 @@ $leftSideWidth: 33%;
 }
 .searchToggleButtons {
   display: flex;
-  justify-content: space-evenly;
+  margin: 2%;
+  // margin-left: 20px;
 }
 
 .cardsModalContent {
@@ -107,12 +111,11 @@ export default {
   data: function() {
     return {
       isActive: false,
-      unselectedCards: [],
-      currentView: "choose"
+      unselectedCards: []
     };
   },
   computed: {
-    ...mapState(["unSelectedCards", "selectedCards"]),
+    ...mapState(["unSelectedCards", "selectedCards", "currentView"]),
     showGraph: function() {
       return this.selectedCards.length !== 0;
     },
@@ -122,13 +125,7 @@ export default {
         // this.currentView === "choose"
       );
     },
-    showAddAll: function() {
-      return this.showSelect && this.currentView === "choose";
-    },
-    showRemoveAll: function() {
-      return this.currentView === "remove" && this.selectedCards.length !== 0;
-    }
-  },
+      },
   watch: {
     selectedCards: function() {}
   },
