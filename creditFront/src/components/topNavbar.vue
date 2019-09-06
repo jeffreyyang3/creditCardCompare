@@ -37,7 +37,7 @@
       <!-- <router-link to="/about">Choose Cards: Fullscreen Edition</router-link> -->
 
       <!-- <router-link to="/viewGraph">View Graph: Fullscreen Edition</router-link> -->
-      <div class="navDropDown">
+      <div v-show="currentView === 'modify'" class="navDropDown">
         <div @click="quickAddClicked = !quickAddClicked" class="btn btn-primary">Quick Add</div>
         <div :class="{active: quickAddClicked}" class="navDropDownContent">
           <typeAhead />

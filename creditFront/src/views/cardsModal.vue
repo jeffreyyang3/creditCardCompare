@@ -53,22 +53,20 @@
 /* addAllRemaining */
 /* store dispatch unSelectAll */
 $leftSideWidth: 38%;
+.typeAhead {
+  margin-top: 0;
+}
 .noGraph {
   height: 100%;
   align-self: center;
   display: flex;
-  align-items: center
+  align-items: center;
 }
 .noGraph * {
   text-align: center;
 }
 .cardsModalRightCards {
   display: flex;
-}
-.searchToggleButtons {
-  display: flex;
-  margin: 2%;
-  // margin-left: 20px;
 }
 
 .cardsModalContent {
@@ -124,8 +122,8 @@ export default {
         Object.keys(this.unSelectedCards).length !== 0
         // this.currentView === "choose"
       );
-    },
-      },
+    }
+  },
   watch: {
     selectedCards: function() {}
   },

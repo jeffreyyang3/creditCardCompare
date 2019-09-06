@@ -6,7 +6,7 @@
       <typeAhead v-if="!showGraph" />
     </div>
     <div class="modsAndHeadings">
-      <h4>Your Monthly Spending on..</h4>
+      <h4 style="text-align: center">Your Monthly Spending on..</h4>
       <div class="allMod">
         <div class="categoryMod" v-for="(amount, cat) in categorySpend" v-bind:key="cat">
           <span class="categoryTitle">{{ cat }}</span>
@@ -67,9 +67,29 @@
 $hotBoxShadow: 0 2px 4px 0 rgba(34, 36, 38, 0.12),
   0 2px 10px 0 rgba(34, 36, 38, 0.15);
 
-.cashBackTable {
-  border: 1px solid black;
+$hcHeight: 45%;
+$boxInnerMargin: 12px;
+$baseHeight: 100% - $hcHeight;
+$boxMargin: 10px;
+$boxHeight: calc(#{$baseHeight} - #{2 * $boxMargin});
+
+$boxWidth: calc(50% - #{$boxInnerMargin});
+
+.modsAndHeadings,
+.cashBackTableContainer {
+  height: $boxHeight;
+  width: $boxWidth;
+  box-sizing: border-box;
+  border: 2px solid #e0e0e0;
+  border-radius: 5px;
+  padding: 15px;
 }
+
+.modsAndHeadings > *,
+.cashBackTableContainer > * {
+  width: 100%;
+}
+
 .noSelect {
   text-align: center;
 }
@@ -159,10 +179,9 @@ input[type="number"] {
   -webkit-box-shadow: 0 0 3px #ccc;
   box-shadow: 0 0 3px #ccc;
   width: 100%;
-  height: 50%;
+  height: $hcHeight;
 }
 .modsAndHeadings {
-  margin-top: 20px;
   display: flex;
   flex-direction: column;
 }
@@ -175,6 +194,7 @@ input[type="number"] {
   width: 90%;
   height: 100%;
   align-items: center;
+  justify-content: space-between;
 
   flex-wrap: wrap;
 }
@@ -184,8 +204,6 @@ input[type="number"] {
   flex-wrap: wrap;
   flex-direction: row;
   // justify-content: space-evenly;
-  width: 280px;
-  border: 1px solid black;
 }
 </style>
 
