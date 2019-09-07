@@ -2,35 +2,13 @@
   <nav class="topNavbar">
     <div class="navItems">
       <!-- <router-link to="/modifyCards">Modify Cards</router-link> -->
-      <button
-        type="button"
-        class="btn btn-primary"
-        @click="$store.commit('setView', 'choose')"
-      >Select Cards</button>
+      <div class="navItem" @click="$store.commit('setView', 'choose')">Select Cards</div>
 
-      <button
-        type="button"
-        class="btn btn-danger"
-        @click="$store.commit('setView', 'remove')"
-      >Remove Cards</button>
+      <div class="navItem" @click="$store.commit('setView', 'remove')">Remove Cards</div>
 
-      <button
-        type="button"
-        class="btn btn-success"
-        @click="$store.commit('addAllRemaining')"
-        v-show="showSelect"
-      >Add All</button>
-      <button
-        type="button"
-        class="btn btn-danger"
-        @click="$store.dispatch('unSelectAll')"
-        v-show="showRemoveAll"
-      >Remove All</button>
-      <button
-        type="button"
-        class="btn btn-secondary"
-        @click="$store.commit('setView', 'modify')"
-      >Modify Selected</button>
+      <div class="navItem" @click="$store.commit('addAllRemaining')" v-show="showSelect">Add All</div>
+      <div class="navItem" @click="$store.dispatch('unSelectAll')" v-show="showRemoveAll">Remove All</div>
+      <div class="navItem" @click="$store.commit('setView', 'modify')">Modify Selected</div>
       <!-- <router-link to="/">Home</router-link> -->
 
       <!-- <router-link to="/chooseCards">Split Screen Sadness</router-link> -->
@@ -38,7 +16,7 @@
 
       <!-- <router-link to="/viewGraph">View Graph: Fullscreen Edition</router-link> -->
       <div v-show="currentView === 'modify'" class="navDropDown">
-        <div @click="quickAddClicked = !quickAddClicked" class="btn btn-primary">Quick Add</div>
+        <div @click="quickAddClicked = !quickAddClicked" class="navItem">Quick Add</div>
         <div :class="{active: quickAddClicked}" class="navDropDownContent">
           <typeAhead />
         </div>
@@ -102,16 +80,21 @@
   position: fixed;
   top: 0;
   height: 46px;
-  background-color: white;
+  background-color: #4d748a;
   box-shadow: 0 2px 2px -2px grey;
 }
 .navItems {
   width: 100%;
+  height: 100%;
   display: flex;
   justify-content: space-around;
   align-items: center;
   margin-top: 3px;
   margin-bottom: 3px;
+}
+.navItem {
+  color: white;
+  cursor: pointer;
 }
 </style>
 

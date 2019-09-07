@@ -1,12 +1,6 @@
 <template>
   <div class="typeAhead">
-    <input
-      v-show="showSuggestions"
-      placeholder="Search for a card!"
-      class="searchBar"
-      type="text"
-      v-model="currentTyped"
-    />
+    <input placeholder="Search for a card!" class="searchBar" type="text" v-model="currentTyped" />
     <div class="allSelects">
       <div v-for="filter in allFilters" :key="filter.displayName" class="vueSelectWrapper">
         <div class="filterName">{{ filter.displayName }}</div>
