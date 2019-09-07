@@ -269,6 +269,10 @@ export default () => {
                 transit: {
                     percent: 0.03,
                     cap: false
+                },
+                travel: {
+                    percent: 0.03,
+                    cap: false
                 }
             },
             bonus: {

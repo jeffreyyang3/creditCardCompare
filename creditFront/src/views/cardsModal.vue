@@ -5,8 +5,9 @@
 
       <typeAhead v-show="currentView === 'remove'" forRemove />
       <modifyCards v-show="currentView === 'modify'" />
-      <!-- <cardSelectComponent v-for="card in unSelectedCards" :key="card.name" :name="card.name" /> -->
     </div>
+
+    <!-- <cardSelectComponent v-for="card in unSelectedCards" :key="card.name" :name="card.name" /> -->
     <div ref="rightSide" id="rightSide" v-on:drop="dropHandler" v-on:dragover="dragOverHandler">
       <CBLine v-show="showGraph" />
       <div v-show="!showGraph" class="noGraph">
@@ -19,6 +20,7 @@
 /* addAllRemaining */
 /* store dispatch unSelectAll */
 $leftSideWidth: 38%;
+
 .typeAhead {
   margin-top: 0;
 }

@@ -67,27 +67,39 @@
 $hotBoxShadow: 0 2px 4px 0 rgba(34, 36, 38, 0.12),
   0 2px 10px 0 rgba(34, 36, 38, 0.15);
 
-$hcHeight: 58%;
+$hcHeight: 50%;
 $boxInnerMargin: 12px;
 $baseHeight: 100% - $hcHeight;
 $boxMargin: 10px;
 $boxHeight: calc(#{$baseHeight} - #{2 * $boxMargin});
 
-$boxWidth: calc(50% - #{$boxInnerMargin});
+.boxTitle {
+  color: #4d748a;
+}
 
 .modsAndHeadings,
 .cashBackTableContainer {
   height: $boxHeight;
-  width: $boxWidth;
   box-sizing: border-box;
   border: 2px solid #e0e0e0;
   border-radius: 5px;
   padding: 15px;
+  overflow-y: scroll;
 }
 
 .modsAndHeadings > *,
 .cashBackTableContainer > * {
   width: 100%;
+}
+
+.modsAndHeadings {
+  display: flex;
+  flex-direction: column;
+  width: 35%;
+}
+.cashBackTableContainer {
+  flex-grow: 1;
+  margin-left: 25px;
 }
 
 .noSelect {
@@ -99,6 +111,7 @@ $boxWidth: calc(50% - #{$boxInnerMargin});
   width: 1.5em;
   text-align: center;
   border: 1px solid #d3d3d3;
+  color: #4d748a;
   border-radius: 4px;
   cursor: pointer;
   margin-right: 8px;
@@ -121,6 +134,7 @@ $boxWidth: calc(50% - #{$boxInnerMargin});
   /* width: 80%; */
   flex-direction: column;
   width: 50%;
+  // width: max-content;
 
   /* -moz-box-shadow: 0 0 3px #ccc;
   -webkit-box-shadow: 0 0 3px #ccc;
@@ -128,7 +142,9 @@ $boxWidth: calc(50% - #{$boxInnerMargin});
   font-size: 19px;
 }
 .categoryTitle {
+  // font-size: 115%;
   white-space: nowrap;
+  // text-align: center;
   margin-left: 5px;
   margin-bottom: 5px;
   text-transform: capitalize;
@@ -156,7 +172,6 @@ $boxWidth: calc(50% - #{$boxInnerMargin});
   border: 1px solid #d3d3d3;
   border-radius: 4px;
   padding: 2px;
-  width: max-content;
 }
 
 input::-webkit-outer-spin-button,
@@ -181,17 +196,14 @@ input[type="number"] {
   width: 100%;
   height: $hcHeight;
 }
-.modsAndHeadings {
-  display: flex;
-  flex-direction: column;
-}
-.highcharts-yaxis-grid > path:last-of-type {
+
+.highcharts-grid > path:last-of-type {
   display: none;
 }
 .CBLineContainer {
   display: flex;
   flex-direction: row;
-  width: 90%;
+  width: 93%;
   height: 100%;
   align-items: center;
   justify-content: space-between;
@@ -206,6 +218,10 @@ input[type="number"] {
   flex-grow: 1;
   // justify-content: space-evenly;
 }
+
+// .highcharts-axis-labels > text:last-of-type {
+//   display: none;
+// }
 </style>
 
 <script>
@@ -439,6 +455,13 @@ export default {
     // }
     if (this.$store.state.selectedCards.length == 0)
       this.$store.commit("initCards");
+    // Highcharts.setOptions({
+    //   chart: {
+    //     style: {
+    //       fontFamily: "Lato, sans-serif"
+    //     }
+    //   }
+    // });
 
     // console.log(this.$store.state.selectedCards)
     this.createHighChart(this.$store.state.selectedCards);
