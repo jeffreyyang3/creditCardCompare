@@ -89,8 +89,6 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  margin-top: 3px;
-  margin-bottom: 3px;
 }
 .navItem {
   color: white;

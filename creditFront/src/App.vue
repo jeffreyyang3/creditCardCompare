@@ -18,7 +18,7 @@
 <style>
 #app {
   height: 100%;
-  font-family: "Lato", sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 #otherContent {
   margin-top: 46px;

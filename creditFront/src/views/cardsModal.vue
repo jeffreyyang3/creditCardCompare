@@ -1,10 +1,12 @@
 <template>
   <div class="cardsModalContent">
     <div ref="leftSide" id="leftSide" v-on:dragover="dragOverHandler" v-on:drop="dropHandler">
-      <typeAhead v-show="currentView === 'choose'" />
+      <div class="hmm">
+        <typeAhead v-show="currentView === 'choose'" />
 
-      <typeAhead v-show="currentView === 'remove'" forRemove />
-      <modifyCards v-show="currentView === 'modify'" />
+        <typeAhead v-show="currentView === 'remove'" forRemove />
+        <modifyCards v-show="currentView === 'modify'" />
+      </div>
     </div>
 
     <!-- <cardSelectComponent v-for="card in unSelectedCards" :key="card.name" :name="card.name" /> -->
@@ -20,6 +22,14 @@
 /* addAllRemaining */
 /* store dispatch unSelectAll */
 $leftSideWidth: 38%;
+
+.hmm {
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 20px;
+  overflow-y: scroll;
+  height: 100%;
+}
 
 .typeAhead {
   margin-top: 0;
@@ -54,7 +64,6 @@ $leftSideWidth: 38%;
 #leftSide {
   width: $leftSideWidth;
   box-sizing: border-box;
-  padding: 30px;
 }
 #rightSide {
   display: flex;

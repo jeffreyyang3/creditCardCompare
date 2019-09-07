@@ -82,9 +82,10 @@ $boxHeight: calc(#{$baseHeight} - #{2 * $boxMargin});
   height: $boxHeight;
   box-sizing: border-box;
   border: 2px solid #e0e0e0;
-  border-radius: 5px;
+  border-radius: 10px;
   padding: 15px;
   overflow-y: scroll;
+  align-self: flex-end;
 }
 
 .modsAndHeadings > *,
@@ -195,6 +196,7 @@ input[type="number"] {
   border: 2px solid #e0e0e0;
   width: 100%;
   height: $hcHeight;
+  align-self: flex-start;
 }
 
 .highcharts-grid > path:last-of-type {
@@ -455,13 +457,13 @@ export default {
     // }
     if (this.$store.state.selectedCards.length == 0)
       this.$store.commit("initCards");
-    // Highcharts.setOptions({
-    //   chart: {
-    //     style: {
-    //       fontFamily: "Lato, sans-serif"
-    //     }
-    //   }
-    // });
+    Highcharts.setOptions({
+      chart: {
+        style: {
+          fontFamily: "Roboto, sans-serif"
+        }
+      }
+    });
 
     // console.log(this.$store.state.selectedCards)
     this.createHighChart(this.$store.state.selectedCards);
