@@ -6,7 +6,7 @@
       <typeAhead v-if="!showGraph" />
     </div>
     <div class="modsAndHeadings">
-      <h4 style="text-align: center">Your Monthly Spending on..</h4>
+      <h4 class="boxTitle">Your Monthly Spending on..</h4>
       <div class="allMod">
         <div class="categoryMod" v-for="(amount, cat) in categorySpend" v-bind:key="cat">
           <span class="categoryTitle">{{ cat }}</span>
@@ -28,7 +28,7 @@
     </div>
 
     <div class="cashBackTableContainer">
-      <h4 style="text-align: center">
+      <h4 class="boxTitle">
         $ in rewards after
         <input
           class="monthInput"
@@ -67,7 +67,7 @@
 $hotBoxShadow: 0 2px 4px 0 rgba(34, 36, 38, 0.12),
   0 2px 10px 0 rgba(34, 36, 38, 0.15);
 
-$hcHeight: 45%;
+$hcHeight: 58%;
 $boxInnerMargin: 12px;
 $baseHeight: 100% - $hcHeight;
 $boxMargin: 10px;
@@ -131,11 +131,12 @@ $boxWidth: calc(50% - #{$boxInnerMargin});
   white-space: nowrap;
   margin-left: 5px;
   margin-bottom: 5px;
+  text-transform: capitalize;
 }
 .categoryMod input {
   font-family: inherit;
   font-size: 19px;
-  width: 65px;
+  width: 5em;
   color: inherit;
   cursor: pointer;
   border: none;
@@ -155,6 +156,7 @@ $boxWidth: calc(50% - #{$boxInnerMargin});
   border: 1px solid #d3d3d3;
   border-radius: 4px;
   padding: 2px;
+  width: max-content;
 }
 
 input::-webkit-outer-spin-button,
@@ -173,11 +175,9 @@ input[type="number"] {
 }
 
 .highChartContainer {
-  overflow: visible !important;
-  -moz-box-shadow: 0 0 3px #ccc;
+  overflow: hidden;
   border-radius: 10px;
-  -webkit-box-shadow: 0 0 3px #ccc;
-  box-shadow: 0 0 3px #ccc;
+  border: 2px solid #e0e0e0;
   width: 100%;
   height: $hcHeight;
 }
@@ -203,6 +203,7 @@ input[type="number"] {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
+  flex-grow: 1;
   // justify-content: space-evenly;
 }
 </style>

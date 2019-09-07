@@ -1,40 +1,6 @@
 <template>
   <div class="cardsModalContent">
     <div ref="leftSide" id="leftSide" v-on:dragover="dragOverHandler" v-on:drop="dropHandler">
-      <div class="searchToggleButtons">
-        <!-- <button
-          type="button"
-          v-show="showSelect && currentView !== 'choose'"
-          class="btn btn-primary"
-          @click="currentView = 'choose'"
-        >Select Cards</button>
-
-        <button
-          v-show="showGraph && currentView !== 'remove'"
-          type="button"
-          class="btn btn-danger"
-          @click="currentView = 'remove'"
-        >Remove Cards</button>
-
-        <button
-          v-show="showAddAll"
-          type="button"
-          class="btn btn-success"
-          @click="$store.commit('addAllRemaining')"
-        >Add All</button>
-        <button
-          v-show="showRemoveAll"
-          type="button"
-          class="btn btn-danger"
-          @click="$store.dispatch('unSelectAll')"
-        >Remove All</button>
-        <button
-          v-show="showGraph"
-          type="button"
-          class="btn btn-secondary"
-          @click="currentView = 'modify'"
-        >Modify Selected</button>-->
-      </div>
       <typeAhead v-show="currentView === 'choose'" />
 
       <typeAhead v-show="currentView === 'remove'" forRemove />
@@ -85,6 +51,8 @@ $leftSideWidth: 38%;
 }
 #leftSide {
   width: $leftSideWidth;
+  box-sizing: border-box;
+  padding: 30px;
 }
 #rightSide {
   display: flex;

@@ -18,6 +18,7 @@
 <style>
 #app {
   height: 100%;
+  font-family: "Lato", sans-serif;
 }
 #otherContent {
   margin-top: 46px;
@@ -68,7 +69,7 @@ export default {
   mounted() {
     // this.$store.commit("initCards");
 
-    if(this.$store.notInitialized) this.$store.commit("initCards");
+    if (this.$store.notInitialized) this.$store.commit("initCards");
   }
 };
 </script>
