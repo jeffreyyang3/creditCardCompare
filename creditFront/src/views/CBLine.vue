@@ -382,7 +382,8 @@ export default {
         },
         legend: {
           align: "left",
-          verticalAlign: "bottom"
+          verticalAlign: "bottom",
+          maxHeight: this.graphOnly ? undefined : 70
         },
 
         series: cards.map(this.cardToSeriesData),

@@ -14,11 +14,11 @@ export default new Vuex.Store({
         apiToken: null,
         accData: {},
         categorySpend: {
-            dining: 300,
-            travel: 300,
-            groceries: 300,
-            gas: 300,
-            other: 300
+            dining: 350,
+            travel: 350,
+            groceries: 350,
+            gas: 350,
+            other: 350
         },
         usingExData: false,
         selectedCards: [],

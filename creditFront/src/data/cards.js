@@ -4,7 +4,7 @@ that may or may not have value to you. These can be modified based on personal
 value in the modify cards tab, using the point value, effective annual fee, and 
 flat bonus categories. `;
 const chaseURMessage = `Owning a Sapphire Preferred will let you redeem the points this card earns at 1.25 cents per point,
-                        and 1.5 cents per point with the Sapphire Reserve.`;
+and 1.5 cents per point with the Sapphire Reserve.`;
 
 export default () => {
     return {
@@ -464,6 +464,36 @@ export default () => {
                 issuer: "Wells Fargo"
             }
         },
+        barclaysAP: {
+            displayName: "Barclays Arrival Plus",
+            categories: {
+                other: {
+                    percent: 0.02,
+                    cap: false
+                }
+            },
+            bonus: {
+                type: "standard",
+                bonuses: [{ msr: 5000, rewardAmount: 700, expire: 3 }]
+            },
+            annualFee: {
+                has: true,
+                waiveFirst: true,
+                amount: 89
+            },
+            rewards: {
+                flatBonus: 0,
+                pointValue: 1,
+                effectiveAF: 89
+            },
+
+            otherInfo: {
+                network: "MasterCard",
+                issuer: "Barclays",
+                type: "Travel",
+                notices: ["This card isn't available anymore"]
+            }
+        },
 
         cap1Venture: {
             displayName: "Capital One Venture",
@@ -516,7 +546,14 @@ export default () => {
             otherInfo: {
                 type: "Cash Back",
                 network: "MasterCard",
-                issuer: "Citi"
+                issuer: "Citi",
+                notices: [
+                    "It's technically 1 percent when you buy"
+                        .concat(
+                            " and 1 percent when you pay but you should always be paying, so "
+                        )
+                        .concat("I set the cash back at 2%")
+                ]
             }
         },
 
@@ -616,8 +653,11 @@ export default () => {
                 type: "Travel",
                 network: "Visa",
                 issuer: "Bank of America",
-                notices: `Preferred Rewards members can get 25-75% more point value. 
-                      Adjust point value if this applies to you`
+                notices: [
+                    "Preferred Rewards members can get 25-75% more point value. ".concat(
+                        "Adjust point value if this applies to you"
+                    )
+                ]
             }
         },
         bofaTravelRewards: {
@@ -702,7 +742,8 @@ export default () => {
             otherInfo: {
                 type: "Cash Back",
                 network: "Visa",
-                issuer: "Chase"
+                issuer: "Chase",
+                notices: [chaseURMessage]
             }
         },
         ducksUnlimited: {

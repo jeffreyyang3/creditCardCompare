@@ -6,7 +6,14 @@
     v-on:dragstart="componentDragStartHandler"
     :class="{ clicked }"
   >
-    <img class="cardImage" :src="getFile()" />
+    <div class="imageContainer">
+      <img class="cardImage" :src="getFile()" />
+      <div
+        @click="handleInfoClick"
+        v-if="$store.state.original[name].otherInfo.notices"
+        class="extraInfoButton"
+      ></div>
+    </div>
     <div class="cardDesc" v-if="clickable">
       <div class="cardCbInfo">
         <div
@@ -25,6 +32,34 @@ $cardWidth: 125px;
 $cardHeight: 78px;
 $descHeight: 90px;
 
+.imageContainer {
+  position: relative;
+}
+
+.extraInfoButton {
+  position: absolute;
+  top: 10%;
+  left: 75%;
+  border-radius: 50%;
+  background-color: red;
+  display: flex;
+  color: white;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  opacity: 0.7;
+  transition: hover 0.3s;
+}
+
+.extraInfoButton:hover {
+  opacity: 1;
+}
+
+.extraInfoButton::before {
+  content: "!";
+  font-family: "Lato";
+}
 .cardSelectComponent {
   width: $cardWidth;
   // height: $cardHeight + 50px;
@@ -48,9 +83,6 @@ $descHeight: 90px;
 
 .cardSelectComponent.clicked .cardDesc {
   height: $descHeight;
-}
-
-.cardSelectComponent .cardDesc * {
 }
 
 .cardDesc {
@@ -82,6 +114,15 @@ export default {
   mounted() {},
 
   methods: {
+    handleInfoClick() {
+      let allNoticeString = "";
+      this.$store.state.original[this.name].otherInfo.notices.forEach(line => {
+        allNoticeString += line.replace(/\n/g, "");
+      });
+      alert(allNoticeString);
+      // alert(this.$store.state.original[this.name].otherInfo.notices);
+      // .replace(/\n/g, "")
+    },
     getFile() {
       return require(`@/assets/cardImages/${this.name}.png`);
     },
@@ -99,7 +140,8 @@ export default {
       return `${(100 * decimal).toFixed(1)}%`;
     },
 
-    toggleDescVis() {
+    toggleDescVis(e) {
+      if (e.target.matches(".extraInfoButton")) return;
       this.clicked = !this.clicked;
     },
 
