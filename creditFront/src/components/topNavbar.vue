@@ -2,9 +2,17 @@
   <nav class="topNavbar">
     <div class="navItems">
       <!-- <router-link to="/modifyCards">Modify Cards</router-link> -->
-      <div class="navItem" @click="$store.commit('setView', 'choose')">Select Cards</div>
+      <div
+        class="navItem"
+        v-show="currentView !== 'choose'"
+        @click="$store.commit('setView', 'choose')"
+      >Select Cards</div>
 
-      <div class="navItem" @click="$store.commit('setView', 'remove')">Remove Cards</div>
+      <div
+        class="navItem"
+        v-show="currentView !== 'remove'"
+        @click="$store.commit('setView', 'remove')"
+      >Remove Cards</div>
 
       <div class="navItem" @click="$store.commit('addAllRemaining')" v-show="showSelect">Add All</div>
       <div class="navItem" @click="$store.dispatch('unSelectAll')" v-show="showRemoveAll">Remove All</div>

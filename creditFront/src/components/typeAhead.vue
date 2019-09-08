@@ -24,12 +24,14 @@
         <div class="typeAheadCard">
           <cardSelectComponent :clickable="true" :name="card.cardKey"></cardSelectComponent>
         </div>
-        <div class="addButton btn btn-primary" @click="$store.commit('addCard', card.cardKey)">+</div>
+        <div class="addButton" @click="$store.commit('addCard', card.cardKey)"></div>
       </div>
     </div>
     <div class="suggestions" v-if="!forRemove && !showSuggestions">
       <div class="suggestionsItem">
-        <div class="cardTitle">🎵 no cards left to add 🎵</div>
+        <div class="cardTitle noCards">
+          <span class="noCardsText">🎵 no cards left to add 🎵</span>
+        </div>
       </div>
     </div>
 
@@ -39,12 +41,14 @@
         <div class="typeAheadCard">
           <cardSelectComponent :clickable="true" :name="card.name"></cardSelectComponent>
         </div>
-        <div class="addButton btn btn-danger" @click="$store.commit('unSelectCard', card.name)">−</div>
+        <div class="removeButton" @click="$store.commit('unSelectCard', card.name)"></div>
       </div>
     </div>
     <div class="suggestions" v-if="forRemove && selectedCards.length === 0">
       <div class="suggestionsItem">
-        <div class="cardTitle">🎵 no cards left to remove 🎵</div>
+        <div class="cardTitle noCards">
+          <span class="noCardsText">🎵 no cards left to remove 🎵</span>
+        </div>
       </div>
     </div>
 
@@ -94,11 +98,33 @@ $borderRadius: 8px;
 .searchBar:focus {
   outline: none;
 }
-.addButton {
-  margin-right: 5%;
-  border-radius: 50%;
-  font-weight: bold;
+.addButton,
+.removeButton,
+.noCards::before {
+  font-family: "iconFont";
+  font-size: 140%;
+  margin-right: 4%;
+  color: #9daaaf;
 }
+
+.addButton::before {
+  content: "";
+}
+.removeButton::before {
+  content: "";
+}
+.cardTitle.noCards {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.noCards::before {
+  content: "";
+  font-size: 400%;
+  font-weight: 100;
+}
+
 .suggestions {
   border: $border;
   border-radius: $borderRadius;

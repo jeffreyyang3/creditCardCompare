@@ -6,10 +6,10 @@
       <typeAhead v-if="!showGraph" />
     </div>
     <div class="modsAndHeadings">
-      <h4 class="boxTitle">Your Monthly Spending on..</h4>
+      <h4 class="boxTitle">Your monthly spending on..</h4>
       <div class="allMod">
         <div class="categoryMod" v-for="(amount, cat) in categorySpend" v-bind:key="cat">
-          <span class="categoryTitle">{{ cat }}</span>
+          <span class="categoryTitle" :class="getClass(cat)">{{ cat }}</span>
 
           <!-- <input type="number" step=".01" min="0" :max="max" v-model.number="modCategorySpend[cat]" /> -->
           <div class="inputContainer">
@@ -72,6 +72,28 @@ $boxInnerMargin: 12px;
 $baseHeight: 100% - $hcHeight;
 $boxMargin: 10px;
 $boxHeight: calc(#{$baseHeight} - #{2 * $boxMargin});
+
+.categoryTitle::after {
+  font-family: "iconFont";
+  margin-left: 4px;
+  font-size: 90%;
+}
+
+.categoryTitle.dining::after {
+  content: "";
+}
+
+.categoryTitle.travel::after {
+  content: "";
+}
+
+.categoryTitle.groceries::after {
+  content: "";
+}
+
+.categoryTitle.gas::after {
+  content: "";
+}
 
 .boxTitle {
   color: #4d748a;
@@ -153,7 +175,7 @@ $boxHeight: calc(#{$baseHeight} - #{2 * $boxMargin});
 .categoryMod input {
   font-family: inherit;
   font-size: 19px;
-  width: 5em;
+  width: 100%;
   color: inherit;
   cursor: pointer;
   border: none;
@@ -231,13 +253,11 @@ import { mapState } from "vuex";
 import Highcharts from "highcharts";
 import cardsDb from "@/data/cards";
 import typeAhead from "@/components/typeAhead";
-import cardSelectComponent from "@/components/cardSelectComponent";
 import utils from "@/utils";
 export default {
   name: "CBLine",
   components: {
-    typeAhead,
-    cardSelectComponent
+    typeAhead
   },
 
   data: function() {
@@ -279,7 +299,9 @@ export default {
   },
 
   methods: {
-    test: function() {},
+    getClass: function(cat) {
+      return cat;
+    },
     displayMoney: function(item) {
       if (item !== "") {
         return "$" + item.toFixed(2);

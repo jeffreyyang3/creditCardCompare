@@ -15,7 +15,14 @@
   </div>
 </template>
 
-<style>
+<style lang="scss">
+// @import "@/assets/css/fonts.scss";
+$font_path: "./assets/fonts/";
+@font-face {
+  font-family: "iconFont";
+  src: url($font_path+"icomoon.woff") format("woff"),
+    url($font_path+"icomoon.ttf") format("truetype");
+}
 #app {
   height: 100%;
   font-family: "Roboto", sans-serif;

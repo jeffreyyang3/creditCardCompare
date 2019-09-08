@@ -8,7 +8,7 @@ export default () => {
         usBankFPGold: {
             displayName: "US Bank FlexPerks Gold",
             categories: {
-                                travel: {
+                travel: {
                     percent: 0.02,
                     cap: false
                 },
@@ -23,8 +23,7 @@ export default () => {
                 other: {
                     percent: 0.01,
                     cap: false
-                },
-
+                }
             },
             bonus: {
                 type: "standard",
