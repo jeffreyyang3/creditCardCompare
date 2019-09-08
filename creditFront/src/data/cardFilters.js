@@ -7,13 +7,12 @@ export default {
     type: {
         displayName: "Type",
         filterFn: (card, type) => card.otherInfo.type === type,
-        options: ["Cash Back", "Travel"]
+        options: ["Cash Back", "Travel", "Business"]
     },
 
     noAnnualFee: {
         displayName: "Annual Fee",
         filterFn: (card, _) => !card.annualFee.has,
-
 
         options: ["No Annual Fee"]
     },
@@ -23,7 +22,6 @@ export default {
         filterFn: (card, network) => card.otherInfo.network === network,
         options: ["American Express", "Discover", "MasterCard", "Visa"]
     },
-
 
     categoryAndIssuer: allCards => {
         let categories = new Set();

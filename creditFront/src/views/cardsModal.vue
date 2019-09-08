@@ -79,6 +79,7 @@ import modifyCards from "@/views/modifyCards";
 
 export default {
   name: "cardsModal",
+
   components: {
     typeAhead,
     CBLine,

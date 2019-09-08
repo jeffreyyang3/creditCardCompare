@@ -3,8 +3,173 @@ the way you redeem the points. This card also comes with perks and credits
 that may or may not have value to you. These can be modified based on personal
 value in the modify cards tab, using the point value, effective annual fee, and 
 flat bonus categories. `;
+const chaseURMessage = `Owning a Sapphire Preferred will let you redeem the points this card earns at 1.25 cents per point,
+                        and 1.5 cents per point with the Sapphire Reserve.`;
+
 export default () => {
     return {
+        brexStartup: {
+            displayName: "Brex for Startups",
+            categories: {
+                rideshare: {
+                    percent: 0.07,
+                    cap: false
+                },
+                travel: {
+                    percent: 0.04,
+                    cap: false
+                },
+                dining: {
+                    percent: 0.03,
+                    cap: false
+                },
+                other: {
+                    percent: 0.01,
+                    cap: false
+                },
+                "Recurring Software": {
+                    percent: 0.02,
+                    cap: false
+                }
+            },
+            bonus: {
+                type: "standard",
+                bonuses: [{ msr: 0, rewardAmount: 0, expire: 3 }]
+            },
+            annualFee: {
+                has: false,
+                waiveFirst: false,
+                amount: 0
+            },
+            rewards: {
+                flatBonus: 0,
+                pointValue: 1,
+                effectiveAF: 0
+            },
+            otherInfo: {
+                type: "Business",
+                network: "MasterCard",
+                issuer: "Brex"
+            }
+        },
+        inkBizPreferred: {
+            displayName: "Ink Business Preferred",
+            categories: {
+                other: {
+                    percent: 0.01,
+                    cap: false
+                },
+                travel: {
+                    percent: 0.03,
+                    cap: false
+                }
+            },
+            bonus: {
+                type: "standard",
+                bonuses: [{ msr: 5000, rewardAmount: 800, expire: 3 }]
+            },
+            annualFee: {
+                has: true,
+                waiveFirst: false,
+                amount: 95
+            },
+            rewards: {
+                flatBonus: 0,
+                pointValue: 1.25,
+                effectiveAF: 95
+            },
+            otherInfo: {
+                type: "Business",
+                network: "Visa",
+                issuer: "Chase"
+            }
+        },
+
+        inkBizUnlimited: {
+            displayName: "Ink Business Unlimited",
+            categories: {
+                other: {
+                    percent: 0.015,
+                    cap: false
+                }
+            },
+            bonus: {
+                type: "standard",
+                bonuses: [{ msr: 3000, rewardAmount: 500, expire: 3 }]
+            },
+            annualFee: {
+                has: false,
+                waiveFirst: false,
+                amount: 0
+            },
+            rewards: {
+                flatBonus: 0,
+                pointValue: 1,
+                effectiveAF: 0
+            },
+            otherInfo: {
+                type: "Business",
+                network: "Visa",
+                issuer: "Chase"
+            }
+        },
+
+        sparkCashSelect: {
+            displayName: "Capital One Spark Cash Select",
+            categories: {
+                other: {
+                    percent: 0.015,
+                    cap: false
+                }
+            },
+            bonus: {
+                type: "standard",
+                bonuses: [{ msr: 3000, rewardAmount: 200, expire: 3 }]
+            },
+            annualFee: {
+                has: false,
+                waiveFirst: false,
+                amount: 0
+            },
+            rewards: {
+                flatBonus: 0,
+                pointValue: 1,
+                effectiveAF: 0
+            },
+            otherInfo: {
+                type: "Business",
+                network: "Visa",
+                issuer: "Capital One"
+            }
+        },
+        sparkCash: {
+            displayName: "Capital One Spark",
+            categories: {
+                other: {
+                    percent: 0.02,
+                    cap: false
+                }
+            },
+            bonus: {
+                type: "standard",
+                bonuses: [{ msr: 4500, rewardAmount: 500, expire: 3 }]
+            },
+            annualFee: {
+                has: true,
+                waiveFirst: true,
+                amount: 95
+            },
+            rewards: {
+                flatBonus: 0,
+                pointValue: 1,
+                effectiveAF: 95
+            },
+            otherInfo: {
+                type: "Business",
+                network: "Visa",
+                issuer: "Capital One"
+            }
+        },
         usBankFPGold: {
             displayName: "US Bank FlexPerks Gold",
             categories: {

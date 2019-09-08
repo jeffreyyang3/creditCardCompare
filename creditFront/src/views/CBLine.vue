@@ -1,11 +1,11 @@
 <template>
-  <div class="CBLineContainer">
+  <div class="CBLineContainer" :class="{'graphOnly': graphOnly}">
     <div v-show="showGraph" class="highChartContainer" ref="highChartContainer"></div>
-    <div v-show="!showGraph" class="noGraphText">
+    <div v-show="!showGraph" class="noGraphText" v-if="!graphOnly">
       <h1 class="noSelect">No Cards Selected</h1>
       <typeAhead v-if="!showGraph" />
     </div>
-    <div class="modsAndHeadings">
+    <div class="modsAndHeadings" v-if="!graphOnly">
       <h4 class="boxTitle">Your monthly spending on..</h4>
       <div class="allMod">
         <div class="categoryMod" v-for="(amount, cat) in categorySpend" v-bind:key="cat">
@@ -27,7 +27,7 @@
       </div>
     </div>
 
-    <div class="cashBackTableContainer">
+    <div class="cashBackTableContainer" v-if="!graphOnly">
       <h4 class="boxTitle">
         $ in rewards after
         <input
@@ -221,6 +221,13 @@ input[type="number"] {
   align-self: flex-start;
 }
 
+.graphOnly .highChartContainer {
+  height: 100%;
+}
+.graphOnly.CBLineContainer {
+  width: 100%;
+}
+
 .highcharts-grid > path:last-of-type {
   display: none;
 }
@@ -271,6 +278,11 @@ export default {
       currentChart: false
     };
   },
+
+  props: {
+    graphOnly: Boolean
+  },
+
   computed: {
     ...mapState([
       "unSelectedCards",

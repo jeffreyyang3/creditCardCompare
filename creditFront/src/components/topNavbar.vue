@@ -19,7 +19,6 @@
       <div class="navItem" @click="$store.commit('setView', 'modify')">Modify Selected</div>
       <!-- <router-link to="/">Home</router-link> -->
 
-      <!-- <router-link to="/chooseCards">Split Screen Sadness</router-link> -->
       <!-- <router-link to="/about">Choose Cards: Fullscreen Edition</router-link> -->
 
       <!-- <router-link to="/viewGraph">View Graph: Fullscreen Edition</router-link> -->
@@ -29,6 +28,8 @@
           <typeAhead />
         </div>
       </div>
+
+      <router-link class="navItem" to="/fullScreen">🅱️ig Graph</router-link>
     </div>
   </nav>
 </template>	

@@ -20,9 +20,10 @@ export default new Router({
             component: modifyCards
         },
         {
-            path: "/viewGraph",
-            name: "viewGraph",
-            component: CBLine
+            path: "/fullScreen",
+            name: "fullScreen",
+            component: CBLine,
+            props: { graphOnly: true }
         },
         {
             path: "/about",
