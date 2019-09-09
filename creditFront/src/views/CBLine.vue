@@ -48,6 +48,17 @@
         </tr>
       </table>
     </div>
+    <div v-else class="graphSideCards" ref="graphSideCards">
+      <div class="idk" v-for="card in sortedCards" :key="card.cardName">
+        <cardSelectComponent
+          :clickable="false"
+          :name="card.cardName"
+          @hover="handleGraphCardHover(card.cardName)"
+        />
+
+        <div class="cbAmount">${{ card.amount.toFixed(2) }}</div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -72,6 +83,12 @@ $boxInnerMargin: 12px;
 $baseHeight: 100% - $hcHeight;
 $boxMargin: 10px;
 $boxHeight: calc(#{$baseHeight} - #{2 * $boxMargin});
+
+.idk {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 .categoryTitle::after {
   font-family: "iconFont";
@@ -146,10 +163,11 @@ $boxHeight: calc(#{$baseHeight} - #{2 * $boxMargin});
 }
 
 .graphSideCards {
+  height: 100%;
   display: flex;
-  flex-direction: row;
-  overflow-x: scroll;
-  width: 100%;
+  flex-direction: column;
+  overflow: scroll;
+  width: 20%;
   padding-bottom: 10px;
 }
 .categoryMod {
@@ -223,6 +241,7 @@ input[type="number"] {
 
 .graphOnly .highChartContainer {
   height: 100%;
+  width: 80%;
 }
 .graphOnly.CBLineContainer {
   width: 100%;
@@ -234,7 +253,7 @@ input[type="number"] {
 .CBLineContainer {
   display: flex;
   flex-direction: row;
-  width: 93%;
+  width: 80%;
   height: 100%;
   align-items: center;
   justify-content: space-between;
@@ -260,11 +279,13 @@ import { mapState } from "vuex";
 import Highcharts from "highcharts";
 import cardsDb from "@/data/cards";
 import typeAhead from "@/components/typeAhead";
+import cardSelectComponent from "@/components/cardSelectComponent";
 import utils from "@/utils";
 export default {
   name: "CBLine",
   components: {
-    typeAhead
+    typeAhead,
+    cardSelectComponent
   },
 
   data: function() {

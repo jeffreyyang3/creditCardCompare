@@ -1,6 +1,6 @@
 const pointsMessage = `The points this card earns vary in value based on 
-the way you redeem the points. This card also comes with perks and credits
-that may or may not have value to you. These can be modified based on personal
+the way you redeem the points. This card also comes with perks and credits 
+that may or may not have value to you. These can be modified based on personal 
 value in the modify cards tab, using the point value, effective annual fee, and 
 flat bonus categories. `;
 const chaseURMessage = `Owning a Sapphire Preferred will let you redeem the points this card earns at 1.25 cents per point,
@@ -685,7 +685,12 @@ export default () => {
             otherInfo: {
                 type: "Travel",
                 network: "Visa",
-                issuer: "Bank of America"
+                issuer: "Bank of America",
+                notices: [
+                    "Preferred Rewards members can get 25-75% more point value. ".concat(
+                        "Adjust point value if this applies to you"
+                    )
+                ]
             }
         },
 

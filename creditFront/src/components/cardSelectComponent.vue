@@ -16,6 +16,7 @@
     </div>
     <div class="cardDesc" v-if="clickable">
       <div class="cardCbInfo">
+        <div class="cb">Categories:</div>
         <div
           class="cb"
           :key="$store.state.original[name].displayName + category"
@@ -146,6 +147,7 @@ export default {
     },
 
     componentDragStartHandler(event) {
+      if (this.$store.state.currentView === "fullScreenGraph") return;
       if (document.getElementById("leftSide").contains(this.$el)) {
         this.$store.commit("setDragLeft", this.name);
         return;

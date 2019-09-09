@@ -4,32 +4,47 @@
       <!-- <router-link to="/modifyCards">Modify Cards</router-link> -->
       <div
         class="navItem"
-        v-show="currentView !== 'choose'"
+        v-show="showSelect"
         @click="$store.commit('setView', 'choose')"
       >Select Cards</div>
 
       <div
         class="navItem"
-        v-show="currentView !== 'remove'"
+        v-show="showRemove"
         @click="$store.commit('setView', 'remove')"
       >Remove Cards</div>
 
-      <div class="navItem" @click="$store.commit('addAllRemaining')" v-show="showSelect">Add All</div>
+      <div class="navItem" @click="$store.commit('addAllRemaining')" v-show="showAddAll">Add All</div>
       <div class="navItem" @click="$store.dispatch('unSelectAll')" v-show="showRemoveAll">Remove All</div>
-      <div class="navItem" @click="$store.commit('setView', 'modify')">Modify Selected</div>
+      <div
+        class="navItem"
+        @click="$store.commit('setView', 'modify')"
+        v-show="showModify"
+      >Modify Selected</div>
       <!-- <router-link to="/">Home</router-link> -->
 
       <!-- <router-link to="/about">Choose Cards: Fullscreen Edition</router-link> -->
 
       <!-- <router-link to="/viewGraph">View Graph: Fullscreen Edition</router-link> -->
-      <div v-show="currentView === 'modify'" class="navDropDown">
+      <div v-show="showQuickAdd" class="navDropDown">
         <div @click="quickAddClicked = !quickAddClicked" class="navItem">Quick Add</div>
         <div :class="{active: quickAddClicked}" class="navDropDownContent">
           <typeAhead />
         </div>
       </div>
 
-      <router-link class="navItem" to="/fullScreen">🅱️ig Graph</router-link>
+      <router-link
+        class="navItem"
+        to="/fullScreen"
+        v-if="showFSGraph"
+        v-on:click.native="$store.commit('setView', 'fullScreenGraph')"
+      >🅱️ig Graph</router-link>
+      <router-link
+        v-else
+        class="navItem"
+        v-on:click.native="$store.commit('setView', 'choose')"
+        to="/"
+      >Back</router-link>
     </div>
   </nav>
 </template>	
@@ -121,11 +136,31 @@ export default {
     showRemoveAll: function() {
       return this.selectedCards.length !== 0;
     },
-    showSelect: function() {
+    showAddAll: function() {
       return (
         Object.keys(this.unSelectedCards).length !== 0
         // this.currentView === "choose"
       );
+    },
+    showFSGraph: function() {
+      return this.currentView !== "fullScreenGraph";
+    },
+    showSelect: function() {
+      return (
+        this.currentView !== "choose" && this.currentView !== "fullScreenGraph"
+      );
+    },
+    showRemove: function() {
+      return this.currentView !== "fullScreenGraph" && this.showRemoveAll;
+    },
+    showQuickAdd: function() {
+      console.log(this.currentView);
+      return (
+        this.currentView === "modify" || this.currentView === "fullScreenGraph"
+      );
+    },
+    showModify: function() {
+      return this.currentView !== "fullScreenGraph";
     }
   },
   methods: {}
