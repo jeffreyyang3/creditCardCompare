@@ -184,10 +184,14 @@ export default {
     }
   },
   methods: {
-    handleQuickAddClick() {
+    handleQuickAddClick(event) {
+      event.stopPropagation();
       this.quickAddClicked = !this.quickAddClicked;
-      const fn = () => {
-        console.log("dank");
+      const dropDown = document.querySelector(".navDropDownContent");
+      const fn = e => {
+        if (e.path.indexOf(dropDown) !== -1) return;
+        console.log("reached");
+        this.quickAddClicked = false;
         document.body.removeEventListener("click", fn);
       };
       document.body.addEventListener("click", fn);
