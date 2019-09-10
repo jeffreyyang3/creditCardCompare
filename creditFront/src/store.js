@@ -43,7 +43,8 @@ export default new Vuex.Store({
         },
         setView(state, view) {
             Vue.set(state, "currentView", view);
-            console.log("set");
+            console.trace();
+            console.log(`set to ${view}`);
         },
 
         addAllRemaining(state) {

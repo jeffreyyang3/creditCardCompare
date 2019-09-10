@@ -27,7 +27,7 @@
 
       <!-- <router-link to="/viewGraph">View Graph: Fullscreen Edition</router-link> -->
       <div v-show="showQuickAdd" class="navDropDown">
-        <div @click="quickAddClicked = !quickAddClicked" class="navItem">Quick Add</div>
+        <div @click="handleQuickAddClick" class="navItem">Quick Add</div>
         <div :class="{active: quickAddClicked}" class="navDropDownContent">
           <typeAhead />
         </div>
@@ -36,11 +36,11 @@
       <router-link
         class="navItem"
         to="/fullScreen"
-        v-if="showFSGraph"
+        v-show="showFSGraph"
         v-on:click.native="$store.commit('setView', 'fullScreenGraph')"
       >🅱️ig Graph</router-link>
       <router-link
-        v-else
+        v-show="showBack"
         class="navItem"
         v-on:click.native="$store.commit('setView', 'choose')"
         to="/"
@@ -49,7 +49,11 @@
   </nav>
 </template>	
 
-<style type="text/css">
+<style lang="scss">
+.navDropDownContent {
+  top: 100%;
+}
+
 .navDropDownContent .vueSelectWrapper {
   display: none;
 }
@@ -118,6 +122,10 @@
   color: white;
   cursor: pointer;
 }
+.navItem:hover {
+  color: white;
+  text-decoration: none;
+}
 </style>
 
 <script>
@@ -136,6 +144,9 @@ export default {
     showRemoveAll: function() {
       return this.selectedCards.length !== 0;
     },
+    showBack: function() {
+      return this.currentView === "fullScreenGraph";
+    },
     showAddAll: function() {
       return (
         Object.keys(this.unSelectedCards).length !== 0
@@ -143,7 +154,10 @@ export default {
       );
     },
     showFSGraph: function() {
-      return this.currentView !== "fullScreenGraph";
+      return (
+        this.selectedCards.length !== 0 &&
+        this.currentView !== "fullScreenGraph"
+      );
     },
     showSelect: function() {
       return (
@@ -151,7 +165,11 @@ export default {
       );
     },
     showRemove: function() {
-      return this.currentView !== "fullScreenGraph" && this.showRemoveAll;
+      return (
+        this.currentView !== "remove" &&
+        this.currentView !== "fullScreenGraph" &&
+        this.showRemoveAll
+      );
     },
     showQuickAdd: function() {
       console.log(this.currentView);
@@ -160,9 +178,21 @@ export default {
       );
     },
     showModify: function() {
-      return this.currentView !== "fullScreenGraph";
+      return (
+        this.currentView !== "modify" && this.currentView !== "fullScreenGraph"
+      );
     }
   },
-  methods: {}
+  methods: {
+    handleQuickAddClick() {
+      this.quickAddClicked = !this.quickAddClicked;
+      const fn = () => {
+        console.log("dank");
+        document.body.removeEventListener("click", fn);
+      };
+      document.body.addEventListener("click", fn);
+      // setTimeout(() => document.body.addEventListener("click", fn), 200);
+    }
+  }
 };
 </script>

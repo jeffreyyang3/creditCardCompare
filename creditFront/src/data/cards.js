@@ -1,5 +1,5 @@
 const pointsMessage = `The points this card earns vary in value based on 
-the way you redeem the points. This card also comes with perks and credits 
+the way you redeem the points. This card also comes with significant perks and credits 
 that may or may not have value to you. These can be modified based on personal 
 value in the modify cards tab, using the point value, effective annual fee, and 
 flat bonus categories. `;
@@ -491,7 +491,7 @@ export default () => {
                 network: "MasterCard",
                 issuer: "Barclays",
                 type: "Travel",
-                notices: ["This card isn't available anymore"]
+                notices: ["You can't apply for this card anymore"]
             }
         },
 

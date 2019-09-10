@@ -267,7 +267,6 @@ export default {
     // />
     handleOptionChange: function(filter) {
       return value => {
-        console.log(value, "val");
         this.$set(this.filterState, filter.displayName, card => {
           if (value === "No Filter" || value === null) return () => true;
           return filter.filterFn(card, value);

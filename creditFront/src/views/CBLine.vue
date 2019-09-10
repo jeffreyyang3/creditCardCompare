@@ -243,17 +243,13 @@ input[type="number"] {
   height: 100%;
   width: 80%;
 }
-.graphOnly.CBLineContainer {
-  width: 100%;
-}
-
 .highcharts-grid > path:last-of-type {
   display: none;
 }
 .CBLineContainer {
   display: flex;
   flex-direction: row;
-  width: 80%;
+  width: 100%;
   height: 100%;
   align-items: center;
   justify-content: space-between;
@@ -442,7 +438,7 @@ export default {
       let asdf = this.months;
 
       for (let month = 1; month <= this.months; month++) {
-        if (month == 1) {
+        if (month === 1) {
           totalCB += card.rewards.flatBonus;
         }
         let cbMultiplier = 1;
@@ -513,6 +509,9 @@ export default {
     // }
     if (this.$store.state.selectedCards.length == 0)
       this.$store.commit("initCards");
+    if (this.graphOnly) {
+      this.$store.commit("setView", "fullScreenGraph");
+    }
     Highcharts.setOptions({
       chart: {
         style: {
