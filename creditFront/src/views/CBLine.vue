@@ -427,7 +427,6 @@ export default {
       const seriesData = [];
       const monthCB = this.CStoMonthCB(card).totalCB;
       const monthTotalSpend = this.CStoMonthCB(card).totalSpend;
-      console.log("changed");
       let bonuses;
       if (card.bonus.type === "standard") {
         bonuses = JSON.parse(JSON.stringify(card.bonus.bonuses));
@@ -463,7 +462,6 @@ export default {
         Object.keys(card.categories).forEach(category => {
           const cap = capData[category];
           if (cap) {
-            console.log({ capdata: cap });
             if (month % cap.capTime === 0) {
               cap.currentSpend = 0;
               cap.hit = false;
@@ -478,7 +476,6 @@ export default {
               cap.currentSpend + this.categorySpend[category] >
               cap.capAmount
             ) {
-              console.log("CAP HIT AT MONTH " + month);
               cap.hit = true;
               const spendLeft = cap.capAmount - cap.currentSpend;
               totalCB += card.categories[category].percent * spendLeft;
@@ -534,7 +531,6 @@ export default {
 
   watch: {
     selectedCards: function() {
-      console.log(this.selectedCards);
       this.createHighChart(this.selectedCards);
       // console.log(utils.isSideOverflowing(this.$refs.graphSideCards));
       // this.currentChart.reflow();
