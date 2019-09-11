@@ -436,6 +436,17 @@ export default {
       let totalCB = 0;
       let totalSpend = 0;
       let asdf = this.months;
+      const capData = {};
+      Object.keys(card.categories).forEach(category => {
+        if (card.categories[category].cap) {
+          capData[category] = {
+            hit: false,
+            capAmount: card.categories[category].cap,
+            capTime: card.categories[category].capTime,
+            currentSpend: 0
+          };
+        }
+      });
 
       for (let month = 1; month <= this.months; month++) {
         if (month === 1) {
@@ -448,6 +459,45 @@ export default {
         }
         totalCB += monthCB * cbMultiplier;
         totalSpend += monthTotalSpend;
+        // if cap hit: totalCB += (card.categories.other.percent * this.categorySpend(category) - card.categories[category].percent * this.categorySpend(category))
+        Object.keys(card.categories).forEach(category => {
+          const cap = capData[category];
+          if (cap) {
+            console.log({ capdata: cap });
+            if (month % cap.capTime === 0) {
+              cap.currentSpend = 0;
+              cap.hit = false;
+            }
+
+            if (cap.hit) {
+              totalCB +=
+                card.categories.other.percent * this.categorySpend[category] -
+                card.categories[category].percent *
+                  this.categorySpend[category];
+            } else if (
+              cap.currentSpend + this.categorySpend[category] >
+              cap.capAmount
+            ) {
+              console.log("CAP HIT AT MONTH " + month);
+              cap.hit = true;
+              const spendLeft = cap.capAmount - cap.currentSpend;
+              totalCB += card.categories[category].percent * spendLeft;
+              totalCB +=
+                card.categories.other.percent *
+                (this.categorySpend[category] - spendLeft);
+            } else {
+              cap.currentSpend += this.categorySpend[category];
+            }
+          }
+        });
+
+        //  capData[category] = {
+        //             hit: false,
+        //             capAmount: card.categories[category].capAmount,
+        //             capTime: card.categories[category].capTime,
+        //             currentSpend: 0
+        //           };
+
         if (card.bonus.type === "standard" && bonuses.length !== 0) {
           if (totalSpend >= bonuses[0].msr && month <= bonuses[0].expire) {
             totalCB += bonuses[0].rewardAmount * card.rewards.pointValue;

@@ -369,6 +369,12 @@ export default () => {
         },
 
         amexBCP: {
+   //  capData[category] = {
+        //             hit: false,
+        //             capAmount: card.categories[category].capAmount,
+        //             capTime: card.categories[category].capTime,
+        //             currentSpend: 0
+        //           };
             displayName: "American Express Blue Cash Preferred",
             categories: {
                 other: {
@@ -391,7 +397,8 @@ export default () => {
 
                 groceries: {
                     percent: 0.06,
-                    cap: 6000
+                    cap: 6000,
+                    capTime: 12
                 }
             },
             bonus: {
