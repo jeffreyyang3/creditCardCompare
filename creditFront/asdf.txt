@@ -1,0 +1,28 @@
+fields required: 
+card name
+categories
+    category? 
+bonus
+annual fee
+point value 
+network 
+issuer
+type
+annual fee
+o
+
+model a configurable with:
+    modifications: [
+        {
+
+            displayName, 
+            function to call on modify,
+            number/string input
+
+        }
+        
+
+        
+
+    ]
+

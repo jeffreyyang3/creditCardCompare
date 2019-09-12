@@ -32,6 +32,12 @@
           <typeAhead />
         </div>
       </div>
+      <!-- 
+      <router-link
+        v-on:click.native="$store.commit('setView', 'createACard')"
+        to="/createACard"
+        class="navItem"
+      >Create A Card</router-link>-->
 
       <router-link
         class="navItem"
@@ -179,7 +185,9 @@ export default {
     },
     showModify: function() {
       return (
-        this.currentView !== "modify" && this.currentView !== "fullScreenGraph"
+        this.selectedCards.length !== 0 &&
+        this.currentView !== "modify" &&
+        this.currentView !== "fullScreenGraph"
       );
     }
   },

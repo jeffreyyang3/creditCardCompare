@@ -531,6 +531,16 @@ export default {
 
   watch: {
     selectedCards: function() {
+      if (this.graphOnly) {
+        if (this.selectedCards.length === 0) {
+          this.$router
+            .push({
+              path: "/"
+            })
+            .catch(err => {});
+          this.$store.commit("setView", "choose");
+        }
+      }
       this.createHighChart(this.selectedCards);
       // console.log(utils.isSideOverflowing(this.$refs.graphSideCards));
       // this.currentChart.reflow();
@@ -549,12 +559,6 @@ export default {
   },
 
   mounted() {
-    // let cardss = cardsDb();
-    // for (let key in cardss) {
-    //   this.$store.commit("addCard", cardss[key]);
-    // }
-    if (this.$store.state.selectedCards.length == 0)
-      this.$store.commit("initCards");
     if (this.graphOnly) {
       this.$store.commit("setView", "fullScreenGraph");
     }

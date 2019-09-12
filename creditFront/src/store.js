@@ -43,8 +43,6 @@ export default new Vuex.Store({
         },
         setView(state, view) {
             Vue.set(state, "currentView", view);
-            console.trace();
-            console.log(`set to ${view}`);
         },
 
         addAllRemaining(state) {
@@ -85,6 +83,7 @@ export default new Vuex.Store({
         },
 
         initCards(state) {
+            console.log("initialized");
             state.notInitialized = false;
             state.selectedCards = [];
             state.unSelectedCards = cardsDb();

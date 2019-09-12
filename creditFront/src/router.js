@@ -2,6 +2,7 @@ import Vue from "vue";
 import Router from "vue-router";
 import Home from "./views/Home.vue";
 import cardsModal from "@/views/cardsModal";
+// import createACard from "@/views/createACard";
 import modifyCards from "@/views/modifyCards";
 import CBLine from "@/views/CBLine";
 Vue.use(Router);
@@ -25,6 +26,13 @@ export default new Router({
             component: CBLine,
             props: { graphOnly: true }
         },
+
+        // {
+        //     path: "/createACard",
+        //     name: "createACard",
+        //     component: createACard
+        // },
+
         {
             path: "/about",
             name: "about",
