@@ -523,7 +523,7 @@ export default {
         name: card.displayName,
         data: seriesData,
         marker: {
-          enabled: false
+          enabled: seriesData.length === 1 ? true : false
         }
       };
     }
