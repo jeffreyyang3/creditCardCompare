@@ -7,6 +7,7 @@
     </div>-->
     <!-- <transition name="slide-fade"> -->
     <!-- <div class="otherContent"> -->
+
     <div id="otherContent">
       <router-view />
     </div>
