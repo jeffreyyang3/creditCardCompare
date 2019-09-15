@@ -3,7 +3,7 @@
     <h1>Technologies</h1>
     <h3>Front End Frameworks</h3>
     <p>
-      This website is a Vue app. I've always enjoyed using Vue. I've
+      This website is a Vue app, made with single file components. I've always enjoyed using Vue. I've
       found it much more intuitive/concise than
       React/Angular so far.
     </p>
@@ -14,12 +14,16 @@
       state management/reactivity made it easy to design this website in a very modular fashion.
       Thanks Vuex!
     </p>
+    <p>
+      Other than the filter select dropdowns, I wrote and styled all of the UI components. There's also the bootstrap
+      stylesheet that I would remove, but everything looks weird if I remove it and I don't feel like finding out what's missing.
+    </p>
 
     <h3>Back End Frameworks</h3>
     <p>
       There's no back end, this is a static site. Originally, I was going to give users
       the option of logging in with Plaid to pre-fill the spend categories. I got that working
-      (Plaid is a very friendly API), but I
+      (Plaid is a very friendly API, totally recommend!), but I
       ended up not doing that because most
       people wouldn't want to give a random their bank account info.
       That functionality used an Express back end (it's still in the repo), using Docker/nginx to avoid CORS issues.

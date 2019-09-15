@@ -25,22 +25,21 @@ $font_path: "./assets/fonts/";
     url($font_path+"icomoon.ttf") format("truetype");
 }
 
-body::-webkit-scrollbar {
-  width: 0.7em;
-  background: white;
-}
-body::-webkit-scrollbar-thumb {
-  background: #c0392b;
-  height: 30px;
-}
+// body::-webkit-scrollbar {
+//   width: 0.7em;
+//   background: white;
+// }
+// body::-webkit-scrollbar-thumb {
+//   background: #c0392b;
+//   height: 30px;
+// }
 
-body::-webkit-scrollbar-track-piece {
-  display: none;
-}
+// body::-webkit-scrollbar-track-piece {
+//   display: none;
+// }
 
 #app {
   height: 100%;
-  font-family: "Roboto", sans-serif;
 }
 #otherContent {
   margin-top: 46px;
@@ -82,6 +81,7 @@ body::-webkit-scrollbar-track-piece {
 </style>
 <script>
 import topNavbar from "@/components/topNavbar";
+const mobile = require("is-mobile")();
 require("@/assets/css/bootstrap.css");
 export default {
   name: "app",
@@ -90,6 +90,12 @@ export default {
   },
   mounted() {
     // this.$store.commit("initCards");
+    if (mobile)
+      alert(
+        "I don't have the time management needed to make this look good on mobile,".concat(
+          " so I'd strongly recommend just visiting on your computer. It's going to be reeeeeeeeeeal bad on mobile"
+        )
+      );
 
     if (this.$store.notInitialized) this.$store.commit("initCards");
   }

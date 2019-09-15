@@ -1,9 +1,11 @@
 <template>
   <div class="aboutSection About">
     <h1>Answers to important questions you might have</h1>
-    <h3>Where's Freedom/CIP/Discover It/similar?</h3>
+    <h3>Why does this site look bad?</h3>
+    <p>You're probably on mobile or the window is small. I haven't figured out that "responsive design" stuff yet.</p>
+    <h3>Where's Freedom/Discover It/similar?</h3>
     <p>
-      It's really tough to value these rotating category cards because the categories change
+      It's really tough to value these because the categories change
       and often aren't known until the issuer decides to reveal them.
     </p>
     <h3>Where's (branded travel card)?</h3>
@@ -12,11 +14,11 @@
       I wanted to keep this tool very simple. I also didn't include cards that focused on
       less unique spend categories (US Bank Altitude Reserve, Chase Ink Cash) for that same reason.
     </p>
-    <h3>Where's (other card)</h3>
+    <h3>Where's (other card)?</h3>
     <p>
       I left out cards that were effectively the same as others.
       For example a lot of cards give
-      150 dollars after 500 spend and 1.5% cash back on everything as their only category, but I only
+      $150 after $500 spend and 1.5% cash back on everything as their only category, but I only
       added the Capital One Quicksilver.
     </p>
     <p>
@@ -31,6 +33,7 @@
       lower, but I figured that people who get travel cards would use them for travel.
       I also adjusted effective annual fee to account for annual travel credit if the
       credit was easy to use (I didn't include AmEx's incidentals credit).
+      If my valuation isn't accurate for you, you can adjust the valuations in the modify tab!
     </p>
     <p>
       It's possible to get much more value for points and perks with more unique redemption options
@@ -38,7 +41,7 @@
     </p>
     <h3>How can I know this information is correct?</h3>
     <p>
-      You can't know for sure, I've always been pretty bad at math.
+      You can't know for sure, I've always been pretty bad at math. It seems correct to me though.
       But if you want to check out the calculations, the logic is in the "cardToSeriesData"
       function
       <a
@@ -52,6 +55,7 @@
     </p>
   </div>
 </template>
+
 <script>
 export default {
   name: "faq"

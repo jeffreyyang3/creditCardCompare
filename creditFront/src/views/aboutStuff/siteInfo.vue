@@ -3,16 +3,12 @@
     <h1>Why I made this site</h1>
     <h3>I like credit cards a lot</h3>
     <p>
-      Ever since recently discovering the subreddit
-      <a
-        href="https://www.reddit.com/r/churning/"
-        target="_blank"
-      >r/churning</a>, I've always
+      Ever since discovering
+      <a href="https://www.reddit.com/r/churning/" target="_blank">r/churning</a>, I've always
       been fascinated by credit card rewards. Free money and cute looking
       cards! Kinda like Pokémon cards, but with no skill requirement to
       make money with them. It had to be too good to be true. After a bit more life experience
-      and research, I'm happy to report that it really is that good, unless you
-      carry a balance/pay late.
+      and research, I'm happy to report that it really is that good.
       Shoutout to the US's legendary culture of spending/lending/debt management
       for making this all possible. I don't think any other country's credit cards even come
       close.

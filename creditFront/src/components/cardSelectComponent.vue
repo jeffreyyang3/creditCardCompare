@@ -138,7 +138,7 @@ export default {
       }
     },
     percentFilter(decimal) {
-      return `${(100 * decimal).toFixed(1)}%`;
+      return `${(100 * decimal).toFixed(2)}%`;
     },
 
     toggleDescVis(e) {
