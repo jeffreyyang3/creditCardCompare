@@ -1,6 +1,6 @@
 <template>
   <nav class="topNavbar">
-    <div class="navItems">
+    <div class="navItems" v-show="currentView !== 'about'">
       <!-- <router-link to="/modifyCards">Modify Cards</router-link> -->
       <div
         class="navItem"
@@ -51,6 +51,24 @@
         v-on:click.native="$store.commit('setView', 'choose')"
         to="/"
       >Split Screen Sadness</router-link>
+      <router-link
+        class="navItem"
+        v-on:click.native="$store.commit('setView', 'about')"
+        to="/about"
+      >About This Site</router-link>
+    </div>
+    <div class="navItems" v-show="currentView === 'about'">
+      <router-link class="navItem" to="/about/siteInfo">About</router-link>
+
+      <router-link class="navItem" to="/about/faq">Important Info</router-link>
+
+      <router-link class="navItem" to="/about/techInfo">comparecards4.me engineering blog</router-link>
+
+      <router-link
+        class="navItem"
+        to="/"
+        v-on:click.native="$store.commit('setView', 'choose')"
+      >Home</router-link>
     </div>
   </nav>
 </template>	
@@ -127,6 +145,12 @@
 .navItem {
   color: white;
   cursor: pointer;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 .navItem:hover {
   color: white;

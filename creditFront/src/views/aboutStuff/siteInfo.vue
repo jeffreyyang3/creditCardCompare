@@ -6,12 +6,10 @@
       Ever since discovering
       <a href="https://www.reddit.com/r/churning/" target="_blank">r/churning</a>, I've always
       been fascinated by credit card rewards. Free money and cute looking
-      cards! Kinda like Pokémon cards, but with no skill requirement to
-      make money with them. It had to be too good to be true. After a bit more life experience
+      cards! Like MTG/Pokémon cards, but way easier to make money with. It had to be too good to be true. After a bit more life experience
       and research, I'm happy to report that it really is that good.
       Shoutout to the US's legendary culture of spending/lending/debt management
-      for making this all possible. I don't think any other country's credit cards even come
-      close.
+      for making this all possible. I don't think any other country's credit cards even come close.
     </p>
     <h3>There are a lot of good credit cards</h3>
     <p>
@@ -39,8 +37,7 @@
       It's too late to turn back now though 😢
     </p>
     <p>
-      Comparison based on spending amounts is completely objective and tailored perfectly to your spending
-      (with a few exceptions detailed ${here}).
+      Comparison based on spending amounts is objective and very personalized.
       I think it's a great way to compare credit cards, although it shouldn't be the only research you do.
       Numbers can't represent everything a card can offer.
     </p>
@@ -48,7 +45,11 @@
     <h3>Learning more about programming</h3>
     <p>
       I enjoy programming/web development, so this was a fun way to learn more about web dev. More details
-      HERE
+      in the
+      <router-link to="/about/techInfo">
+        comparecards4.me
+        <strong>ENGINEERING BLOG 🛠️</strong>
+      </router-link>
     </p>
   </div>
 </template>

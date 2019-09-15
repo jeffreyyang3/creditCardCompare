@@ -1,8 +1,7 @@
 <template>
   <div class="aboutSection About">
     <h1>Answers to important questions you might have</h1>
-    <h3>Why does this site look bad?</h3>
-    <p>You're probably on mobile or the window is small. I haven't figured out that "responsive design" stuff yet.</p>
+
     <h3>Where's Freedom/Discover It/similar?</h3>
     <p>
       It's really tough to value these because the categories change
@@ -53,6 +52,8 @@
         target="_blank"
       >here</a>
     </p>
+    <h3>Why does this site look bad?</h3>
+    <p>You're probably on mobile or the window is small. I haven't figured out that "responsive design" stuff yet.</p>
   </div>
 </template>
 
