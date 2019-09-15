@@ -7,6 +7,8 @@ import modifyCards from "@/views/modifyCards";
 import CBLine from "@/views/CBLine";
 import siteInfo from "@/views/aboutStuff/siteInfo";
 
+import techInfo from "@/views/aboutStuff/techInfo";
+
 import faq from "@/views/aboutStuff/faq";
 Vue.use(Router);
 
@@ -45,7 +47,8 @@ export default new Router({
             component: About,
             children: [
                 { path: "siteInfo", component: siteInfo },
-                { path: "faq", component: faq }
+                { path: "faq", component: faq },
+                { path: "techInfo", component: techInfo }
             ]
         }
     ]
