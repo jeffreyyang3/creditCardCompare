@@ -6,6 +6,8 @@ import cardsModal from "@/views/cardsModal";
 import modifyCards from "@/views/modifyCards";
 import CBLine from "@/views/CBLine";
 import siteInfo from "@/views/aboutStuff/siteInfo";
+
+import faq from "@/views/aboutStuff/faq";
 Vue.use(Router);
 
 export default new Router({
@@ -41,7 +43,10 @@ export default new Router({
             // this generates a separate chunk (about.[hash].js) for this route
             // which is lazy-loaded when the route is visited.
             component: About,
-            children: [{ path: "siteInfo", component: siteInfo }]
+            children: [
+                { path: "siteInfo", component: siteInfo },
+                { path: "faq", component: faq }
+            ]
         }
     ]
 });

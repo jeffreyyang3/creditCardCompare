@@ -1,7 +1,7 @@
 <template>
   <div class="typeAhead">
     <input placeholder="Search for a card!" class="searchBar" type="text" v-model="currentTyped" />
-    <div class="allSelects">
+    <div v-if="!forRemove" class="allSelects">
       <div v-for="filter in allFilters" :key="filter.displayName" class="vueSelectWrapper">
         <div class="filterName">{{ filter.displayName }}</div>
         <VueSelect :options="filter.options" @input="handleOptionChange(filter)($event)" />

@@ -59,7 +59,6 @@ $leftSideWidth: 38%;
   /* width: 50%; */
   min-height: 100%;
   max-height: calc(100vh - 46px);
-  overflow-y: scroll;
 }
 #leftSide {
   width: $leftSideWidth;

@@ -50,7 +50,7 @@
         class="navItem"
         v-on:click.native="$store.commit('setView', 'choose')"
         to="/"
-      >Back</router-link>
+      >Split Screen Sadness</router-link>
     </div>
   </nav>
 </template>	

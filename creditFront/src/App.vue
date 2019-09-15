@@ -24,6 +24,20 @@ $font_path: "./assets/fonts/";
   src: url($font_path+"icomoon.woff") format("woff"),
     url($font_path+"icomoon.ttf") format("truetype");
 }
+
+body::-webkit-scrollbar {
+  width: 0.7em;
+  background: white;
+}
+body::-webkit-scrollbar-thumb {
+  background: #c0392b;
+  height: 30px;
+}
+
+body::-webkit-scrollbar-track-piece {
+  display: none;
+}
+
 #app {
   height: 100%;
   font-family: "Roboto", sans-serif;

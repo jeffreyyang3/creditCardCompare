@@ -87,6 +87,7 @@ export default new Vuex.Store({
             state.notInitialized = false;
             state.selectedCards = [];
             state.unSelectedCards = cardsDb();
+            console.log(Object.keys(cardsDb()).length, "fdfdfdfdfdfd");
             for (let key in state.unSelectedCards) {
                 if (state.unSelectedCards.hasOwnProperty(key)) {
                     state.unSelectedCards[key].name = key;
