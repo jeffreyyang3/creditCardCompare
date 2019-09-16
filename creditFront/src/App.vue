@@ -81,9 +81,7 @@ export default {
     // this.$store.commit("initCards");
     if (mobile)
       alert(
-        "I don't have the time management needed to make this look good on mobile,".concat(
-          " so I'd strongly recommend just visiting on your computer. It's going to be reeeeeeeeeeal bad on mobile"
-        )
+        "This site is probably going to look absolutely terrible on mobile. I haven't gotten around to dealing with that yet"
       );
 
     if (this.$store.notInitialized) this.$store.commit("initCards");
