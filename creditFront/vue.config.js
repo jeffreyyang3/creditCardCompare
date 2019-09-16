@@ -3,4 +3,5 @@ module.exports = {
     disableHostCheck: true,
     port: 1234
   },
+  outputDir: "../docs"
 };
