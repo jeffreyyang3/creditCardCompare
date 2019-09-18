@@ -40,7 +40,7 @@ $leftWidth: 35%;
 
 .modInputs {
   flex-grow: 1;
-  width: 100%
+  width: 100%;
 }
 .inputContainer {
   margin-left: auto;
@@ -94,10 +94,8 @@ $leftWidth: 35%;
 
 .modifyCardsLeft {
   height: 100%;
-  width: 100%
+  width: 100%;
 }
-
-
 </style>
 
 <script>
@@ -118,6 +116,14 @@ export default {
       payload.mod.amount = amount;
 
       this.$store.commit("setMod", payload);
+    },
+    filteredModifications: function(card) {
+      return modifications.filter(mod => {
+        return (
+          mod.toChange !== "specialCatSpend" ||
+          card.rewards.specialCategory !== undefined
+        );
+      });
     }
   },
 
@@ -127,8 +133,12 @@ export default {
         { name: "Cents Per Point", toChange: "pointValue" },
         { name: "Flat Bonus", toChange: "flatBonus" },
         {
-          name: "Effective Annual Fee",
+          name: "Annual Fee",
           toChange: "effectiveAF"
+        },
+        {
+          name: "Special Category",
+          toChange: "specialCatSpend"
         }
       ]
     };

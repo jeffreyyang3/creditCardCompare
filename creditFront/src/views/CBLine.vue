@@ -462,29 +462,55 @@ export default {
         Object.keys(card.categories).forEach(category => {
           const cap = capData[category];
           if (cap) {
+            const isSpecial = category === "Special Category";
+            const categorySpend = isSpecial
+              ? card.rewards.specialCatSpend
+              : this.categorySpend[category];
+
+            console.log(categorySpend);
+            console.log(cap);
             if (month % cap.capTime === 0) {
               cap.currentSpend = 0;
               cap.hit = false;
             }
+            console.log("old", totalCB);
 
             if (cap.hit) {
-              totalCB +=
-                card.categories.other.percent * this.categorySpend[category] -
-                card.categories[category].percent *
-                  this.categorySpend[category];
-            } else if (
-              cap.currentSpend + this.categorySpend[category] >
-              cap.capAmount
-            ) {
+              console.log("one");
+              if (isSpecial)
+                totalCB +=
+                  cbMultiplier * card.categories.other.percent * categorySpend;
+              else {
+                totalCB +=
+                  card.categories.other.percent * categorySpend -
+                  card.categories[category].percent * categorySpend;
+              }
+            } else if (cap.currentSpend + categorySpend > cap.capAmount) {
+              console.log("two");
               cap.hit = true;
               const spendLeft = cap.capAmount - cap.currentSpend;
+              if (isSpecial) {
+                totalCB +=
+                  card.categories[category].percent * spendLeft * cbMultiplier;
+                totalCB +=
+                  cbMultiplier *
+                  card.categories.other.percent *
+                  (categorySpend - spendLeft);
+                return;
+              }
               totalCB += card.categories[category].percent * spendLeft;
               totalCB +=
-                card.categories.other.percent *
-                (this.categorySpend[category] - spendLeft);
+                card.categories.other.percent * (categorySpend - spendLeft);
             } else {
-              cap.currentSpend += this.categorySpend[category];
+              console.log("three");
+              cap.currentSpend += categorySpend;
+              if (isSpecial)
+                totalCB +=
+                  card.categories[category].percent *
+                  categorySpend *
+                  cbMultiplier;
             }
+            console.log("new", totalCB);
           }
         });
 

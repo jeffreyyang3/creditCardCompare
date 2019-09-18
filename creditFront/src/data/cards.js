@@ -89,6 +89,41 @@ export default () => {
                 issuer: "Chase"
             }
         },
+        cf: {
+            displayName: "Chase Freedom",
+            categories: {
+                other: {
+                    percent: 0.01,
+                    cap: false
+                },
+                "Special Category": {
+                    displayName: "Rotating 5%",
+                    percent: 0.05,
+                    cap: 1500,
+                    capTime: 3
+                }
+            },
+            bonus: {
+                type: "standard",
+                bonuses: [{ msr: 500, rewardAmount: 200, expire: 3 }]
+            },
+            annualFee: {
+                has: false,
+                waiveFirst: false,
+                amount: 0
+            },
+            rewards: {
+                flatBonus: 0,
+                pointValue: 1,
+                effectiveAF: 0,
+                specialCatSpend: 350
+            },
+            otherInfo: {
+                type: "Cash Back",
+                network: "Visa",
+                issuer: "Chase"
+            }
+        },
 
         inkBizUnlimited: {
             displayName: "Ink Business Unlimited",
@@ -627,6 +662,42 @@ export default () => {
                         )
                         .concat("I set the cash back at 2%")
                 ]
+            }
+        },
+        discoverIt: {
+            displayName: "Discover It",
+            categories: {
+                other: {
+                    percent: 0.01,
+                    cap: false
+                },
+                "Special Category": {
+                    displayName: "Rotating 5%",
+                    percent: 0.05,
+                    cap: 1500,
+                    capTime: 3
+                }
+            },
+            bonus: {
+                type: "percentTime",
+                multiplier: 2,
+                length: 12
+            },
+            annualFee: {
+                has: false,
+                waiveFirst: false,
+                amount: 0
+            },
+            otherInfo: {
+                type: "Cash Back",
+                issuer: "Discover",
+                network: "Discover"
+            },
+            rewards: {
+                pointValue: 1,
+                effectiveAF: 0,
+                flatBonus: 0,
+                specialCatSpend: 350
             }
         },
 
