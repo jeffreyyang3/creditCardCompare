@@ -124,6 +124,94 @@ export default () => {
                 issuer: "Chase"
             }
         },
+        hiltonHonors: {
+            displayName: "Hilton Honors",
+            categories: {
+                other: {
+                    percent: 0.03,
+                    cap: false
+                },
+                "Special Category": {
+                    displayName: "Hilton",
+                    percent: 0.07,
+                    cap: false
+                },
+                dining: {
+                    percent: 0.05,
+                    cap: false
+                },
+                groceries: {
+                    percent: 0.05,
+                    cap: false
+                },
+                gas: {
+                    percent: 0.05,
+                    cap: false
+                }
+            },
+            bonus: {
+                type: "standard",
+                bonuses: [{ msr: 1000, rewardAmount: 950, expire: 3 }]
+            },
+            annualFee: {
+                has: false,
+                waiveFirst: false,
+                amount: 0
+            },
+            rewards: {
+                flatBonus: 0,
+                pointValue: 0.5,
+                effectiveAF: 74,
+                specialCatSpend: 350
+            },
+            otherInfo: {
+                type: "Travel",
+                network: "American Express",
+                issuer: "American Express"
+            }
+        },
+        swPriority: {
+            displayName: "Southwest Priority",
+            categories: {
+                other: {
+                    percent: 0.01,
+                    cap: false
+                },
+                "Special Category": {
+                    displayName: "Southwest",
+                    percent: 0.02,
+                    cap: false
+                    // capTime: 3
+                }
+            },
+            bonus: {
+                type: "standard",
+                bonuses: [
+                    { msr: 1000, rewardAmount: 400, expire: 3 },
+                    {
+                        msr: 12000,
+                        rewardAmount: 200,
+                        expire: 12
+                    }
+                ]
+            },
+            annualFee: {
+                has: true,
+                waiveFirst: false,
+                amount: 149
+            },
+            rewards: {
+                flatBonus: 0,
+                pointValue: 1.5,
+                effectiveAF: 74,
+                specialCatSpend: 350
+            },
+            otherInfo: {
+                type: "Travel",
+                network: "Visa",
+                issuer: "Chase"
+            }
+        },
 
         inkBizUnlimited: {
             displayName: "Ink Business Unlimited",
