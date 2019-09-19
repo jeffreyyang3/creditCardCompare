@@ -76,6 +76,13 @@
 <style lang="scss">
 .navDropDownContent {
   top: 100%;
+  position: absolute;
+  display: none;
+  max-height: 40vh;
+  overflow-y: scroll;
+  width: 400px;
+  border: 2px solid #9daaaf;
+  border-top: none;
 }
 
 .navDropDownContent .vueSelectWrapper {
@@ -93,10 +100,6 @@
   background-color: transparent;
   color: black;
   border: none;
-}
-.navDropDownContent {
-  position: absolute;
-  display: none;
 }
 
 .navDropDownContent .searchBar,

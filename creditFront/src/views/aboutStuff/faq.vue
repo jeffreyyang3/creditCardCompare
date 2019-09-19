@@ -2,28 +2,19 @@
   <div class="aboutSection About">
     <h1>Answers to important questions you might have</h1>
 
-    <h3>Where's Freedom/Discover It/similar?</h3>
-    <p>
-      It's really tough to value these because the categories change
-      and often aren't known until the issuer decides to reveal them.
-    </p>
-    <h3>Where's (branded travel card)?</h3>
-    <p>
-      Branded cards generally focus on spending on the brand, and I felt that was too specific.
-      I wanted to keep this tool very simple. I also didn't include cards that focused on
-      less unique spend categories (US Bank Altitude Reserve, Chase Ink Cash) for that same reason.
-    </p>
-    <h3>Where's (other card)?</h3>
-    <p>
-      I left out cards that were effectively the same as others.
-      For example a lot of cards give
-      $150 after $500 spend and 1.5% cash back on everything as their only category, but I only
-      added the Capital One Quicksilver.
-    </p>
-    <p>
-      I also left out cards that didn't earn rewards, and cards that earned a very low amount of
-      rewards.
-    </p>
+    <h3>Why is the card I'm looking for missing?</h3>
+    <p>I left out cards that were:</p>
+    <ul>
+      <li>
+        Effectively the same as others.
+        For example, a lot of cards give
+        $150 after $500 spend and 1.5% cash back on everything as their only category, but I only
+        added the Capital One Quicksilver.
+      </li>
+      <li>Difficult to model accurately while keeping the tool simple.</li>
+      <li>Not worth considering because of low/no rewards</li>
+    </ul>
+    <p>There are also a whole lot of cards out there. I probably missed it.</p>
     <h3>Where did the point/annual fee valuations come from?</h3>
     <p>
       I valued points based on the issuer recommended, readily available way to

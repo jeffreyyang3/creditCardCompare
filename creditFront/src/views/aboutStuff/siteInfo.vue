@@ -45,11 +45,7 @@
     <h3>Learning more about programming</h3>
     <p>
       I enjoy programming/web development, so this was a fun way to learn more about web dev. More details
-      in the
-      <router-link to="/about/techInfo">
-        comparecards4.me
-        <strong>ENGINEERING BLOG 🛠️</strong>
-      </router-link>
+      <router-link to="/about/techInfo">here</router-link>
     </p>
   </div>
 </template>

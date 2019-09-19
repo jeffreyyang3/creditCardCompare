@@ -19,6 +19,14 @@
     <!-- <div v-for="card in filteredCards" :key="card.cardKey"> {{ card.displayName }}</div> -->
 
     <div class="suggestions" v-if="showSuggestions && !forRemove">
+      <div class="suggestionsItem">
+        <div class="cardTitle">Overwhelmed? Try a random card!</div>
+        <div class="addButton" @click="$store.dispatch('addRandomCard')"></div>
+      </div>
+      <div class="suggestionsItem">
+        <div class="cardTitle">Or all of them</div>
+        <div class="addButton" @click="$store.commit('addAllRemaining')"></div>
+      </div>
       <div class="suggestionsItem" v-for="card in filteredCards" :key="card.cardKey">
         <div class="cardTitle">{{ card.displayName }}</div>
         <div class="typeAheadCard">
@@ -179,14 +187,14 @@ export default {
   computed: {
     ...mapState(["unSelectedCards", "selectedCards", "allCardsInfo"]),
     filteredCards: function() {
-      let _ = [...this.sortedSuggestions];
+      let sugg = [...this.sortedSuggestions];
 
       Object.keys(this.filterState).forEach(filterName => {
-        _ = _.filter(sad => {
+        sugg = sugg.filter(sad => {
           return this.filterState[filterName](this.allCardsInfo[sad.cardKey]);
         });
       });
-      return _;
+      return sugg;
     },
 
     allFilters: function() {

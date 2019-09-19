@@ -125,7 +125,10 @@ export default {
       // .replace(/\n/g, "")
     },
     getFile() {
-      return require(`@/assets/cardImages/${this.name}.png`);
+      return require(`@/assets/cardImages/${this.name.replace(
+        /[0-9]/g,
+        ""
+      )}.png`);
     },
     categoryDisplayFilter(category) {
       if (

@@ -467,16 +467,12 @@ export default {
               ? card.rewards.specialCatSpend
               : this.categorySpend[category];
 
-            console.log(categorySpend);
-            console.log(cap);
             if (month % cap.capTime === 0) {
               cap.currentSpend = 0;
               cap.hit = false;
             }
-            console.log("old", totalCB);
 
             if (cap.hit) {
-              console.log("one");
               if (isSpecial)
                 totalCB +=
                   cbMultiplier * card.categories.other.percent * categorySpend;
@@ -486,7 +482,6 @@ export default {
                   card.categories[category].percent * categorySpend;
               }
             } else if (cap.currentSpend + categorySpend > cap.capAmount) {
-              console.log("two");
               cap.hit = true;
               const spendLeft = cap.capAmount - cap.currentSpend;
               if (isSpecial) {
@@ -502,7 +497,6 @@ export default {
               totalCB +=
                 card.categories.other.percent * (categorySpend - spendLeft);
             } else {
-              console.log("three");
               cap.currentSpend += categorySpend;
               if (isSpecial)
                 totalCB +=
@@ -510,7 +504,6 @@ export default {
                   categorySpend *
                   cbMultiplier;
             }
-            console.log("new", totalCB);
           }
         });
 

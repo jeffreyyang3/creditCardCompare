@@ -3,13 +3,14 @@
     <div class="modifyCardsLeft">
       <h3 v-if="selectedCards.length === 0">add cards to modify them!</h3>
       <div class="selectedCards" :key="card.name" v-for="card in selectedCards">
+        <h4>{{ card.displayName }}</h4>
         <div class="cardAllMod">
           <cardSelectComponent :clickable="false" :name="card.name" />
           <div class="modInputs">
             <div
               :class="mod.toChange"
               class="categoryMod"
-              v-for="mod in modifications"
+              v-for="mod in filteredModifications(card)"
               :key="mod.name"
             >
               <span class="categoryTitle">{{ mod.name }}</span>
@@ -37,6 +38,10 @@
 
 <style scoped lang="scss">
 $leftWidth: 35%;
+
+.selectedCards {
+  margin-top: 10px;
+}
 
 .modInputs {
   flex-grow: 1;
@@ -109,8 +114,9 @@ export default {
   },
   methods: {
     handleModChange: function(modName, amount, card) {
-      console.log(modName, amount, card);
+      if (amount === "") amount = 0;
       const payload = { mod: {} };
+      console.log(payload);
       payload.card = card;
       payload.mod.modName = modName;
       payload.mod.amount = amount;
@@ -118,12 +124,26 @@ export default {
       this.$store.commit("setMod", payload);
     },
     filteredModifications: function(card) {
-      return modifications.filter(mod => {
-        return (
-          mod.toChange !== "specialCatSpend" ||
-          card.rewards.specialCategory !== undefined
-        );
+      const lst = [];
+      this.modifications.forEach(mod => {
+        if (mod.toChange !== "specialCatSpend") lst.push(mod);
+        else {
+          if (card.categories.hasOwnProperty("Special Category")) {
+            lst.push({
+              toChange: mod.toChange,
+              name: card.categories["Special Category"].displayName
+            });
+          }
+        }
       });
+
+      return lst;
+      // return this.modifications.filter(mod => {
+      //   return (
+      //     mod.toChange !== "specialCatSpend" ||
+      //     card.rewards.specialCatSpend !== undefined
+      //   );
+      // });
     }
   },
 

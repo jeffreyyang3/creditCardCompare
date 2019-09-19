@@ -5,6 +5,8 @@ value in the modify cards tab, using the point value, effective annual fee, and
 flat bonus categories. `;
 const chaseURMessage = `Owning a Sapphire Preferred will let you redeem the points this card earns at 1.25 cents per point,
 and 1.5 cents per point with the Sapphire Reserve.`;
+const specialCatMessage = `To get an accurate result, you need to also set 
+this card's special category spend in the Modify Selected Tab.`
 
 export default () => {
     return {
@@ -121,7 +123,102 @@ export default () => {
             otherInfo: {
                 type: "Cash Back",
                 network: "Visa",
-                issuer: "Chase"
+                issuer: "Chase",
+                notices: [specialCatMessage]
+            }
+        },
+ hiltonHonors2: {
+            displayName: "Hilton Honors Aspire",
+            categories: {
+                other: {
+                    percent: 0.03,
+                    cap: false
+                },
+                "Special Category": {
+                    displayName: "Hilton",
+                    percent: 0.12,
+                    cap: false
+                },
+                travel: {
+                    percent: 0.07,
+                    cap: false
+                },
+                dining: {
+                    percent: 0.07,
+                    cap: false
+                },
+
+                
+            },
+            bonus: {
+                type: "standard",
+                bonuses: [{ msr: 4000, rewardAmount: 1500, expire: 3 }]
+            },
+            annualFee: {
+                has: true,
+                waiveFirst: false,
+                amount: 450
+            },
+            rewards: {
+                flatBonus: 0,
+                pointValue: 0.5,
+                effectiveAF: 200,
+                specialCatSpend: 350
+            },
+            otherInfo: {
+                type: "Travel - Branded",
+                network: "American Express",
+                issuer: "American Express",
+
+                notices: [specialCatMessage]
+            }
+        },
+        hiltonHonors1: {
+            displayName: "Hilton Honors Surpass",
+            categories: {
+                other: {
+                    percent: 0.03,
+                    cap: false
+                },
+                "Special Category": {
+                    displayName: "Hilton",
+                    percent: 0.12,
+                    cap: false
+                },
+                dining: {
+                    percent: 0.06,
+                    cap: false
+                },
+                groceries: {
+                    percent: 0.06,
+                    cap: false
+                },
+                gas: {
+                    percent: 0.06,
+                    cap: false
+                }
+            },
+            bonus: {
+                type: "standard",
+                bonuses: [{ msr: 3000, rewardAmount: 1500, expire: 3 }]
+            },
+            annualFee: {
+                has: true,
+                waiveFirst: false,
+                amount: 95
+            },
+            rewards: {
+                flatBonus: 0,
+                pointValue: 0.5,
+                effectiveAF: 95,
+                specialCatSpend: 350
+            },
+            otherInfo: {
+                type: "Travel - Branded",
+                network: "American Express",
+                issuer: "American Express",
+
+                notices: [specialCatMessage]
             }
         },
         hiltonHonors: {
@@ -161,15 +258,152 @@ export default () => {
             rewards: {
                 flatBonus: 0,
                 pointValue: 0.5,
-                effectiveAF: 74,
+                effectiveAF: 0,
                 specialCatSpend: 350
             },
             otherInfo: {
-                type: "Travel",
+                type: "Travel - Branded",
                 network: "American Express",
-                issuer: "American Express"
+                issuer: "American Express",
+                notices: [specialCatMessage]
             }
         },
+ 
+        skyMilesGold: {
+            displayName: "Gold Delta SkyMiles",
+            categories: {
+                other: {
+                    percent: 0.01,
+                    cap: false
+                },
+                "Special Category": {
+                    displayName: "Delta",
+                    percent: 0.02,
+                    cap: false
+                    // capTime: 3
+                }
+            },
+            bonus: {
+                type: "standard",
+                bonuses: [
+                    {msr: 1000, rewardAmount: 300, expire: 3},
+                  
+                ]
+            },
+            annualFee: {
+                has: true,
+                waiveFirst: true,
+                amount: 95
+            },
+            rewards: {
+                flatBonus: 0,
+                pointValue: 1.7,
+                effectiveAF: 95,
+                specialCatSpend: 350
+            },
+            otherInfo: {
+                type: "Travel - Branded",
+                network: "American Express",
+                issuer: "American Express",
+
+                notices: [specialCatMessage]
+            }
+        },
+        skyMilesReserve: {
+            displayName: "Delta Reserve",
+            categories: {
+                other: {
+                    percent: 0.01,
+                    cap: false
+                },
+                "Special Category": {
+                    displayName: "Delta",
+                    percent: 0.02,
+                    cap: false
+                    // capTime: 3
+                }
+            },
+            bonus: {
+                type: "standard",
+                bonuses: [
+                    {msr: 3000, rewardAmount: 400, expire: 3},
+                    { msr: 30000, rewardAmount: 150, expire: 12 },
+                    {
+                        msr: 60000,
+                        rewardAmount: 150,
+                        expire: 12
+                    }
+                ]
+            },
+            annualFee: {
+                has: true,
+                waiveFirst: false,
+                amount: 450
+            },
+            rewards: {
+                flatBonus: 0,
+                pointValue: 1.7,
+                effectiveAF: 450,
+                specialCatSpend: 350
+            },
+            otherInfo: {
+                type: "Travel - Branded",
+                network: "American Express",
+                issuer: "American Express",
+
+                notices: [specialCatMessage]
+            }
+        },
+
+        bonvoyBrilliant: {
+            displayName: "Mariott Bonvoy Brilliant",
+            categories: {
+                other: {
+                    percent: 0.02,
+                    cap: false
+                },
+                "Special Category": {
+                    displayName: "Mariott",
+                    percent: 0.06,
+                    cap: false
+                    // capTime: 3
+                },
+                travel: {
+                    percent: 0.03,
+                    cap: false
+                },
+                dining: {
+                    percent: 0.03,
+                    cap: false
+                }
+            },
+            bonus: {
+                type: "standard",
+                bonuses: [
+                    { msr: 3000, rewardAmount: 750, expire: 3 },
+
+                ]
+            },
+            annualFee: {
+                has: true,
+                waiveFirst: false,
+                amount: 450
+            },
+            rewards: {
+                flatBonus: 0,
+                pointValue: 0.8,
+                effectiveAF: 150,
+                specialCatSpend: 350
+            },
+            otherInfo: {
+                type: "Travel - Branded",
+                network: "American Express",
+                issuer: "American Express",
+
+                notices: [specialCatMessage]
+            }
+        },
+       
         swPriority: {
             displayName: "Southwest Priority",
             categories: {
@@ -207,9 +441,11 @@ export default () => {
                 specialCatSpend: 350
             },
             otherInfo: {
-                type: "Travel",
+                type: "Travel - Branded",
                 network: "Visa",
-                issuer: "Chase"
+                issuer: "Chase",
+
+                notices: [specialCatMessage]
             }
         },
 
@@ -661,7 +897,7 @@ export default () => {
             }
         },
 
-        cap1Venture: {
+        capOneVenture: {
             displayName: "Capital One Venture",
             categories: {
                 other: {
@@ -691,7 +927,7 @@ export default () => {
             }
         },
 
-        cap1VentureOne: {
+        capOneVentureOne: {
             displayName: "Capital One VentureOne",
             categories: {
                 other: {
@@ -785,7 +1021,9 @@ export default () => {
                 pointValue: 1,
                 effectiveAF: 0,
                 flatBonus: 0,
-                specialCatSpend: 350
+                specialCatSpend: 350,
+
+                notices: [specialCatMessage]
             }
         },
 
@@ -955,7 +1193,7 @@ export default () => {
             }
         },
 
-        cap1QuickSilver: {
+        capOneQuickSilver: {
             displayName: "Capital One Quicksilver",
             categories: {
                 other: {
