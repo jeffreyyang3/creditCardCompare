@@ -16,7 +16,7 @@
     "cors": "^2.8.5",
     "ejs": "2.5.x",
     "envvar": "1.1.x",
-    "express": "4.16.x",
+    "express": "4.17.x",
     "ip": "^1.1.5",
     "moment": "2.22.x",
     "nodemon": "^1.18.11",
